@@ -9,10 +9,12 @@ using System.Web;
 
 namespace NBDProject.Models
 {
-    public class City
+    public class Tool
     {
+
         public int ID { get; set; }
 
-        public string city { get; set; } 
+        public string toolDesc { get; set; }
+        
     }
 }

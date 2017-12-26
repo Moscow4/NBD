@@ -14,31 +14,31 @@ namespace NBDProject.Models
 
         public int ID { get; set; }
 
-        public string projectName;
+        public string projectName { get; set; }
 
-        public string projectSite;
+        public string projectSite { get; set; }
 
-        public DateTime projectBidDate;
+        public DateTime projectBidDate { get; set; }
 
-        public string projectEstStart;
+        public string projectEstStart { get; set; }
 
-        public string projectEstEmd;
+        public string projectEstEmd { get; set; }
 
-        public string projectActStart;
+        public string projectActStart { get; set; }
 
-        public string projectActEnd;
+        public string projectActEnd { get; set; }
 
-        public int projectEstCost;
+        public int projectEstCost { get; set; }
 
-        public int projectActCost;
+        public int projectActCost { get; set; }
 
-        public byte projectBidCustAccept;
+        public byte projectBidCustAccept { get; set; }
 
-        public byte projectBidMgmtAccept;
+        public byte projectBidMgmtAccept { get; set; }
 
-        public string projectCurrentPhase;
+        public string projectCurrentPhase { get; set; }
 
-        public byte projectFlagged;
+        public byte projectFlagged { get; set; }
 
         public int clientID { get; set; }
 

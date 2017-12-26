@@ -9,10 +9,15 @@ using System.Web;
 
 namespace NBDProject.Models
 {
-    public class City
+    public class TaskTest
     {
         public int ID { get; set; }
 
-        public string city { get; set; } 
+        public string taskDesc { get; set; }
+
+        public string taskStdTImeAmnt { get; set; }
+
+        public string taskStdTimeUnit { get; set; }
+
     }
 }

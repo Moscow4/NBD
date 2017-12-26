@@ -42,8 +42,11 @@ namespace NBDProject.Models
 
         public int clientID { get; set; }
 
-        public int designerID { get; set; }
+        // a disigner ID doesnt exist need to discuss with team 
 
+        //public int designerID { get; set; }
+
+        public virtual Client Client { get; set; }
 
 
 

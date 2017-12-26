@@ -24,5 +24,9 @@ namespace NBDProject.Models
         public string invQOH { get; set; }
 
         public int materialID { get; set; }
+
+
+        //one to many
+        public virtual Material Material { get; set; }
     }
 }

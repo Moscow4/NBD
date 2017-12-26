@@ -26,5 +26,11 @@ namespace NBDProject.Models
         public int prodTeamID { get; set; }
 
         public int taskID { get; set; }
+
+
+        // setup one to many
+        public virtual ProjectTeam ProjectTeam { get; set; }
+
+        public virtual TaskTest TaskTest { get; set; }
     }
 }

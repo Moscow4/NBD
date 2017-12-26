@@ -19,5 +19,7 @@ namespace NBDProject.Models
 
         public int worktypeID { get; set; }
 
+        public virtual WorkType WorkType { get; set; }
+
     }
 }

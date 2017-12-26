@@ -11,6 +11,7 @@ namespace NBDProject.Models
 {
     public class Client
     {
+
         public int ID { get; set; }
 
         public string cliName { get; set; }
@@ -30,6 +31,11 @@ namespace NBDProject.Models
         public string cliConPostion { get; set;}
 
         public string cityID { get; set; }
+
+
+        //one to many 
+        public virtual City City { get; set; }
+
     }
 }
 

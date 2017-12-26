@@ -19,6 +19,9 @@ namespace NBDProject.Models
 
         public int workerTypeID { get; set; }
 
+        //set up one to manies 
+        public virtual Project Project { get; set; }
 
+        public virtual WorkType WorkType { get; set; }
     }
 }

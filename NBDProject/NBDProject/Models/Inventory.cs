@@ -11,22 +11,21 @@ namespace NBDProject.Models
 {
     public class Inventory
     {
+        public Inventory()
+        {
+            this.PlantInventories = new HashSet<PlantInventory>();
+            this.PotteryInventories = new HashSet<PotteryInventory>();
+            this.MaterialsInventories = new HashSet<MaterialsInventory>();
+
+        }
         public int ID { get; set; }
 
-        public decimal invAvgNet { get; set; }
+        public string InvDescription { get; set; }
 
-        public int invList { get; set; }
-
-        public int invSizeAmnt { get; set; }
-
-        public string invSizeUnit { get; set; }
-
-        public string invQOH { get; set; }
-
-        public int materialID { get; set; }
-
-
+        
         //one to many
-        public virtual Material Material { get; set; }
+        public virtual ICollection<PlantInventory> PlantInventories { get; set; }
+        public virtual ICollection<PotteryInventory> PotteryInventories { get; set; }
+        public virtual ICollection<MaterialsInventory> MaterialsInventories { get; set; }
     }
 }

@@ -56,7 +56,7 @@ namespace NBDProject.Models
         [StringLength(255, ErrorMessage = "Contact position cannot be more than 255 characters")]
         public string cliConPostion { get; set;}
 
-        public string cityID { get; set; }
+        public int cityID { get; set; }
 
 
         //one to many 

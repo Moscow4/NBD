@@ -12,6 +12,10 @@ namespace NBDProject.Models
 {
     public class Client
     {
+        public Client()
+        {
+            this.Cities = new HashSet<City>();
+        }
         
         public int ID { get; set; }
 
@@ -59,7 +63,7 @@ namespace NBDProject.Models
 
 
         //one to many 
-        public virtual City City { get; set; }
+        public ICollection<City> Cities { get; set; }
 
     }
 }

@@ -13,11 +13,17 @@ namespace NBDProject.Models
     {
         public int ID { get; set; }
 
+        [Display(Name = "Task Description")]
+        [Required(ErrorMessage = "Enter Task Description")]
+        [StringLength(50, ErrorMessage = "Task Description cannot be more than 50 characters.")]
         public string taskDesc { get; set; }
 
-        public string taskStdTImeAmnt { get; set; }
+        [Display(Name = "Task Description")]
+        public int? taskStdTImeAmnt { get; set; }
 
-        public string taskStdTimeUnit { get; set; }
+        [Display(Name = "Task Standard Time Unit")]
+        [StringLength(20, ErrorMessage = "Task Standard Time Unit  cannot be more than 20 characters.")]
+        public string? taskStdTimeUnit { get; set; }
 
     }
 }

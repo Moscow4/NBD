@@ -33,19 +33,19 @@ namespace NBDProject.Models
 
         [Display(Name = "Project Estimated Start")]
         [StringLength(10, ErrorMessage = "Project Estimated Start cannot be more than 10 characters.")]
-        public string? projectEstStart { get; set; }
+        public string projectEstStart { get; set; }
 
         [Display(Name = "Project Estimated End")]
         [StringLength(10, ErrorMessage = "Project Estimated End cannot be more than 10 characters.")]
-        public string? projectEstEnd { get; set; }
+        public string projectEstEnd { get; set; }
 
         [Display(Name = "Project Actual Start")]
         [StringLength(10, ErrorMessage = "Project Actual Start cannot be more than 10 characters.")]
-        public string? projectActStart { get; set; }
+        public string projectActStart { get; set; }
 
         [Display(Name = "Project Actual End")]
         [StringLength(10, ErrorMessage = "Project Actual End cannot be more than 10 characters.")]
-        public string? projectActEnd { get; set; }
+        public string projectActEnd { get; set; }
 
         [Display(Name = "Project Estimated Cost")]
         [StringLength(10, ErrorMessage = "Project Actual End cannot be more than 10 characters.")]
@@ -66,7 +66,7 @@ namespace NBDProject.Models
 
         [Display(Name = "Project Current Phase")]
         [StringLength(1, ErrorMessage = "Project Current Phase cannot be more than 1 characters.")]
-        public string? projectCurrentPhase { get; set; }
+        public string projectCurrentPhase { get; set; }
 
         public bool? projectFlagged { get; set; }
 

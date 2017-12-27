@@ -24,7 +24,12 @@ namespace NBDProject.Models
 
         [Display(Name = "Task Standard Time Unit")]
         [StringLength(20, ErrorMessage = "Task Standard Time Unit  cannot be more than 20 characters.")]
-        public string? taskStdTimeUnit { get; set; }
+        public string taskStdTimeUnit { get; set; }
+
+        [Required(ErrorMessage = "You must specify the Labor Requirements.")]
+        public int labourRequirementID { get; set; }
+
+        public virtual LabourRequirement LabourRequirement { get; set; }
 
     }
 }

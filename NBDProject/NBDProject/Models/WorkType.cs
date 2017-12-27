@@ -12,6 +12,9 @@ namespace NBDProject.Models
 {
     public class WorkType
     {
+        public WorkType() {
+            this.Workers = new HashSet<Worker>();
+        }
         public int ID { get; set; }
 
         [Display(Name = "Worker Type Description")]
@@ -29,5 +32,7 @@ namespace NBDProject.Models
         [Range(0.01, 9999.99, ErrorMessage = "Invalid Cost.")]
         [DataType(DataType.Currency)]
         public decimal? workTypeCost { get; set; }
+
+        public virtual ICollection<Worker> Workers { get; set; }
     }
 }

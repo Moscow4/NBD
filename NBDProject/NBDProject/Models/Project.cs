@@ -32,29 +32,26 @@ namespace NBDProject.Models
         public DateTime projectBidDate { get; set; }
 
         [Display(Name = "Project Estimated Start")]
-        [StringLength(10, ErrorMessage = "Project Estimated Start cannot be more than 10 characters.")]
-        public string projectEstStart { get; set; }
+        [DataType(DataType.Date)]
+        public DateTime projectEstStart { get; set; }
 
         [Display(Name = "Project Estimated End")]
-        [StringLength(10, ErrorMessage = "Project Estimated End cannot be more than 10 characters.")]
-        public string projectEstEnd { get; set; }
+        [DataType(DataType.Date)]
+        public DateTime projectEstEnd { get; set; }
 
         [Display(Name = "Project Actual Start")]
-        [StringLength(10, ErrorMessage = "Project Actual Start cannot be more than 10 characters.")]
-        public string projectActStart { get; set; }
+        [DataType(DataType.Date)]
+        public DateTime projectActStart { get; set; }
 
         [Display(Name = "Project Actual End")]
-        [StringLength(10, ErrorMessage = "Project Actual End cannot be more than 10 characters.")]
-        public string projectActEnd { get; set; }
+        [DataType(DataType.Date)]
+        public DateTime projectActEnd { get; set; }
 
         [Display(Name = "Project Estimated Cost")]
-        [StringLength(10, ErrorMessage = "Project Actual End cannot be more than 10 characters.")]
-        public int? projectEstCost { get; set; }
-
+        public decimal? projectEstCost { get; set; }
 
         [Display(Name = "Project Actual Cost")]
-        [StringLength(10, ErrorMessage = "Project Actual End cannot be more than 10 characters.")]
-        public int? projectActCost { get; set; }
+        public decimal? projectActCost { get; set; }
 
         [Display(Name = "Project Bid Customer Accept")]
         [StringLength(1, ErrorMessage = "Project Current Phase cannot be more than 1 characters.")]

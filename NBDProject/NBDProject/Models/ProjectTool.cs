@@ -33,12 +33,8 @@ namespace NBDProject.Models
         [Required(ErrorMessage = "You must specify the Project for the Project Tool.")]
         public int projectID { get; set; }
 
-        [Required(ErrorMessage = "You must specify the Tool for the Project Tool.")]
-        public int toolID { get; set; }
 
         public virtual Project Project { get; set; }
-
-        public virtual Tool Tool { get; set; }
 
 
 

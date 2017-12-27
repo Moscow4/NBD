@@ -17,6 +17,10 @@ namespace NBDProject.Models
             get { return lregEstHour * lregEstCost; }
         }
 
+        public LabourRequirement() {
+            this.TaskTests = new HashSet<TaskTest>();
+        }
+
         public int ID { get; set; }
 
         [Display(Name = "Desc")]
@@ -37,16 +41,10 @@ namespace NBDProject.Models
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd HH}", ApplyFormatInEditMode = false)]
         public DateTime lregTime { get; set; }
 
-        [Required(ErrorMessage = "You must specify the Project Team.")]
-        public int prodTeamID { get; set; }
-
-        [Required(ErrorMessage = "You must specify the Task.")]
-        public int taskID { get; set; }
+        
 
 
         // setup one to many
-        public virtual ProjectTeam ProjectTeam { get; set; }
-
-        public virtual TaskTest TaskTest { get; set; }
+        public virtual ICollection<TaskTest> TaskTests { get; set; }
     }
 }

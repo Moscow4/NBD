@@ -1,0 +1,58 @@
+﻿@model NBDProject.Models.Inventory
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Inventory</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Material.matDesc)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Material.matDesc)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AvgNet)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AvgNet)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.List)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.List)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SizeAmnt)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SizeAmnt)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SizeUnit)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SizeUnit)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

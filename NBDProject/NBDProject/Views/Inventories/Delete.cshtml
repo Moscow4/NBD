@@ -1,0 +1,64 @@
+﻿@model NBDProject.Models.Inventory
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Inventory</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Material.matDesc)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Material.matDesc)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AvgNet)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AvgNet)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.List)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.List)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SizeAmnt)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SizeAmnt)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SizeUnit)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SizeUnit)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

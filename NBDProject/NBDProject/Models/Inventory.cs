@@ -13,9 +13,9 @@ namespace NBDProject.Models
     {
         public Inventory()
         {
-            this.PlantInventories = new HashSet<PlantInventory>();
-            this.PotteryInventories = new HashSet<PotteryInventory>();
-            this.MaterialsInventories = new HashSet<MaterialsInventory>();
+            //this.PlantInventories = new HashSet<PlantInventory>();
+            //this.PotteryInventories = new HashSet<PotteryInventory>();
+            //this.MaterialsInventories = new HashSet<MaterialsInventory>();
 
         }
         public int ID { get; set; }
@@ -24,8 +24,8 @@ namespace NBDProject.Models
 
         
         //one to many
-        public virtual ICollection<PlantInventory> PlantInventories { get; set; }
-        public virtual ICollection<PotteryInventory> PotteryInventories { get; set; }
-        public virtual ICollection<MaterialsInventory> MaterialsInventories { get; set; }
+        //public virtual ICollection<PlantInventory> PlantInventories { get; set; }
+        //public virtual ICollection<PotteryInventory> PotteryInventories { get; set; }
+        //public virtual ICollection<MaterialsInventory> MaterialsInventories { get; set; }
     }
 }

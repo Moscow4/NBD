@@ -54,15 +54,12 @@ namespace NBDProject.Models
         public decimal? projectActCost { get; set; }
 
         [Display(Name = "Project Bid Customer Accept")]
-        [StringLength(1, ErrorMessage = "Project Current Phase cannot be more than 1 characters.")]
         public bool? projectBidCustAccept { get; set; }
 
         [Display(Name = "Project Bid Managment Accept")]
-        [StringLength(1, ErrorMessage = "Project Current Phase cannot be more than 1 characters.")]
         public bool? projectBidMgmtAccept { get; set; }
 
         [Display(Name = "Project Current Phase")]
-        [StringLength(1, ErrorMessage = "Project Current Phase cannot be more than 1 characters.")]
         public string projectCurrentPhase { get; set; }
 
         public bool? projectFlagged { get; set; }

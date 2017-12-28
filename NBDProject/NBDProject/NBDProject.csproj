@@ -204,6 +204,7 @@
     <Compile Include="Models\LabourRequirement.cs" />
     <Compile Include="Models\LabourSummary.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\Material.cs" />
     <Compile Include="Models\MaterialRequirement.cs" />
     <Compile Include="Models\MaterialsInventory.cs" />
     <Compile Include="Models\PlantInventory.cs" />

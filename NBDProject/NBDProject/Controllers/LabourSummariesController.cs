@@ -1,0 +1,176 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Data.Entity;
+using System.Linq;
+using System.Net;
+using System.Web;
+using System.Web.Mvc;
+using NBDProject.DAL;
+using NBDProject.Models;
+using System.Data.Entity.Infrastructure;
+
+namespace NBDProject.Controllers
+{
+    public class LabourSummariesController : Controller
+    {
+        private NBDCFEntities db = new NBDCFEntities();
+
+        // GET: LabourSummaries
+        public ActionResult Index()
+        {
+            var labourSummaries = db.LabourSummaries.Include(l => l.Project);
+            return View(labourSummaries.ToList());
+        }
+
+        // GET: LabourSummaries/Details/5
+        public ActionResult Details(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            LabourSummary labourSummary = db.LabourSummaries.Find(id);
+            if (labourSummary == null)
+            {
+                return HttpNotFound();
+            }
+            return View(labourSummary);
+        }
+
+        // GET: LabourSummaries/Create
+        public ActionResult Create()
+        {
+            PopulateDropDownLists();
+            return View();
+        }
+
+        // POST: LabourSummaries/Create
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create([Bind(Include = "ID,lsHours,projectID,workerTypeID")] LabourSummary labourSummary)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    db.LabourSummaries.Add(labourSummary);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+            }
+            catch (DataException dex)
+            {
+                ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists see your system administrator.");
+            }
+
+            PopulateDropDownLists(labourSummary);
+            return View(labourSummary);
+        }
+
+        // GET: LabourSummaries/Edit/5
+        public ActionResult Edit(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            LabourSummary labourSummary = db.LabourSummaries.Find(id);
+            if (labourSummary == null)
+            {
+                return HttpNotFound();
+            }
+            PopulateDropDownLists(labourSummary);
+            return View(labourSummary);
+        }
+
+        // POST: LabourSummaries/Edit/5
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost, ActionName("Edit")]
+        [ValidateAntiForgeryToken]
+        public ActionResult EditPost(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            var labourSummaryToUpdate = db.LabourSummaries.Find(id);
+            if (TryUpdateModel(labourSummaryToUpdate, "" , 
+                new string[] { "lsHOurs", "projectID", "workerTypeID"}))
+            {
+                try
+                {
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+                catch (DataException)
+                {
+                    ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists see your system administrator.");
+                }
+            }
+
+            PopulateDropDownLists(labourSummaryToUpdate);
+            return View(labourSummaryToUpdate);
+        }
+
+        // GET: LabourSummaries/Delete/5
+        public ActionResult Delete(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            LabourSummary labourSummary = db.LabourSummaries.Find(id);
+            if (labourSummary == null)
+            {
+                return HttpNotFound();
+            }
+            return View(labourSummary);
+        }
+
+        // POST: LabourSummaries/Delete/5
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(int id)
+        {
+            LabourSummary labour = db.LabourSummaries.Find(id);
+            try
+            {
+                db.LabourSummaries.Remove(labour);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+
+            }
+            catch (DataException dex)
+            {
+                ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists see your system administrator.");
+            }
+            return View(labour);
+        }
+
+        private void PopulateDropDownLists(LabourSummary labour = null)
+        {
+            var pQuery = from l in db.Projects
+                         orderby l.projectName, l.projectEstStart
+                         select l;
+            ViewBag.projectID = new SelectList(pQuery, "ID", "projectName", labour?.projectID);
+
+            var wQuery = from w in db.WokerTypes
+                         orderby w.workTypeDesc
+                         select w;
+            ViewBag.workerTypeID = new SelectList(wQuery, "ID", "workTypeDesc", labour?.workerTypeID);
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                db.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+    }
+}

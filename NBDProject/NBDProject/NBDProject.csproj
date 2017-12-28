@@ -191,7 +191,11 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LabourRequirementsController.cs" />
+    <Compile Include="Controllers\LabourSummariesController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\MaterialRequirementsController.cs" />
+    <Compile Include="Controllers\MaterialsController.cs" />
     <Compile Include="DAL\NBDCFEntities.cs" />
     <Compile Include="DAL\NDBMigrations\201712280117187_IntialCreate.cs" />
     <Compile Include="DAL\NDBMigrations\201712280117187_IntialCreate.Designer.cs">
@@ -281,6 +285,26 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\LabourRequirements\Create.cshtml" />
+    <Content Include="Views\LabourRequirements\Delete.cshtml" />
+    <Content Include="Views\LabourRequirements\Details.cshtml" />
+    <Content Include="Views\LabourRequirements\Edit.cshtml" />
+    <Content Include="Views\LabourRequirements\Index.cshtml" />
+    <Content Include="Views\LabourSummaries\Create.cshtml" />
+    <Content Include="Views\LabourSummaries\Delete.cshtml" />
+    <Content Include="Views\LabourSummaries\Details.cshtml" />
+    <Content Include="Views\LabourSummaries\Edit.cshtml" />
+    <Content Include="Views\LabourSummaries\Index.cshtml" />
+    <Content Include="Views\Materials\Create.cshtml" />
+    <Content Include="Views\Materials\Delete.cshtml" />
+    <Content Include="Views\Materials\Details.cshtml" />
+    <Content Include="Views\Materials\Edit.cshtml" />
+    <Content Include="Views\Materials\Index.cshtml" />
+    <Content Include="Views\MaterialRequirements\Create.cshtml" />
+    <Content Include="Views\MaterialRequirements\Delete.cshtml" />
+    <Content Include="Views\MaterialRequirements\Details.cshtml" />
+    <Content Include="Views\MaterialRequirements\Edit.cshtml" />
+    <Content Include="Views\MaterialRequirements\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

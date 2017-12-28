@@ -67,6 +67,7 @@ namespace NBDProject.Models
         [Required(ErrorMessage = "Set A Client")]
         public int clientID { get; set; }
 
+        
         // a disigner ID doesnt exist need to discuss with team 
         //[Required(ErrorMessage = "Set A Designer")]
         //public int designerID { get; set; }

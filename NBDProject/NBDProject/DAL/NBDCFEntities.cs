@@ -22,6 +22,8 @@ namespace NBDProject.DAL
         public DbSet<ProjectTeam>           ProjectTeams { get; set; }
         public DbSet<ProjectTool>           ProjectTools { get; set; }
         public DbSet<Tool>                  Tools { get; set; }
+        public DbSet<TaskTest>              TaskTests { get; set; }
+        public DbSet<WorkType>              WokerTypes { get; set; }
 
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

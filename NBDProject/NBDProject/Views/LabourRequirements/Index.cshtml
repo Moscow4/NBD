@@ -1,0 +1,51 @@
+﻿@model IEnumerable<NBDProject.Models.LabourRequirement>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.desc)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.lregEstHour)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.lregCost)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.lregTime)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.desc)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.lregEstHour)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.lregCost)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.lregTime)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+        </td>
+    </tr>
+}
+
+</table>

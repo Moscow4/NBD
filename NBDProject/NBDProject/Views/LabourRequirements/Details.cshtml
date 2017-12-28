@@ -1,0 +1,50 @@
+﻿@model NBDProject.Models.LabourRequirement
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>LabourRequirement</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.desc)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.desc)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.lregEstHour)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.lregEstHour)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.lregCost)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.lregCost)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.lregTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.lregTime)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

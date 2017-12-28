@@ -1,0 +1,82 @@
+﻿@model NBDProject.Models.MaterialRequirement
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>MaterialRequirement</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Project.projectName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Project.projectName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.mreqQty)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.mreqQty)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.mregCode)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.mregCode)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.mregSize)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.mregSize)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.mregNet)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.mregNet)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.mregExtCost)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.mregExtCost)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.mreqDeliver)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.mreqDeliver)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.mreqInstall)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.mreqInstall)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

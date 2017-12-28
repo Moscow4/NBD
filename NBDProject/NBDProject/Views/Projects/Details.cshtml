@@ -1,0 +1,130 @@
+﻿@model NBDProject.Models.Project
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Project</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Client.cliName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Client.cliName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.projectName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.projectName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.projectSite)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.projectSite)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.projectBidDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.projectBidDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.projectEstStart)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.projectEstStart)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.projectEstEnd)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.projectEstEnd)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.projectActStart)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.projectActStart)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.projectActEnd)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.projectActEnd)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.projectEstCost)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.projectEstCost)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.projectActCost)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.projectActCost)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.projectBidCustAccept)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.projectBidCustAccept)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.projectBidMgmtAccept)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.projectBidMgmtAccept)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.projectCurrentPhase)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.projectCurrentPhase)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.projectFlagged)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.projectFlagged)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

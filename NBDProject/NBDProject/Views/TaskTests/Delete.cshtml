@@ -1,0 +1,56 @@
+﻿@model NBDProject.Models.TaskTest
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>TaskTest</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.LabourRequirement.desc)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LabourRequirement.desc)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.taskDesc)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.taskDesc)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.taskStdTImeAmnt)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.taskStdTImeAmnt)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.taskStdTimeUnit)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.taskStdTimeUnit)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

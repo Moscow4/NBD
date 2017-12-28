@@ -1,0 +1,42 @@
+﻿@model NBDProject.Models.WorkType
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>WorkType</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.workTypeDesc)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.workTypeDesc)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.workTypePrice)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.workTypePrice)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.workTypeCost)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.workTypeCost)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

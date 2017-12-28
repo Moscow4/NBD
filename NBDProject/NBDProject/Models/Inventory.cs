@@ -1,9 +1,6 @@
-﻿// Made By: Chris Haggerty
-// Date: 26/12/2017
-// Work: Setting up Get and Set
-
-using System;
+﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
@@ -11,18 +8,26 @@ namespace NBDProject.Models
 {
     public class Inventory
     {
+        [Required(ErrorMessage = "How do you not have an ID for this?")]
         public int ID { get; set; }
 
-        public decimal invAvgNet { get; set; }
+        [Required(ErrorMessage = "Unsure about this value, but it is needed!")]
+        public decimal AvgNet { get; set; }
 
-        public int invList { get; set; }
+        [Required(ErrorMessage = "Inventory list cannot be left blank.")]
+        public int List { get; set; }
 
-        public int invSizeAmnt { get; set; }
+        [Required(ErrorMessage = "Size amount cannot be left blank.")]
+        public int SizeAmnt { get; set; }
 
-        public string invSizeUnit { get; set; }
+        [Required(ErrorMessage = "Size of unit cannot be left blank.")]
+        public string SizeUnit { get; set; }
 
-        public string invQOH { get; set; }
+        // Potentially unnecessary
+        //[Required(ErrorMessage = "Quantity on hand cannot be left blank.")]
+        //public string QuantityOnHand { get; set; }
 
+        [Required(ErrorMessage = "Material ID is needed.")]
         public int materialID { get; set; }
 
 

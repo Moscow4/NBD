@@ -4,6 +4,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
@@ -11,26 +12,39 @@ namespace NBDProject.Models
 {
     public class LabourRequirement
     {
+        [Display(Name = "Est. Cost")]
+        public decimal lregEstCost {
+            get { return lregEstHour * lregEstCost; }
+        }
+
+        public LabourRequirement() {
+            this.TaskTests = new HashSet<TaskTest>();
+        }
+
         public int ID { get; set; }
 
-        public DateTime lreqEstDate { get; set; }
+        [Display(Name = "Desc")]
+        [Required(ErrorMessage = "Description is required.")]
+        [StringLength(50, ErrorMessage = "Description cannot be more than 50 characters.")]
+        public string desc { get; set; }
 
-        public int lreqEstHours { get; set; }
+        [Display(Name = "Estimate Hour")]
+        [Required(ErrorMessage = "Estimate Hour is required.")]
+        public int lregEstHour { get; set; }
 
-        public DateTime lreqActtDate { get; set; }
+        [Display(Name = "Cost/Hr")]
+        [Required(ErrorMessage = "Cost each Hour is required.")]
+        public decimal lregCost { get; set; }
 
-        public int lreqActHours { get; set; }
+        [Display(Name = "Time")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd HH}", ApplyFormatInEditMode = false)]
+        public DateTime lregTime { get; set; }
 
-        public string lreqComments { get; set; }
-
-        public int prodTeamID { get; set; }
-
-        public int taskID { get; set; }
+        
 
 
         // setup one to many
-        public virtual ProjectTeam ProjectTeam { get; set; }
-
-        public virtual TaskTest TaskTest { get; set; }
+        public virtual ICollection<TaskTest> TaskTests { get; set; }
     }
 }

@@ -192,6 +192,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="DAL\NBDCFEntities.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -205,6 +206,9 @@
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Material.cs" />
     <Compile Include="Models\MaterialRequirement.cs" />
+    <Compile Include="Models\MaterialsInventory.cs" />
+    <Compile Include="Models\PlantInventory.cs" />
+    <Compile Include="Models\PotteryInventory.cs" />
     <Compile Include="Models\Project.cs" />
     <Compile Include="Models\ProjectTeam.cs" />
     <Compile Include="Models\ProjectTool.cs" />

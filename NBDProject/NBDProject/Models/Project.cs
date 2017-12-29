@@ -12,6 +12,11 @@ namespace NBDProject.Models
 {
     public class Project
     {
+        public Project()
+        {
+            this.projectTeams = new HashSet<ProjectTeam>();
+            this.LabourSummaries = new HashSet<LabourSummary>();
+        }
 
         public int ID { get; set; }
 
@@ -72,8 +77,20 @@ namespace NBDProject.Models
         //public int designerID { get; set; }
 
         public virtual Client Client { get; set; }
+        public virtual ICollection<ProjectTeam> projectTeams { get; set; }
+        public virtual ICollection<LabourSummary> LabourSummaries { get; set; }
 
-
+        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
+        {
+            if (projectEstStart > projectEstEnd)
+            {
+                yield return new ValidationResult("The Project Estimate Start Day cannot start after the Project Estimate End Day.", new[] { "projectEstStart" });
+            }
+            if (projectActStart > projectActEnd)
+            {
+                yield return new ValidationResult("The Project Actual Start Day cannot start after the Project Actual End Day.", new[] { "projectActStart" });
+            }
+        }
 
 
     }

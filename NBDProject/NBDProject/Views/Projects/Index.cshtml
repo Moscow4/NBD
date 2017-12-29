@@ -1,0 +1,111 @@
+﻿@model IEnumerable<NBDProject.Models.Project>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Client.cliFullName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.projectName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.projectSite)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.projectBidDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.projectEstStart)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.projectEstEnd)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.projectActStart)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.projectActEnd)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.projectEstCost)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.projectActCost)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.projectBidCustAccept)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.projectBidMgmtAccept)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.projectCurrentPhase)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.projectFlagged)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Client.cliFullName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.projectName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.projectSite)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.projectBidDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.projectEstStart)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.projectEstEnd)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.projectActStart)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.projectActEnd)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.projectEstCost)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.projectActCost)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.projectBidCustAccept)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.projectBidMgmtAccept)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.projectCurrentPhase)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.projectFlagged)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+        </td>
+    </tr>
+}
+
+</table>

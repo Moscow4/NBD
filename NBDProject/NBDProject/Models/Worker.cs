@@ -31,11 +31,12 @@ namespace NBDProject.Models
         [StringLength(30, ErrorMessage = "Worker Last Name cannot be more than 30 characters.")]
         public string FName { get; set; }
 
-        [Display(Name = "Worker First Name")]
+        [Display(Name = "Worker Last Name")]
         [Required(ErrorMessage = "Enter Worker Last Name")]
         [StringLength(30, ErrorMessage = "Worker Last Name cannot be more than 30 characters.")]
         public string LName { get; set; }
 
+        [Display(Name = "Worker Type")]
         [Required(ErrorMessage = "You must specify the Worker Type for the Worker.")]
         public int worktypeID { get; set; }
 

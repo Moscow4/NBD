@@ -156,7 +156,7 @@ namespace NBDProject.Controllers
             var tQuery = from t in db.Projects
                          orderby t.projectName
                          select t;
-            ViewBag.projectID = new SelectList(tQuery, "ID", "teamPhaseIn", team?.projectID);
+            ViewBag.projectID = new SelectList(tQuery, "ID", "projectName", team?.projectID);
         }
 
         protected override void Dispose(bool disposing)

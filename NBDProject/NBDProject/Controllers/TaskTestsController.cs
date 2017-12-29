@@ -60,7 +60,7 @@ namespace NBDProject.Controllers
                     return RedirectToAction("Index");
                 }
             }
-            catch (DataException dex)
+            catch (DataException)
             {
                 ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists see your system administrator.");
             }
@@ -155,9 +155,9 @@ namespace NBDProject.Controllers
         private void PopulateDropDownList(TaskTest task = null)
         {
             var tQuery = from t in db.LabourRequirements
-                         orderby t.lregCost
+                         orderby t.desc
                          select t;
-            ViewBag.labourRequirementID = new SelectList(tQuery, "ID", "taskDesc", task?.labourRequirementID);
+            ViewBag.labourRequirementID = new SelectList(tQuery, "ID", "desc", task?.labourRequirementID);
         }
 
         protected override void Dispose(bool disposing)

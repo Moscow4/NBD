@@ -15,6 +15,14 @@ namespace NBDProject.Models
         public Worker() {
             this.ProjectTeams = new HashSet<ProjectTeam>();
         }
+
+        public string FullName
+        {
+            get
+            {
+                return FName + " " + LName;
+            }
+        }
         public int ID { get; set; }
 
         [Display(Name = "Worker First Name")]

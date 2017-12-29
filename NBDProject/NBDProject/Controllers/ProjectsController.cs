@@ -40,7 +40,7 @@ namespace NBDProject.Controllers
         // GET: Projects/Create
         public ActionResult Create()
         {
-            ViewBag.clientID = new SelectList(db.Clients, "ID", "cliName");
+            PopulateDropDownList();
             return View();
         }
 
@@ -51,14 +51,21 @@ namespace NBDProject.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "ID,projectName,projectSite,projectBidDate,projectEstStart,projectEstEnd,projectActStart,projectActEnd,projectEstCost,projectActCost,projectBidCustAccept,projectBidMgmtAccept,projectCurrentPhase,projectFlagged,clientID")] Project project)
         {
-            if (ModelState.IsValid)
+            try
             {
-                db.Projects.Add(project);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                if (ModelState.IsValid)
+                {
+                    db.Projects.Add(project);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+            }
+            catch (DataException dex)
+            {
+                ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists see your system administrator.");
             }
 
-            ViewBag.clientID = new SelectList(db.Clients, "ID", "cliName", project.clientID);
+            PopulateDropDownList(project);
             return View(project);
         }
 
@@ -74,25 +81,39 @@ namespace NBDProject.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.clientID = new SelectList(db.Clients, "ID", "cliName", project.clientID);
+            PopulateDropDownList(project);
             return View(project);
         }
 
         // POST: Projects/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
+        [HttpPost, ActionName("Edit")]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,projectName,projectSite,projectBidDate,projectEstStart,projectEstEnd,projectActStart,projectActEnd,projectEstCost,projectActCost,projectBidCustAccept,projectBidMgmtAccept,projectCurrentPhase,projectFlagged,clientID")] Project project)
+        public ActionResult EditPost(int? id)
         {
-            if (ModelState.IsValid)
+            if (id == null)
             {
-                db.Entry(project).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ViewBag.clientID = new SelectList(db.Clients, "ID", "cliName", project.clientID);
-            return View(project);
+
+            var projectToUpdate = db.Projects.Find(id);
+            if (TryUpdateModel(projectToUpdate, "",
+                new string[] { "projectName" }))
+            {
+                try
+                {
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+                catch (DataException)
+                {
+                    ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists see your system administrator.");
+                }
+            }
+
+            PopulateDropDownList(projectToUpdate);
+            return View(projectToUpdate);
         }
 
         // GET: Projects/Delete/5
@@ -116,9 +137,28 @@ namespace NBDProject.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Project project = db.Projects.Find(id);
-            db.Projects.Remove(project);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            try
+            {
+                db.Projects.Remove(project);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+
+            }
+            catch (DataException dex)
+            {
+
+                ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists see your system administrator.");
+            }
+
+            return View(project);
+        }
+
+        private void PopulateDropDownList(Project project = null)
+        {
+            var cQuery = from c in db.Clients
+                         orderby c.cliName, c.cliConLName, c.cliConLName
+                         select c;
+            ViewBag.clientID = new SelectList(cQuery, "ID", "projectName", project?.clientID);
         }
 
         protected override void Dispose(bool disposing)

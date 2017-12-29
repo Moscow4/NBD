@@ -40,7 +40,7 @@ namespace NBDProject.Controllers
         // GET: TaskTests/Create
         public ActionResult Create()
         {
-            ViewBag.labourRequirementID = new SelectList(db.LabourRequirements, "ID", "desc");
+            PopulateDropDownList();
             return View();
         }
 
@@ -51,14 +51,21 @@ namespace NBDProject.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "ID,taskDesc,taskStdTImeAmnt,taskStdTimeUnit,labourRequirementID")] TaskTest taskTest)
         {
-            if (ModelState.IsValid)
+            try
             {
-                db.TaskTests.Add(taskTest);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                if (ModelState.IsValid)
+                {
+                    db.TaskTests.Add(taskTest);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+            }
+            catch (DataException dex)
+            {
+                ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists see your system administrator.");
             }
 
-            ViewBag.labourRequirementID = new SelectList(db.LabourRequirements, "ID", "desc", taskTest.labourRequirementID);
+            PopulateDropDownList(taskTest);
             return View(taskTest);
         }
 
@@ -74,25 +81,39 @@ namespace NBDProject.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.labourRequirementID = new SelectList(db.LabourRequirements, "ID", "desc", taskTest.labourRequirementID);
+            PopulateDropDownList(taskTest);
             return View(taskTest);
         }
 
         // POST: TaskTests/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
+        [HttpPost, ActionName("Edit")]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,taskDesc,taskStdTImeAmnt,taskStdTimeUnit,labourRequirementID")] TaskTest taskTest)
+        public ActionResult EditPost(int? id)
         {
-            if (ModelState.IsValid)
+            if (id == null)
             {
-                db.Entry(taskTest).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ViewBag.labourRequirementID = new SelectList(db.LabourRequirements, "ID", "desc", taskTest.labourRequirementID);
-            return View(taskTest);
+
+            var taskTestToUpdate = db.TaskTests.Find(id);
+            if (TryUpdateModel(taskTestToUpdate, "" ,
+                new string[] { "taskDesc" }))
+            {
+                try
+                {
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+                catch (DataException)
+                {
+                    ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists see your system administrator.");
+                }
+            }
+
+            PopulateDropDownList(taskTestToUpdate);
+            return View(taskTestToUpdate);
         }
 
         // GET: TaskTests/Delete/5
@@ -116,9 +137,27 @@ namespace NBDProject.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             TaskTest taskTest = db.TaskTests.Find(id);
-            db.TaskTests.Remove(taskTest);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            try
+            {
+
+                db.TaskTests.Remove(taskTest);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            catch (DataException)
+            {
+                ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists see your system administrator.");
+            }
+
+            return View(taskTest);
+        }
+
+        private void PopulateDropDownList(TaskTest task = null)
+        {
+            var tQuery = from t in db.LabourRequirements
+                         orderby t.lregCost
+                         select t;
+            ViewBag.labourRequirementID = new SelectList(tQuery, "ID", "taskDesc", task?.labourRequirementID);
         }
 
         protected override void Dispose(bool disposing)

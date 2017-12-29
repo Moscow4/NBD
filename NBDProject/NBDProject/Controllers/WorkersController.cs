@@ -40,7 +40,7 @@ namespace NBDProject.Controllers
         // GET: Workers/Create
         public ActionResult Create()
         {
-            ViewBag.worktypeID = new SelectList(db.WorkTypes, "ID", "workTypeDesc");
+            PopulateDropDownList();
             return View();
         }
 
@@ -51,14 +51,21 @@ namespace NBDProject.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "ID,FName,LName,worktypeID")] Worker worker)
         {
-            if (ModelState.IsValid)
+            try
             {
-                db.Workers.Add(worker);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                if (ModelState.IsValid)
+                {
+                    db.Workers.Add(worker);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+            }
+            catch (DataException)
+            {
+                ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists see your system administrator.");
             }
 
-            ViewBag.worktypeID = new SelectList(db.WorkTypes, "ID", "workTypeDesc", worker.worktypeID);
+            PopulateDropDownList(worker);
             return View(worker);
         }
 
@@ -81,18 +88,33 @@ namespace NBDProject.Controllers
         // POST: Workers/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
+        [HttpPost, ActionName("Edit")]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,FName,LName,worktypeID")] Worker worker)
+        public ActionResult EditPost(int? id)
         {
-            if (ModelState.IsValid)
+            if (id == null)
             {
-                db.Entry(worker).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ViewBag.worktypeID = new SelectList(db.WorkTypes, "ID", "workTypeDesc", worker.worktypeID);
-            return View(worker);
+            var workerToUpdate = db.Workers.Find(id);
+            if (TryUpdateModel(workerToUpdate, "",
+                new string[] { "FName", "LName", "worktypeID" }))
+            {
+                try
+                {
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+
+                }
+                catch (DataException)
+                {
+                    ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists see your system administrator.");
+                }
+
+
+            }
+            PopulateDropDownList(workerToUpdate);
+            return View(workerToUpdate);
         }
 
         // GET: Workers/Delete/5
@@ -116,9 +138,27 @@ namespace NBDProject.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Worker worker = db.Workers.Find(id);
-            db.Workers.Remove(worker);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            try
+            {
+
+                db.Workers.Remove(worker);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            catch (DataException)
+            {
+                ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists see your system administrator.");
+            }
+
+            return View(worker);
+        }
+
+        private void PopulateDropDownList(Worker worker = null)
+        {
+            var wQuery = from w in db.WorkTypes
+                         orderby w.workTypeDesc
+                         select w;
+            ViewBag.worktypeID = new SelectList(wQuery, "ID", "FullName", worker?.worktypeID);
         }
 
         protected override void Dispose(bool disposing)

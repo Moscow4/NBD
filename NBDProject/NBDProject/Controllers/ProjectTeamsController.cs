@@ -39,6 +39,7 @@ namespace NBDProject.Controllers
         // GET: ProjectTeams/Create
         public ActionResult Create()
         {
+            PopulateDropDownList();
             return View();
         }
 
@@ -49,13 +50,22 @@ namespace NBDProject.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "ID,teamPhaseIn,projectID")] ProjectTeam projectTeam)
         {
-            if (ModelState.IsValid)
+            try
             {
-                db.ProjectTeams.Add(projectTeam);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                if (ModelState.IsValid)
+                {
+                    db.ProjectTeams.Add(projectTeam);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+            }
+            catch (DataException dex)
+            {
+                ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists see your system administrator.");
+
             }
 
+            PopulateDropDownList(projectTeam);
             return View(projectTeam);
         }
 
@@ -71,23 +81,39 @@ namespace NBDProject.Controllers
             {
                 return HttpNotFound();
             }
+
+            PopulateDropDownList(projectTeam);
             return View(projectTeam);
         }
 
         // POST: ProjectTeams/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
+        [HttpPost, ActionName("Edit")]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,teamPhaseIn,projectID")] ProjectTeam projectTeam)
+        public ActionResult EditPost(int? id)
         {
-            if (ModelState.IsValid)
+            if (id == null)
             {
-                db.Entry(projectTeam).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            return View(projectTeam);
+            var projectTeamToUpdate = db.ProjectTeams.Find(id);
+            if (TryUpdateModel(projectTeamToUpdate, "",
+                new string[] { "teamPhaseIn", "projectID" }))
+            {
+                try
+                {
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+                catch (DataException dex)
+                {
+                    ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists see your system administrator.");
+                }
+            }
+
+            PopulateDropDownList(projectTeamToUpdate);
+            return View(projectTeamToUpdate);
         }
 
         // GET: ProjectTeams/Delete/5
@@ -111,9 +137,26 @@ namespace NBDProject.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             ProjectTeam projectTeam = db.ProjectTeams.Find(id);
-            db.ProjectTeams.Remove(projectTeam);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            try
+            {
+                db.ProjectTeams.Remove(projectTeam);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            catch (DataException)
+            {
+                ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists see your system administrator.");
+            }
+
+            return View(projectTeam);
+        }
+
+        private void PopulateDropDownList(ProjectTeam team = null)
+        {
+            var tQuery = from t in db.Projects
+                         orderby t.projectName
+                         select t;
+            ViewBag.projectID = new SelectList(tQuery, "ID", "teamPhaseIn", team?.projectID);
         }
 
         protected override void Dispose(bool disposing)

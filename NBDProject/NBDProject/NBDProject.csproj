@@ -210,6 +210,10 @@
     <Compile Include="DAL\NDBMigrations\201712280117187_IntialCreate.Designer.cs">
       <DependentUpon>201712280117187_IntialCreate.cs</DependentUpon>
     </Compile>
+    <Compile Include="DAL\NDBMigrations\201712290326231_SecondInitial.cs" />
+    <Compile Include="DAL\NDBMigrations\201712290326231_SecondInitial.Designer.cs">
+      <DependentUpon>201712290326231_SecondInitial.cs</DependentUpon>
+    </Compile>
     <Compile Include="DAL\NDBMigrations\Configuration.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -379,6 +383,9 @@
   <ItemGroup>
     <EmbeddedResource Include="DAL\NDBMigrations\201712280117187_IntialCreate.resx">
       <DependentUpon>201712280117187_IntialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DAL\NDBMigrations\201712290326231_SecondInitial.resx">
+      <DependentUpon>201712290326231_SecondInitial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

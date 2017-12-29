@@ -1,0 +1,50 @@
+﻿@model NBDProject.Models.TaskTest
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>TaskTest</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.LabourRequirement.desc)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LabourRequirement.desc)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.taskDesc)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.taskDesc)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.taskStdTImeAmnt)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.taskStdTImeAmnt)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.taskStdTimeUnit)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.taskStdTimeUnit)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

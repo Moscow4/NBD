@@ -36,5 +36,8 @@ namespace NBDProject.DAL
             return base.SaveChanges();
         }
 
+        public System.Data.Entity.DbSet<NBDProject.Models.TaskTest> TaskTests { get; set; }
+
+        public System.Data.Entity.DbSet<NBDProject.Models.WorkType> WorkTypes { get; set; }
     }
 }

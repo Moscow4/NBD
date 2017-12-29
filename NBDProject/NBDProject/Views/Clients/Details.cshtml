@@ -1,0 +1,90 @@
+﻿@model NBDProject.Models.Client
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Client</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.City.city)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.City.city)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.cliName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cliName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.cliAddress)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cliAddress)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.cliProvince)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cliProvince)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.cliCode)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cliCode)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.cliPhone)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cliPhone)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.cliConFname)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cliConFname)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.cliConLName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cliConLName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.cliConPostion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cliConPostion)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

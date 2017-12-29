@@ -1,0 +1,57 @@
+﻿@model IEnumerable<NBDProject.Models.Inventory>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Material.matDesc)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AvgNet)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.List)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SizeAmnt)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SizeUnit)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Material.matDesc)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AvgNet)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.List)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SizeAmnt)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SizeUnit)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,42 @@
+﻿@model NBDProject.Models.LabourSummary
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>LabourSummary</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Project.projectName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Project.projectName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.lsHours)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.lsHours)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.WorkType.workTypeDesc)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.WorkType.workTypeDesc)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

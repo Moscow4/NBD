@@ -1,0 +1,75 @@
+﻿@model IEnumerable<NBDProject.Models.MaterialRequirement>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Project.projectName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.mreqQty)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.mregCode)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.mregSize)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.mregNet)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.mregExtCost)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.mreqDeliver)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.mreqInstall)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Project.projectName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.mreqQty)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.mregCode)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.mregSize)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.mregNet)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.mregExtCost)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.mreqDeliver)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.mreqInstall)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+        </td>
+    </tr>
+}
+
+</table>

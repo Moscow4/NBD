@@ -1,0 +1,48 @@
+﻿@model NBDProject.Models.LabourSummary
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>LabourSummary</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Project.projectName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Project.projectName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.lsHours)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.lsHours)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.WorkType.workTypeDesc)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.WorkType.workTypeDesc)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

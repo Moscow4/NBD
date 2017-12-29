@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using NBDProject.DAL;
 using NBDProject.Models;
+using System.Data.Entity.Infrastructure;
 
 namespace NBDProject.Controllers
 {
@@ -49,11 +50,18 @@ namespace NBDProject.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "ID,matDesc,matType")] Material material)
         {
-            if (ModelState.IsValid)
+            try
             {
-                db.Materials.Add(material);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                if (ModelState.IsValid)
+                {
+                    db.Materials.Add(material);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+            }
+            catch (DataException dex)
+            {
+                ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists see your system administrator.");
             }
 
             return View(material);

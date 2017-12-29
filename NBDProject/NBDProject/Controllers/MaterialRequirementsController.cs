@@ -40,7 +40,7 @@ namespace NBDProject.Controllers
         // GET: MaterialRequirements/Create
         public ActionResult Create()
         {
-            ViewBag.projectID = new SelectList(db.Projects, "ID", "projectName");
+            PopulateDropDownLists();
             return View();
         }
 
@@ -51,14 +51,21 @@ namespace NBDProject.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "ID,mreqQty,mregCode,mregSize,mregNet,mregExtCost,mreqDeliver,mreqInstall,projectID")] MaterialRequirement materialRequirement)
         {
-            if (ModelState.IsValid)
+            try
             {
-                db.MaterialRequirements.Add(materialRequirement);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                if (ModelState.IsValid)
+                {
+                    db.MaterialRequirements.Add(materialRequirement);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+            }
+            catch (DataException dex)
+            {
+                ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists see your system administrator.");
             }
 
-            ViewBag.projectID = new SelectList(db.Projects, "ID", "projectName", materialRequirement.projectID);
+            PopulateDropDownLists(materialRequirement);
             return View(materialRequirement);
         }
 
@@ -74,25 +81,39 @@ namespace NBDProject.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.projectID = new SelectList(db.Projects, "ID", "projectName", materialRequirement.projectID);
+            PopulateDropDownLists(materialRequirement);
             return View(materialRequirement);
         }
 
         // POST: MaterialRequirements/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
+        [HttpPost, ActionName("Edit")]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,mreqQty,mregCode,mregSize,mregNet,mregExtCost,mreqDeliver,mreqInstall,projectID")] MaterialRequirement materialRequirement)
+        public ActionResult EditPost(int? id)
         {
-            if (ModelState.IsValid)
+            if (id == null)
             {
-                db.Entry(materialRequirement).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ViewBag.projectID = new SelectList(db.Projects, "ID", "projectName", materialRequirement.projectID);
-            return View(materialRequirement);
+            var materialRequirementToUpdate = db.MaterialRequirements.Find(id);
+
+            if (TryUpdateModel(materialRequirementToUpdate, "",
+               new string[] { "mreqQty", "mregCode", "mregSize", "mregNet", "mregExtCost", "mreqDeliver", "mreqInstall", "projectID" }))
+            {
+                try
+                {
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+                catch (DataException)
+                {
+                    ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists see your system administrator.");
+                }
+            }
+
+            PopulateDropDownLists(materialRequirementToUpdate);
+            return View(materialRequirementToUpdate);
         }
 
         // GET: MaterialRequirements/Delete/5
@@ -116,9 +137,32 @@ namespace NBDProject.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             MaterialRequirement materialRequirement = db.MaterialRequirements.Find(id);
-            db.MaterialRequirements.Remove(materialRequirement);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            try
+            {
+                db.MaterialRequirements.Remove(materialRequirement);
+                db.SaveChanges();
+            }
+            catch (DataException dex)
+            {
+                if (dex.InnerException.InnerException.Message.Contains("FK_"))
+                {
+                    ModelState.AddModelError("", "You cannot delete a Material Requirement that has been posted.");
+                }
+                else
+                {
+                    ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists see your system administrator.");
+                }
+            }
+            return View(materialRequirement);
+        }
+
+        private void PopulateDropDownLists(MaterialRequirement materialRequirement = null)
+        {
+            var pQuery = from l in db.Projects
+                         orderby l.projectName, l.projectEstStart
+                         select l;
+            ViewBag.projectID = new SelectList(pQuery, "ID", "projectName", materialRequirement?.projectID);
+
         }
 
         protected override void Dispose(bool disposing)

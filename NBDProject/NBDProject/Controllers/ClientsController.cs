@@ -40,7 +40,7 @@ namespace NBDProject.Controllers
         // GET: Clients/Create
         public ActionResult Create()
         {
-            ViewBag.cityID = new SelectList(db.Cities, "ID", "city");
+            PopulateDropDownList();
             return View();
         }
 
@@ -51,14 +51,20 @@ namespace NBDProject.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "ID,cliName,cliAddress,cliProvince,cliCode,cliPhone,cliConFname,cliConLName,cliConPostion,cityID")] Client client)
         {
-            if (ModelState.IsValid)
+            try
             {
-                db.Clients.Add(client);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                if (ModelState.IsValid)
+                {
+                    db.Clients.Add(client);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+            } catch(DataException)
+            {
+                ModelState.AddModelError("", "Unable to save changes after multiple attempts. Try again, and if the problem persists, see your system administrator.");
             }
 
-            ViewBag.cityID = new SelectList(db.Cities, "ID", "city", client.cityID);
+            PopulateDropDownList(client);
             return View(client);
         }
 
@@ -74,25 +80,36 @@ namespace NBDProject.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.cityID = new SelectList(db.Cities, "ID", "city", client.cityID);
+            PopulateDropDownList(client);
             return View(client);
         }
 
         // POST: Clients/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
+        [HttpPost, ActionName("Edit")]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,cliName,cliAddress,cliProvince,cliCode,cliPhone,cliConFname,cliConLName,cliConPostion,cityID")] Client client)
+        public ActionResult EditPost(int? id)
         {
-            if (ModelState.IsValid)
+            if (id == null)
             {
-                db.Entry(client).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ViewBag.cityID = new SelectList(db.Cities, "ID", "city", client.cityID);
-            return View(client);
+            var clientToUpdate = db.Clients.Find(id);
+            if (TryUpdateModel(clientToUpdate, "",
+                new string[] { "cliFName", "cliLName", "cityID" }))
+            {
+                try
+                {
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+                catch (DataException)
+                {
+                    ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists see your system administrator.");
+                }
+            }
+            return View(clientToUpdate);
         }
 
         // GET: Clients/Delete/5
@@ -116,9 +133,25 @@ namespace NBDProject.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Client client = db.Clients.Find(id);
-            db.Clients.Remove(client);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            try
+            {
+                db.Clients.Remove(client);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            catch (DataException)
+            {
+                ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists see your system administrator.");
+            }
+            return View(client);
+        }
+
+        private void PopulateDropDownList(Client client = null)
+        {
+            var cQuery = from c in db.Cities
+                         orderby c.city
+                         select c;
+            ViewBag.cityID = new SelectList(cQuery, "ID", "city", client?.cityID);
         }
 
         protected override void Dispose(bool disposing)

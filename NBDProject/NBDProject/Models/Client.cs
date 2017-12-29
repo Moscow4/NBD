@@ -12,14 +12,26 @@ namespace NBDProject.Models
 {
     public class Client
     {
+        [Display(Name = "Client Full Name")]
+        public string cliFullName
+        {
+            get {
+                return cliFName + " " + cliLName;
+            }
+        }
       
         
         public int ID { get; set; }
 
-        [Display(Name = "Client Name")]
-        [Required(ErrorMessage = "Enter Client Name")]
-        [StringLength(255, ErrorMessage = "Client Name cannot be more than 255 characters.")]
-        public string cliName { get; set; }
+        [Display(Name = "Client First Name")]
+        [Required(ErrorMessage = "Enter Client First Name")]
+        [StringLength(255, ErrorMessage = "Client First Name cannot be more than 255 characters.")]
+        public string cliFName { get; set; }
+
+        [Display(Name = "Client Last Name")]
+        [Required(ErrorMessage = "Enter Client Last Name")]
+        [StringLength(255, ErrorMessage = "Client Last Name cannot be more than 255 characters.")]
+        public string cliLName { get; set; }
 
         [Display(Name = "Client Address")]
         [Required(ErrorMessage = "Client Address is required.")]

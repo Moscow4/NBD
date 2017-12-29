@@ -60,7 +60,7 @@ namespace NBDProject.Controllers
                     return RedirectToAction("Index");
                 }
             }
-            catch (DataException dex)
+            catch (DataException)
             {
                 ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists see your system administrator.");
             }
@@ -158,7 +158,7 @@ namespace NBDProject.Controllers
             var cQuery = from c in db.Clients
                          orderby c.cliFName,c.cliLName , c.cliConLName, c.cliConLName
                          select c;
-            ViewBag.clientID = new SelectList(cQuery, "ID", "projectName", project?.clientID);
+            ViewBag.clientID = new SelectList(cQuery, "ID", "cliFullName", project?.clientID);
         }
 
         protected override void Dispose(bool disposing)

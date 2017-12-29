@@ -18,7 +18,7 @@ namespace NBDProject.Controllers
         // GET: TaskTests
         public ActionResult Index()
         {
-            var taskTests = db.TaskTests.Include(t => t.LabourRequirement);
+            var taskTests = db.TaskTests.Include(t => t.labourRequirement);
             return View(taskTests.ToList());
         }
 

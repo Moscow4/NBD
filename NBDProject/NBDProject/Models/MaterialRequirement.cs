@@ -14,7 +14,6 @@ namespace NBDProject.Models
     {
         public int ID { get; set; }
 
-
         [Display(Name = "Quantity")]
         [Required(ErrorMessage = "Quantity is required.")]
         public int mreqQty {get; set; }
@@ -49,6 +48,12 @@ namespace NBDProject.Models
 
         [Required(ErrorMessage = "You must specify the Project.")]
         public int projectID { get; set; }
+
+        [Required(ErrorMessage = "You must specify the Inventory.")]
+        public int inventoryID { get; set; }
+
+
+        public virtual Inventory Inventory { get; set; }
 
         public virtual Project Project { get; set; }
 

@@ -8,8 +8,7 @@ namespace NBDProject.Models
 {
     public class Material
     {
-        [Required(ErrorMessage = "Material ID is needed!")]
-        [Display(Name = "Material")]
+
         public int ID { get; set; }
 
         [Required(ErrorMessage = "Material description cannot be left blank!")]

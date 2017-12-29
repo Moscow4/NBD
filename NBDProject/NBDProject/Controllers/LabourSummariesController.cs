@@ -19,7 +19,7 @@ namespace NBDProject.Controllers
         // GET: LabourSummaries
         public ActionResult Index()
         {
-            var labourSummaries = db.LabourSummaries.Include(l => l.Project);
+            var labourSummaries = db.LabourSummaries.Include(l => l.Project).Include(n => n.WorkType);
             return View(labourSummaries.ToList());
         }
 

@@ -158,7 +158,7 @@ namespace NBDProject.Controllers
             var wQuery = from w in db.WorkTypes
                          orderby w.workTypeDesc
                          select w;
-            ViewBag.worktypeID = new SelectList(wQuery, "ID", "FullName", worker?.worktypeID);
+            ViewBag.worktypeID = new SelectList(wQuery, "ID", "workTypeDesc", worker?.worktypeID);
         }
 
         protected override void Dispose(bool disposing)

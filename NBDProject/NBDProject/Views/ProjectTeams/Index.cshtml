@@ -17,6 +17,9 @@
         <th>
             @Html.DisplayNameFor(model => model.projectID)
         </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Workers)
+        </th>
         <th></th>
     </tr>
 
@@ -27,6 +30,14 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.projectID)
+        </td>
+         <td>
+                    @{
+                    foreach (var worker in item.Workers)
+                    {
+                        @:  @worker.FullName <br />
+                    }
+                    }
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |

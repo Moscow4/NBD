@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using NBDProject.DAL;
 using NBDProject.Models;
+using NBDProject.ViewModels;
 
 namespace NBDProject.Controllers
 {
@@ -39,8 +40,30 @@ namespace NBDProject.Controllers
         // GET: ProjectTeams/Create
         public ActionResult Create()
         {
+            var projectTeam = new ProjectTeam();
+            projectTeam.Workers = new List<Worker>();
+
+            PopulateAssignedSkillData(projectTeam);
             PopulateDropDownList();
+            
             return View();
+        }
+
+        private void PopulateAssignedSkillData(ProjectTeam projectTeam)
+        {
+            var allWorkers = db.Workers;
+            var pWorkers = new HashSet<int>(projectTeam.Workers.Select(s => s.ID));
+            var viewModel = new List<WorkerVM>();
+            foreach (var con in allWorkers)
+            {
+                viewModel.Add(new WorkerVM
+                {
+                    WorkerID = con.ID,
+                    WorkerFullName = con.FullName,
+                    Assigned = pWorkers.Contains(con.ID)
+                });
+            }
+            ViewBag.Workers = viewModel;
         }
 
         // POST: ProjectTeams/Create
@@ -81,7 +104,7 @@ namespace NBDProject.Controllers
             {
                 return HttpNotFound();
             }
-
+            PopulateAssignedSkillData(projectTeam);
             PopulateDropDownList(projectTeam);
             return View(projectTeam);
         }
@@ -112,8 +135,39 @@ namespace NBDProject.Controllers
                 }
             }
 
+            PopulateAssignedSkillData(projectTeamToUpdate);
             PopulateDropDownList(projectTeamToUpdate);
             return View(projectTeamToUpdate);
+        }
+
+        private void UpdateProjectTeamWorkers(string[] selectedWokers, ProjectTeam projectTeamToUpdate)
+        {
+            if (selectedWokers == null)
+            {
+                projectTeamToUpdate.Workers = new List<Worker>();
+                return;
+            }
+
+            var selectedWorkerHS = new HashSet<string>(selectedWokers);
+            var ProjectTeamWorkers = new HashSet<int>
+                (projectTeamToUpdate.Workers.Select(s => s.ID));
+            foreach (var worker in db.Workers)
+            {
+                if (selectedWorkerHS.Contains(worker.ID.ToString()))
+                {
+                    if (!ProjectTeamWorkers.Contains(worker.ID))
+                    {
+                        projectTeamToUpdate.Workers.Add(worker);
+                    }
+                }
+                else
+                {
+                    if (ProjectTeamWorkers.Contains(worker.ID))
+                    {
+                        projectTeamToUpdate.Workers.Remove(worker);
+                    }
+                }
+            }
         }
 
         // GET: ProjectTeams/Delete/5

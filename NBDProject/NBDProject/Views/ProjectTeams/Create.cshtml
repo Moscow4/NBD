@@ -31,6 +31,34 @@
             </div>
         </div>
 
+         <div class="form-group">
+            <label class="control-label col-md-2">Past Conditions</label>
+            <div class="col-md-offset-2 col-md-10">
+                <table>
+                    <tr>
+                        @{
+                            int cnt = 0;
+                            List<NBDProject.ViewModels.WorkerVM> workers = ViewBag.Workers;
+                            foreach (var w in workers)
+                            {
+                                if (cnt++ % 3 == 0)
+                                {
+                                    @:</tr><tr>
+                                }
+                                @:<td>
+                                    <input type="checkbox"
+                                           name="selectedConditions"
+                                           value="@w.WorkerID"
+                                           @(Html.Raw(w.Assigned ? "checked=\"checked\"" : "")) />
+                                    @w.WorkerFullName @:&nbsp;&nbsp;
+                                    @:</td>
+                            }
+                            @:</tr>
+                        }
+                    </table>
+                </div>
+            </div>
+
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Create" class="btn btn-default" />

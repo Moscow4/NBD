@@ -6,6 +6,7 @@ using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.Google;
 using Owin;
 using NBDProject.Models;
+using NBDProject.DAL;
 
 namespace NBDProject
 {

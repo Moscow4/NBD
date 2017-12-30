@@ -26,6 +26,7 @@ namespace NBDProject.DAL
         public DbSet<WorkType>              WorkTypes { get; set; }
 
 
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();

@@ -65,9 +65,31 @@ namespace NBDProject.Models
     public class RegisterViewModel
     {
         [Required]
+        [StringLength(100, ErrorMessage = "The First Name must be under 100 characters long.")]
+        [Display(Name = "First Name")]
+        public string FName { get; set; }
+
+        [Required]
+        [StringLength(100, ErrorMessage = "The Last Name must be under 100 characters long.")]
+        [Display(Name = "Last Name")]
+        public string LName { get; set; }
+
+        [Required]
         [EmailAddress]
         [Display(Name = "Email")]
-        public string Email { get; set; }
+        public string Email {
+            get
+            {
+                return FName.Substring(0, 1).ToLower() + LName.ToLower() + "@outlook.com";
+            }
+            set {
+                Email = FName.Substring(0, 1).ToLower() + LName.ToLower() + "@outlook.com";
+            }
+        }
+
+        [Required]
+        [Display(Name = "User Position")]
+        public string Position { get; set; }
 
         [Required]
         [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]

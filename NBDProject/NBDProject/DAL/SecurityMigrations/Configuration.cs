@@ -36,9 +36,20 @@ namespace NBDProject.DAL.SecurityMigrations
                 var roleresult = roleManager.Create(new IdentityRole("Designer"));
 
             }
+            if (!context.Roles.Any(r => r.Name == "Chief Designer"))
+            {
+                var roleresult = roleManager.Create(new IdentityRole("Chief Designer"));
+
+            }
+
             if (!context.Roles.Any(r => r.Name == "Production Manager"))
             {
                 var roleresult = roleManager.Create(new IdentityRole("Production Manager"));
+
+            }
+            if (!context.Roles.Any(r => r.Name == "Group Manager"))
+            {
+                var roleresult = roleManager.Create(new IdentityRole("Group Manager"));
 
             }
             if (!context.Roles.Any(r => r.Name == "Sales"))
@@ -46,7 +57,7 @@ namespace NBDProject.DAL.SecurityMigrations
                 var roleresult = roleManager.Create(new IdentityRole("Sales"));
 
             }
-
+            
             var manager = new UserManager<ApplicationUser>(
                 new UserStore<ApplicationUser>(context));
 
@@ -69,11 +80,21 @@ namespace NBDProject.DAL.SecurityMigrations
                 // FavoriteIceCream = "Chocolate",
                 Email = "productionManager1@outlook.com"
             };
+            var groupmanageruser = new ApplicationUser
+            {
+                UserName = "groupManager1@outlook.com",
+                Email = "groupManager1@outlook.com"
+            };
             var designeruser = new ApplicationUser
             {
                 UserName = "designer1@outlook.com",
                 // FavoriteIceCream = "Chocolate",
                 Email = "designer1@outlook.com"
+            };
+            var chiefdesigneruser = new ApplicationUser
+            {
+                UserName = "chiefDesigner1@outlook.com",
+                Email = "chiefDesigner1@outlook.com"
             };
 
             var salesuser = new ApplicationUser
@@ -91,7 +112,7 @@ namespace NBDProject.DAL.SecurityMigrations
             if (!context.Users.Any(u => u.UserName == "adminAssistant1@outlook.com"))
             {
                 manager.Create(adminAssistantuser, "password");
-                manager.AddToRole( adminAssistantuser.Id, "Admin Assistant");
+                manager.AddToRole(adminAssistantuser.Id, "Admin Assistant");
             }
             if (!context.Users.Any(u => u.UserName == "designer1@outlook.com"))
             {
@@ -100,14 +121,25 @@ namespace NBDProject.DAL.SecurityMigrations
             }
             if (!context.Users.Any(u => u.UserName == "sales1@outlook.com"))
             {
-                manager.Create(designeruser, "password");
-                manager.AddToRole(designeruser.Id, "Sales");
+                manager.Create(salesuser, "password");
+                manager.AddToRole(salesuser.Id, "Sales");
             }
             if (!context.Users.Any(u => u.UserName == "productionManager1@outlook.com"))
             {
-                manager.Create(designeruser, "password");
-                manager.AddToRole(designeruser.Id, "Production Manager");
+                manager.Create(productionManageruser, "password");
+                manager.AddToRole(productionManageruser.Id, "Production Manager");
             }
+            if (!context.Users.Any(u => u.UserName == "groupManager1@outlook.com"))
+            {
+                manager.Create(groupmanageruser, "password");
+                manager.AddToRole(groupmanageruser.Id, "Group Manager");
+            }
+            if (!context.Users.Any(u => u.UserName == "chiefDesigner1@outlook.com"))
+            {
+                manager.Create(chiefdesigneruser, "password");
+                manager.AddToRole(chiefdesigneruser.Id, "Chief Designer");
+            }
+
 
         }
     }

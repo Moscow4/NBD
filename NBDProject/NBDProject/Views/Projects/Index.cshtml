@@ -89,10 +89,23 @@
             @Html.DisplayFor(modelItem => item.projectActCost)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.projectBidCustAccept)
+            @if (item.projectBidCustAccept)
+            {
+                @: <p style="color:green">Approved</p>
+            }
+            else {
+                @: <p style="color:red">Not Approved</p>
+            }
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.projectBidMgmtAccept)
+            @if (item.projectBidMgmtAccept)
+            {
+                @: <p style="color:green">Approved</p>
+            }
+            else
+            {
+                @: <p style="color:red">Not Approved</p>
+            }
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.projectCurrentPhase)

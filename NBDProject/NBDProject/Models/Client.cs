@@ -12,6 +12,11 @@ namespace NBDProject.Models
 {
     public class Client
     {
+        public Client()
+        {
+            this.Projects = new HashSet<Project>();
+        }
+
         [Display(Name = "Client Full Name")]
         public string cliFullName
         {
@@ -73,6 +78,7 @@ namespace NBDProject.Models
 
         //one to many 
         public virtual City City { get; set; }
+        public virtual ICollection<Project> Projects { get; set; }
 
     }
 }

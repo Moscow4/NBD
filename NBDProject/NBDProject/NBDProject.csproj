@@ -218,6 +218,14 @@
     <Compile Include="DAL\NDBMigrations\201712292043363_TestConfigSeed.Designer.cs">
       <DependentUpon>201712292043363_TestConfigSeed.cs</DependentUpon>
     </Compile>
+    <Compile Include="DAL\NDBMigrations\201712292341147_ThirdInitial.cs" />
+    <Compile Include="DAL\NDBMigrations\201712292341147_ThirdInitial.Designer.cs">
+      <DependentUpon>201712292341147_ThirdInitial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\NDBMigrations\201712300013357_FourthInitial.cs" />
+    <Compile Include="DAL\NDBMigrations\201712300013357_FourthInitial.Designer.cs">
+      <DependentUpon>201712300013357_FourthInitial.cs</DependentUpon>
+    </Compile>
     <Compile Include="DAL\NDBMigrations\Configuration.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -393,6 +401,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="DAL\NDBMigrations\201712292043363_TestConfigSeed.resx">
       <DependentUpon>201712292043363_TestConfigSeed.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DAL\NDBMigrations\201712292341147_ThirdInitial.resx">
+      <DependentUpon>201712292341147_ThirdInitial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DAL\NDBMigrations\201712300013357_FourthInitial.resx">
+      <DependentUpon>201712300013357_FourthInitial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

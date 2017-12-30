@@ -14,6 +14,7 @@ namespace NBDProject.Models
     {
         public WorkType() {
             this.Workers = new HashSet<Worker>();
+            this.LabourSummaries = new HashSet<LabourSummary>();
         }
         public int ID { get; set; }
 
@@ -34,5 +35,6 @@ namespace NBDProject.Models
         public decimal? workTypeCost { get; set; }
 
         public virtual ICollection<Worker> Workers { get; set; }
+        public virtual ICollection<LabourSummary> LabourSummaries { get; set; }
     }
 }

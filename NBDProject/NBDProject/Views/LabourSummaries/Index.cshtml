@@ -9,6 +9,19 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
+    @using (Html.BeginForm("Index", "LabourSummaries", FormMethod.Get))
+    {
+     <p>
+            <div class="form-horizontal">
+                <div class="collapse @(ViewBag.Filtering)" id="collapseFilter">
+                    <label class="control-label col-md-5">Filter by Project: </label>
+                    <div class="col-md-7">
+                        @Html.DropDownList("ProjectID", null, "All Project", htmlAttributes: new { @class = "form-control" })
+                    </div>
+                </div>
+            </div>
+        </p>
+    }
 <table class="table">
     <tr>
         <th>
@@ -41,5 +54,6 @@
         </td>
     </tr>
 }
+    
 
 </table>

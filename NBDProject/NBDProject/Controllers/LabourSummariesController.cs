@@ -17,9 +17,17 @@ namespace NBDProject.Controllers
         private NBDCFEntities db = new NBDCFEntities();
 
         // GET: LabourSummaries
-        public ActionResult Index()
+        public ActionResult Index(int? ProjectID)
         {
+            PopulateDropDownLists();
+            ViewBag.Filtering = "";
             var labourSummaries = db.LabourSummaries.Include(l => l.Project).Include(n => n.WorkType);
+            if (ProjectID.HasValue)
+            {
+                labourSummaries = labourSummaries.Where(p => p.projectID == ProjectID);
+                ViewBag.Filteing = " in";
+                ViewBag.LastProjectID = ProjectID;
+            }
             return View(labourSummaries.ToList());
         }
 
@@ -153,15 +161,9 @@ namespace NBDProject.Controllers
 
         private void PopulateDropDownLists(LabourSummary labour = null)
         {
-            var pQuery = from l in db.Projects
-                         orderby l.projectName, l.projectEstStart
-                         select l;
-            ViewBag.projectID = new SelectList(pQuery, "ID", "projectName", labour?.projectID);
-
-            var wQuery = from w in db.WorkTypes
-                         orderby w.workTypeDesc
-                         select w;
-            ViewBag.workerTypeID = new SelectList(wQuery, "ID", "workTypeDesc", labour?.workerTypeID);
+            
+            ViewBag.projectID = new SelectList(db.Projects.OrderBy(p => p.projectName), "ID", "projectName", labour?.projectID);
+            ViewBag.workerTypeID = new SelectList(db.WorkTypes.OrderBy(w => w.workTypeDesc), "ID", "workTypeDesc", labour?.workerTypeID);
         }
 
         protected override void Dispose(bool disposing)

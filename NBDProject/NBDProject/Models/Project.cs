@@ -59,10 +59,10 @@ namespace NBDProject.Models
         public decimal? projectActCost { get; set; }
 
         [Display(Name = "Project Bid Customer Accept")]
-        public bool? projectBidCustAccept { get; set; }
+        public bool projectBidCustAccept { get; set; }
 
         [Display(Name = "Project Bid Managment Accept")]
-        public bool? projectBidMgmtAccept { get; set; }
+        public bool projectBidMgmtAccept { get; set; }
 
         [Display(Name = "Project Current Phase")]
         public string projectCurrentPhase { get; set; }

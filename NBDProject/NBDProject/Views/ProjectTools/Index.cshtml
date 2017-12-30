@@ -1,0 +1,64 @@
+﻿@model IEnumerable<NBDProject.Models.ProjectTool>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+@using (Html.BeginForm("Index", "ProjectTools", FormMethod.Get))
+{
+    <p>
+        Select Project: @Html.DropDownList("ProjectID", null, "All Projects", htmlAttributes: new { @onchange = "this.form.submit();" })
+        @*<input type="Submit" value="Filter" class="btn btn-default" />*@
+    </p>
+}
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Project.projectName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Tool.toolDesc)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ptQty)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ptDeliverFrom)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ptDeliveryTo)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Project.projectName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Tool.toolDesc)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ptQty)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ptDeliverFrom)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ptDeliveryTo)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+        </td>
+    </tr>
+}
+
+</table>

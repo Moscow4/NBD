@@ -42,13 +42,13 @@
             @Html.DisplayNameFor(model => model.projectActCost)
         </th>
         <th>
+            @Html.DisplayNameFor(model => model.projectCurrentPhase)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.projectBidCustAccept)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.projectBidMgmtAccept)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.projectCurrentPhase)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.projectFlagged)
@@ -89,6 +89,9 @@
             @Html.DisplayFor(modelItem => item.projectActCost)
         </td>
         <td>
+            @Html.DisplayFor(modelItem => item.projectCurrentPhase)
+        </td>
+        <td>
             @if (item.projectBidCustAccept)
             {
                 @: <p style="color:green">Approved</p>
@@ -108,10 +111,14 @@
             }
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.projectCurrentPhase)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.projectFlagged)
+            @if (item.projectFlagged)
+            {
+                @: <p style="color:green">Approved</p>
+            }
+            else
+            {
+                @: <p style="color:red">Not Approved</p>
+            }
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |

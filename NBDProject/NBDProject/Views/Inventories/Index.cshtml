@@ -11,8 +11,12 @@
 </p>
 <table class="table">
     <tr>
+        
         <th>
-            @Html.DisplayNameFor(model => model.Material.matDesc)
+            @Html.DisplayNameFor(model => model.invCode)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.invDesc)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.AvgNet)
@@ -31,9 +35,12 @@
 
 @foreach (var item in Model) {
     <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Material.matDesc)
-        </td>
+        <th>
+            @Html.DisplayFor(modelItem => item.invCode)
+        </th>
+        <th>
+            @Html.DisplayFor(modelItem => item.invDesc)
+        </th>
         <td>
             @Html.DisplayFor(modelItem => item.AvgNet)
         </td>

@@ -96,8 +96,7 @@ namespace NBDProject.Controllers
             }
             var LabourRequirementsToUpdate = db.LabourRequirements.Find(id);
             if (TryUpdateModel(LabourRequirementsToUpdate, "",
-                new string
-                [] { "desc" }))
+                new string [] { "desc", "lregEstHour", "lregCost", "lregTime" }))
             {
                 try
                 {

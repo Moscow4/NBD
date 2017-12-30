@@ -26,6 +26,7 @@ namespace NBDProject.Models
         [StringLength(255, ErrorMessage = "Team Phase is cannot be more than 255 characters.")]
         public string teamPhaseIn { get; set; }
 
+        [Display(Name = "Project")]
         public int projectID { get; set; }
 
 

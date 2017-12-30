@@ -42,20 +42,36 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.mregNet, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.mregNetProPlan, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.mregNet, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.mregNet, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.mregNetProPlan, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.mregNetProPlan, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.mregExtCost, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.mregNetDesign, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.mregExtCost, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.mregExtCost, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.mregNetDesign, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.mregNetDesign, "", new { @class = "text-danger" })
             </div>
         </div>
+
+        @*<div class="form-group">
+            @Html.LabelFor(model => model.mregExtCostDesign, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.mregExtCostDesign, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.mregExtCostDesign, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.mregExtCostProPlan, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.mregExtCostProPlan, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.mregExtCostProPlan, "", new { @class = "text-danger" })
+            </div>
+        </div>*@
 
         <div class="form-group">
             @Html.LabelFor(model => model.mreqDeliver, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -78,6 +94,14 @@
             <div class="col-md-10">
                 @Html.DropDownList("projectID", null, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.projectID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.inventoryID, "inventoryID", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("inventoryID", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.inventoryID, "", new { @class = "text-danger" })
             </div>
         </div>
 

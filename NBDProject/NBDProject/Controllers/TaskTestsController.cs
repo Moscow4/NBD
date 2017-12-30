@@ -99,7 +99,7 @@ namespace NBDProject.Controllers
 
             var taskTestToUpdate = db.TaskTests.Find(id);
             if (TryUpdateModel(taskTestToUpdate, "",
-                new string[] { "taskDesc" }))
+                new string[] { "taskDesc", "taskStdTImeAmnt", "taskStdTimeUnit", "labourRequirementID" }))
             {
                 try
                 {

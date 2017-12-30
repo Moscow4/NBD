@@ -20,13 +20,11 @@ namespace NBDProject.Controllers
         public ActionResult Index(int? ProjectID)
         {
             PopulateDropDownLists();
-            ViewBag.Filtering = "";
-            var labourSummaries = db.LabourSummaries.Include(l => l.Project).Include(n => n.WorkType);
+            var labourSummaries = db.LabourSummaries.Include(p => p.Project);
             if (ProjectID.HasValue)
             {
                 labourSummaries = labourSummaries.Where(p => p.projectID == ProjectID);
-                ViewBag.Filteing = " in";
-                ViewBag.LastProjectID = ProjectID;
+
             }
             return View(labourSummaries.ToList());
         }

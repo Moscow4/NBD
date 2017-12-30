@@ -9,8 +9,18 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
+    @using (Html.BeginForm("Index", "MaterialRequirements", FormMethod.Get))
+    {
+        <p>
+            Select Project: @Html.DropDownList("ProjectID", null, "All Projects", htmlAttributes: new { @onchange = "this.form.submit();" })
+            @*<input type="Submit" value="Filter" class="btn btn-default" />*@
+        </p>
+    }
 <table class="table">
     <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Inventory.invCode)
+        </th>
         <th>
             @Html.DisplayNameFor(model => model.Project.projectName)
         </th>
@@ -24,10 +34,16 @@
             @Html.DisplayNameFor(model => model.mregSize)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.mregNet)
+            @Html.DisplayNameFor(model => model.mregNetProPlan)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.mregExtCost)
+            @Html.DisplayNameFor(model => model.mregNetDesign)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.mregExtCostDesign)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.mregExtCostProPlan)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.mreqDeliver)
@@ -41,6 +57,9 @@
 @foreach (var item in Model) {
     <tr>
         <td>
+            @Html.DisplayFor(modelItem => item.Inventory.invCode)
+        </td>
+        <td>
             @Html.DisplayFor(modelItem => item.Project.projectName)
         </td>
         <td>
@@ -53,10 +72,16 @@
             @Html.DisplayFor(modelItem => item.mregSize)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.mregNet)
+            @Html.DisplayFor(modelItem => item.mregNetProPlan)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.mregExtCost)
+            @Html.DisplayFor(modelItem => item.mregNetDesign)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.mregExtCostDesign)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.mregExtCostProPlan)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.mreqDeliver)

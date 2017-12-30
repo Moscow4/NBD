@@ -9,13 +9,20 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
+@using (Html.BeginForm("Index", "ProjectTeams", FormMethod.Get))
+{
+    <p>
+        Select Project: @Html.DropDownList("ProjectID", null, "All Projects", htmlAttributes: new { @onchange = "this.form.submit();" })
+        @*<input type="Submit" value="Filter" class="btn btn-default" />*@
+    </p>
+}
 <table class="table">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.teamPhaseIn)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.projectID)
+            @Html.DisplayNameFor(model => model.project.projectName)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Workers)
@@ -29,7 +36,7 @@
             @Html.DisplayFor(modelItem => item.teamPhaseIn)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.projectID)
+            @Html.DisplayFor(modelItem => item.project.projectName)
         </td>
          <td>
                     @{

@@ -16,9 +16,13 @@ namespace NBDProject.Controllers
         private NBDCFEntities db = new NBDCFEntities();
 
         // GET: MaterialRequirements
-        public ActionResult Index()
+        public ActionResult Index(int? ProjectID)
         {
-            var materialRequirements = db.MaterialRequirements.Include(m => m.Project);
+            var materialRequirements = db.MaterialRequirements.Include(m => m.Inventory).Include(m => m.Project);
+            if (ProjectID.HasValue)
+            {
+                materialRequirements = materialRequirements.Where(m => m.projectID == ProjectID);
+            }
             return View(materialRequirements.ToList());
         }
 
@@ -40,7 +44,7 @@ namespace NBDProject.Controllers
         // GET: MaterialRequirements/Create
         public ActionResult Create()
         {
-            PopulateDropDownLists();
+            PopulateDropDownList();
             return View();
         }
 
@@ -49,23 +53,16 @@ namespace NBDProject.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,mreqQty,mregCode,mregSize,mregNet,mregExtCost,mreqDeliver,mreqInstall,projectID")] MaterialRequirement materialRequirement)
+        public ActionResult Create([Bind(Include = "ID,mreqQty,mregCode,mregSize,mregNetProPlan,mregNetDesign,mregExtCostDesign,mregExtCostProPlan,mreqDeliver,mreqInstall,projectID,inventoryID")] MaterialRequirement materialRequirement)
         {
-            try
+            if (ModelState.IsValid)
             {
-                if (ModelState.IsValid)
-                {
-                    db.MaterialRequirements.Add(materialRequirement);
-                    db.SaveChanges();
-                    return RedirectToAction("Index");
-                }
-            }
-            catch (DataException dex)
-            {
-                ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists see your system administrator.");
+                db.MaterialRequirements.Add(materialRequirement);
+                db.SaveChanges();
+                return RedirectToAction("Index");
             }
 
-            PopulateDropDownLists(materialRequirement);
+            PopulateDropDownList();
             return View(materialRequirement);
         }
 
@@ -81,7 +78,7 @@ namespace NBDProject.Controllers
             {
                 return HttpNotFound();
             }
-            PopulateDropDownLists(materialRequirement);
+            PopulateDropDownList(materialRequirement);
             return View(materialRequirement);
         }
 
@@ -97,9 +94,8 @@ namespace NBDProject.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             var materialRequirementToUpdate = db.MaterialRequirements.Find(id);
-
             if (TryUpdateModel(materialRequirementToUpdate, "",
-               new string[] { "mreqQty", "mregCode", "mregSize", "mregNet", "mregExtCost", "mreqDeliver", "mreqInstall", "projectID" }))
+                new string[] { "mreqQty", "mregCode", "mregSize", "mregNetProPlan", "mregNetDesign", "mregExtCostDesign", "mregExtCostProPlan", "mreqDeliver", "mreqInstall", "projectID", "inventoryID" }))
             {
                 try
                 {
@@ -112,7 +108,7 @@ namespace NBDProject.Controllers
                 }
             }
 
-            PopulateDropDownLists(materialRequirementToUpdate);
+            PopulateDropDownList(materialRequirementToUpdate);
             return View(materialRequirementToUpdate);
         }
 
@@ -141,28 +137,26 @@ namespace NBDProject.Controllers
             {
                 db.MaterialRequirements.Remove(materialRequirement);
                 db.SaveChanges();
+                return RedirectToAction("Index");
             }
-            catch (DataException dex)
+            catch (DataException)
             {
-                if (dex.InnerException.InnerException.Message.Contains("FK_"))
-                {
-                    ModelState.AddModelError("", "You cannot delete a Material Requirement that has been posted.");
-                }
-                else
-                {
-                    ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists see your system administrator.");
-                }
+                ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists see your system administrator.");
             }
             return View(materialRequirement);
         }
 
-        private void PopulateDropDownLists(MaterialRequirement materialRequirement = null)
+        private void PopulateDropDownList(MaterialRequirement material = null)
         {
-            var pQuery = from l in db.Projects
-                         orderby l.projectName, l.projectEstStart
-                         select l;
-            ViewBag.projectID = new SelectList(pQuery, "ID", "projectName", materialRequirement?.projectID);
+            var pQuery = from p in db.Projects
+                         orderby p.projectName
+                         select p;
+            ViewBag.projectID = new SelectList(pQuery, "ID", "projectName", material?.projectID);
 
+            var iQuery = from i in db.Inventory
+                         orderby i.invCode, i.invDesc
+                         select i;
+            ViewBag.inventoryID = new SelectList(iQuery, "ID", "invDesc", material?.inventoryID);
         }
 
         protected override void Dispose(bool disposing)

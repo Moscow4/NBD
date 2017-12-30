@@ -198,9 +198,9 @@
     <Compile Include="Controllers\LabourSummariesController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MaterialRequirementsController.cs" />
-    <Compile Include="Controllers\MaterialsController.cs" />
     <Compile Include="Controllers\ProjectsController.cs" />
     <Compile Include="Controllers\ProjectTeamsController.cs" />
+    <Compile Include="Controllers\ProjectToolsController.cs" />
     <Compile Include="Controllers\TaskTestsController.cs" />
     <Compile Include="Controllers\ToolsController.cs" />
     <Compile Include="Controllers\WorkersController.cs" />
@@ -226,6 +226,26 @@
     <Compile Include="DAL\NDBMigrations\201712300013357_FourthInitial.cs" />
     <Compile Include="DAL\NDBMigrations\201712300013357_FourthInitial.Designer.cs">
       <DependentUpon>201712300013357_FourthInitial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\NDBMigrations\201712301835524_DisplayProject.cs" />
+    <Compile Include="DAL\NDBMigrations\201712301835524_DisplayProject.Designer.cs">
+      <DependentUpon>201712301835524_DisplayProject.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\NDBMigrations\201712301949170_ChangeInventory.cs" />
+    <Compile Include="DAL\NDBMigrations\201712301949170_ChangeInventory.Designer.cs">
+      <DependentUpon>201712301949170_ChangeInventory.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\NDBMigrations\201712302010054_UpdateInventory.cs" />
+    <Compile Include="DAL\NDBMigrations\201712302010054_UpdateInventory.Designer.cs">
+      <DependentUpon>201712302010054_UpdateInventory.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\NDBMigrations\201712302031033_DeleteDBsetMaterial.cs" />
+    <Compile Include="DAL\NDBMigrations\201712302031033_DeleteDBsetMaterial.Designer.cs">
+      <DependentUpon>201712302031033_DeleteDBsetMaterial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\NDBMigrations\201712302257195_FixProblemWithMaterialRequirement.cs" />
+    <Compile Include="DAL\NDBMigrations\201712302257195_FixProblemWithMaterialRequirement.Designer.cs">
+      <DependentUpon>201712302257195_FixProblemWithMaterialRequirement.cs</DependentUpon>
     </Compile>
     <Compile Include="DAL\NDBMigrations\Configuration.cs" />
     <Compile Include="DAL\SecurityMigrations\201712300200056_InitialSecurity.cs" />
@@ -374,11 +394,11 @@
     <Content Include="Views\LabourSummaries\Details.cshtml" />
     <Content Include="Views\LabourSummaries\Edit.cshtml" />
     <Content Include="Views\LabourSummaries\Index.cshtml" />
-    <Content Include="Views\Materials\Create.cshtml" />
-    <Content Include="Views\Materials\Delete.cshtml" />
-    <Content Include="Views\Materials\Details.cshtml" />
-    <Content Include="Views\Materials\Edit.cshtml" />
-    <Content Include="Views\Materials\Index.cshtml" />
+    <Content Include="Views\ProjectTools\Create.cshtml" />
+    <Content Include="Views\ProjectTools\Delete.cshtml" />
+    <Content Include="Views\ProjectTools\Details.cshtml" />
+    <Content Include="Views\ProjectTools\Edit.cshtml" />
+    <Content Include="Views\ProjectTools\Index.cshtml" />
     <Content Include="Views\MaterialRequirements\Create.cshtml" />
     <Content Include="Views\MaterialRequirements\Delete.cshtml" />
     <Content Include="Views\MaterialRequirements\Details.cshtml" />
@@ -416,6 +436,21 @@
     </EmbeddedResource>
     <EmbeddedResource Include="DAL\NDBMigrations\201712300013357_FourthInitial.resx">
       <DependentUpon>201712300013357_FourthInitial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DAL\NDBMigrations\201712301835524_DisplayProject.resx">
+      <DependentUpon>201712301835524_DisplayProject.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DAL\NDBMigrations\201712301949170_ChangeInventory.resx">
+      <DependentUpon>201712301949170_ChangeInventory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DAL\NDBMigrations\201712302010054_UpdateInventory.resx">
+      <DependentUpon>201712302010054_UpdateInventory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DAL\NDBMigrations\201712302031033_DeleteDBsetMaterial.resx">
+      <DependentUpon>201712302031033_DeleteDBsetMaterial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DAL\NDBMigrations\201712302257195_FixProblemWithMaterialRequirement.resx">
+      <DependentUpon>201712302257195_FixProblemWithMaterialRequirement.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DAL\SecurityMigrations\201712300200056_InitialSecurity.resx">
       <DependentUpon>201712300200056_InitialSecurity.cs</DependentUpon>

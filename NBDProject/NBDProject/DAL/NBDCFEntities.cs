@@ -15,7 +15,6 @@ namespace NBDProject.DAL
         public DbSet<Inventory>             Inventory { get; set; }
         public DbSet<LabourRequirement>     LabourRequirements { get; set; }
         public DbSet<LabourSummary>         LabourSummaries { get; set; }
-        public DbSet<Material>              Materials { get; set; }
         public DbSet<MaterialRequirement>   MaterialRequirements { get; set; }
         public DbSet<Worker>                Workers { get; set; }
         public DbSet<Project>               Projects { get; set; }

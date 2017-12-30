@@ -64,18 +64,18 @@ namespace NBDProject.DAL.NDBMigrations
 
             //Material Seed
             //new Material { matDesc = "", matType = "" }
-            var materials = new List<Material>
-            {
-                new Material { matDesc = "Laccospadix Australasica Palm",   matType = "Plant" },
-                new Material { matDesc = "Caryota Mitis",                   matType = "Plant" },
-                new Material { matDesc = "Marginata",                       matType = "Plant" },
-                new Material { matDesc = "Granite Fountain",                matType = "Pottery" },
-                new Material { matDesc = "Granite Pots",                    matType = "Pottery" },
-                new Material { matDesc = "Decorative Cedar Bark",           matType = "Materials" },
-                new Material { matDesc = "Top Soil",                        matType = "Materials" }
-            };
-            materials.ForEach(d => context.Materials.AddOrUpdate(n => n.matDesc, d));
-            SaveChanges(context);
+            //var materials = new List<Material>
+            //{
+            //    new Material { matDesc = "Laccospadix Australasica Palm",   matType = "Plant" },
+            //    new Material { matDesc = "Caryota Mitis",                   matType = "Plant" },
+            //    new Material { matDesc = "Marginata",                       matType = "Plant" },
+            //    new Material { matDesc = "Granite Fountain",                matType = "Pottery" },
+            //    new Material { matDesc = "Granite Pots",                    matType = "Pottery" },
+            //    new Material { matDesc = "Decorative Cedar Bark",           matType = "Materials" },
+            //    new Material { matDesc = "Top Soil",                        matType = "Materials" }
+            //};
+            //materials.ForEach(d => context.Materials.AddOrUpdate(n => n.matDesc, d));
+            //SaveChanges(context);
 
             //seed data tool
             //new Tool { toolDesc = "" }
@@ -115,8 +115,8 @@ namespace NBDProject.DAL.NDBMigrations
             {
                 new Project { projectName = "London Square Mall", projectSite = "Main Entrance", projectBidDate = DateTime.Parse("2018-05-16"), projectEstStart = DateTime.Parse("2018-06-15"),
                 projectEstEnd = DateTime.Parse("2018-06-30"), projectActStart = DateTime.Parse("2018-07-01"), projectActEnd = DateTime.Parse("2018-07-20"),
-                projectEstCost = 7651.50m, projectActCost = 0.00m, projectBidCustAccept = true, projectBidMgmtAccept = true,
-                projectFlagged = false, clientID = 1 }
+                projectEstCost = 7651.50m, projectActCost = 0.00m, projectBidCustAccept = true, projectBidMgmtAccept = true
+                , clientID = 1}
             };
             projects.ForEach(d => context.Projects.AddOrUpdate(n => n.projectName, d));
             SaveChanges(context);
@@ -155,13 +155,13 @@ namespace NBDProject.DAL.NDBMigrations
             //new Inventory { AvgNet = 0.00m, List = 0, SizeAmnt = 0, SizeUnit = "", materialID = 1 }
             var inventories = new List<Inventory>
             {
-                new Inventory { AvgNet = 450.00m    , List = 0, SizeAmnt = 15   , SizeUnit = "Gal"          , materialID = 1 },
-                new Inventory { AvgNet = 140.00m    , List = 0, SizeAmnt = 7    , SizeUnit = "Gal"          , materialID = 2 },
-                new Inventory { AvgNet = 45.00m     , List = 0, SizeAmnt = 2    , SizeUnit = "Gal"          , materialID = 3 },
-                new Inventory { AvgNet = 457.00m    , List = 0, SizeAmnt = 48   , SizeUnit = "in"           , materialID = 4 },
-                new Inventory { AvgNet = 110.00m    , List = 0, SizeAmnt = 50   , SizeUnit = "gal"          , materialID = 5 },
-                new Inventory { AvgNet = 7.50m      , List = 0, SizeAmnt = 5    , SizeUnit = "cu ft bag"    , materialID = 6 },
-                new Inventory { AvgNet = 12.50m     , List = 0, SizeAmnt = 1    , SizeUnit = "yard"         , materialID = 7 }
+                new Inventory { invCode = "lacco", invDesc = "lacco australasica" , AvgNet = 450.00m    , List = 749.00m, SizeAmnt = 15   , SizeUnit = "Gal" },
+                new Inventory { invCode = "cary", invDesc = "caryota" , AvgNet = 140.00m    , List = 233.00m, SizeAmnt = 7    , SizeUnit = "Gal" },
+                new Inventory { invCode = "margi", invDesc = "marginata" , AvgNet = 45.00m     , List = 75.00m, SizeAmnt = 2    , SizeUnit = "Gal"},
+                new Inventory { invCode = "GFN48", invDesc = "granite foundtain" ,AvgNet = 457.00m    , List = 750.00m, SizeAmnt = 48   , SizeUnit = "in"},
+                new Inventory { invCode = "GP50", invDesc = "granite pot", AvgNet = 110.00m    , List = 195.00m, SizeAmnt = 50   , SizeUnit = "gal"},
+                new Inventory { invCode = "CBRK5", invDesc = "decorative cedar bark", AvgNet = 7.50m      , List = 15.95m, SizeAmnt = 5    , SizeUnit = "cu ft bag" },
+                new Inventory { invCode = "TSOIL", invDesc = "top soil" ,AvgNet = 12.50m     , List = 20.00m, SizeAmnt = 1    , SizeUnit = "yard"}
             };
             inventories.ForEach(i => context.Inventory.AddOrUpdate(n => n.ID, i));
             SaveChanges(context);
@@ -170,15 +170,15 @@ namespace NBDProject.DAL.NDBMigrations
             //new MaterialRequirement { mreqQty = 0, mregCode = "", mregSize = "", mregNet = 0.00m, mregExtCost = 0.00m, mreqDeliver = DateTime.Parse(""), mreqInstall = DateTime.Parse(""), projectID = 0, }
             var materialRequirements = new List<MaterialRequirement>
             {
-                new MaterialRequirement { mreqQty = 3  , mregCode= "Lacco", mregSize = "15 Gal"     , mregNet = 749.00m,    mregExtCost = 2247.00m, mreqDeliver = DateTime.Parse("2018-06-16"), mreqInstall = DateTime.Parse("2018-06-16"), projectID =1, inventoryID = 1},
-                new MaterialRequirement { mreqQty = 5  , mregCode= "Cary" , mregSize = "7 Gal"      , mregNet = 233.00m,    mregExtCost = 1165.00m, mreqDeliver = DateTime.Parse("2018-06-17"), mreqInstall = DateTime.Parse("2018-06-17"), projectID =1, inventoryID = 2},
-                new MaterialRequirement { mreqQty = 7  , mregCode= "Margi", mregSize = "2 Gal"      , mregNet = 75.00m ,    mregExtCost = 525.00m , mreqDeliver = DateTime.Parse("2018-06-17"), mreqInstall = DateTime.Parse("2018-06-17"), projectID =1, inventoryID = 3},
-                new MaterialRequirement { mreqQty = 48 , mregCode= "GFN48", mregSize = "48 in"      , mregNet = 750.00m,    mregExtCost = 750.00m , mreqDeliver = DateTime.Parse("2018-06-15"), mreqInstall = DateTime.Parse("2018-06-15"), projectID =1, inventoryID = 4},
-                new MaterialRequirement { mreqQty = 50 , mregCode= "GP50" , mregSize = "50 Gal"     , mregNet = 195.00m,    mregExtCost = 585.00m , mreqDeliver = DateTime.Parse("2018-06-15"), mreqInstall = DateTime.Parse("2018-06-15"), projectID =1, inventoryID = 5},
-                new MaterialRequirement { mreqQty = 10 , mregCode= "CBRK5", mregSize = "5 cu ft bag", mregNet = 15.95m ,    mregExtCost = 159.50m , mreqDeliver = DateTime.Parse("2018-06-17"), mreqInstall = DateTime.Parse("2018-06-17"), projectID =1, inventoryID = 6},
-                new MaterialRequirement { mreqQty = 1  , mregCode= "TSOIL", mregSize = "Yard"       , mregNet = 20.00m ,    mregExtCost = 20.00m  , mreqDeliver = DateTime.Parse("2018-06-15"), mreqInstall = DateTime.Parse("2018-06-15"), projectID =1, inventoryID = 7}
+                new MaterialRequirement { mreqQty = 3 , mregCode= "lacco australasica", mregSize = "15 Gal"     , mregNetDesign = 749.00m, mregNetProPlan = 450.00m, mreqDeliver = DateTime.Parse("2018-06-16"), mreqInstall = DateTime.Parse("2018-06-16"), projectID =1, inventoryID = 1},
+                new MaterialRequirement { mreqQty = 5, mregCode= "caryota", mregSize = "7 Gal"     , mregNetDesign = 233.00m, mregNetProPlan = 140.00m, mreqDeliver = DateTime.Parse("2018-06-17"), mreqInstall = DateTime.Parse("2018-06-17"), projectID =1, inventoryID = 2},
+                new MaterialRequirement { mreqQty = 7 , mregCode= "marginata", mregSize = "2 Gal"     , mregNetDesign = 75.00m, mregNetProPlan = 45.00m, mreqDeliver = DateTime.Parse("2018-06-17"), mreqInstall = DateTime.Parse("2018-06-17"), projectID =1, inventoryID = 3},
+                new MaterialRequirement { mreqQty = 1, mregCode= "granite foundtain", mregSize = "48 in"     , mregNetDesign = 750.00m, mregNetProPlan = 457.00m, mreqDeliver = DateTime.Parse("2018-06-15"), mreqInstall = DateTime.Parse("2018-06-15"), projectID =1, inventoryID = 4},
+                new MaterialRequirement { mreqQty = 3, mregCode= "granite pot", mregSize = "50 gal"     , mregNetDesign = 195.00m, mregNetProPlan = 110.00m, mreqDeliver = DateTime.Parse("2018-06-15"), mreqInstall = DateTime.Parse("2018-06-15"), projectID =1, inventoryID = 5},
+                new MaterialRequirement { mreqQty = 10, mregCode= "decorative cedar bark", mregSize = "5 cu ft bag"     , mregNetDesign = 15.95m, mregNetProPlan = 7.50m, mreqDeliver = DateTime.Parse("2018-06-17"), mreqInstall = DateTime.Parse("2018-06-17"), projectID =1, inventoryID = 6},
+                new MaterialRequirement { mreqQty = 1 , mregCode= "top soil", mregSize = "yard"     , mregNetDesign = 20.00m, mregNetProPlan = 12.50m, mreqDeliver = DateTime.Parse("2018-06-15"), mreqInstall = DateTime.Parse("2018-06-15"), projectID =1, inventoryID = 7}
             };
-            materialRequirements.ForEach(m => context.MaterialRequirements.AddOrUpdate(n => n.mregCode, m));
+            materialRequirements.ForEach(m => context.MaterialRequirements.AddOrUpdate(n => n.ID, m));
             SaveChanges(context);
 
 

@@ -1,0 +1,64 @@
+﻿@model NBDProject.Models.ProjectTool
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>ProjectTool</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Project.projectName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Project.projectName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Tool.toolDesc)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tool.toolDesc)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ptQty)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ptQty)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ptDeliverFrom)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ptDeliverFrom)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ptDeliveryTo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ptDeliveryTo)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

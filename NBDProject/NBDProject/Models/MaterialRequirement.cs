@@ -22,17 +22,41 @@ namespace NBDProject.Models
         [Required(ErrorMessage = "Code is required.")]
         public string mregCode { get; set; }
 
+
         [Display(Name = "Size")]
         [Required(ErrorMessage = "Size is required.")]
         public string mregSize { get; set; }
 
         [Display(Name = "Net/Unit")]
         [Required(ErrorMessage = "Net/Unit is required.")]
-        public decimal mregNet { get; set; }
+        public decimal mregNetProPlan { get; set; }
+         
 
-        [Display(Name = "Ext. Cost")]
+        [Display(Name = "Net/Unit")]
+        [Required(ErrorMessage = "Net/Unit is required.")]
+        public decimal mregNetDesign { get; set; }
+   
+
+        [Display(Name = "Ext. Cost(Design)")]
         [Required(ErrorMessage = "Ext. Cost is required.")]
-        public decimal mregExtCost { get; set; }
+        public decimal mregExtCostDesign {
+            get {
+                return mreqQty * mregNetDesign;
+            }
+           
+        }
+
+        [Display(Name = "Ext. Cost(Production Plan)")]
+        [Required(ErrorMessage = "Ext. Cost is required.")]
+        public decimal mregExtCostProPlan
+        {
+            get
+            {
+                return mreqQty * mregNetProPlan;
+            }
+           
+        }
+
 
         [Display(Name = "Deliver Day")]
         [Required(ErrorMessage = "Deliver Day is required.")]

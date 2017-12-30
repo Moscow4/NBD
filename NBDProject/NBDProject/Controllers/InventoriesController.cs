@@ -18,8 +18,8 @@ namespace NBDProject.Controllers
         // GET: Inventories
         public ActionResult Index()
         {
-            var inventory = db.Inventory.Include(i => i.Material);
-            return View(inventory.ToList());
+
+            return View(db.Inventory.ToList());
         }
 
         // GET: Inventories/Details/5
@@ -40,7 +40,7 @@ namespace NBDProject.Controllers
         // GET: Inventories/Create
         public ActionResult Create()
         {
-            ViewBag.materialID = new SelectList(db.Materials, "ID", "matDesc");
+
             return View();
         }
 
@@ -58,7 +58,7 @@ namespace NBDProject.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.materialID = new SelectList(db.Materials, "ID", "matDesc", inventory.materialID);
+
             return View(inventory);
         }
 
@@ -74,7 +74,7 @@ namespace NBDProject.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.materialID = new SelectList(db.Materials, "ID", "matDesc", inventory.materialID);
+
             return View(inventory);
         }
 
@@ -91,7 +91,7 @@ namespace NBDProject.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.materialID = new SelectList(db.Materials, "ID", "matDesc", inventory.materialID);
+
             return View(inventory);
         }
 
@@ -120,6 +120,8 @@ namespace NBDProject.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
+
+    
 
         protected override void Dispose(bool disposing)
         {

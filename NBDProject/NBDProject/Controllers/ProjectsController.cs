@@ -99,7 +99,7 @@ namespace NBDProject.Controllers
 
             var projectToUpdate = db.Projects.Find(id);
             if (TryUpdateModel(projectToUpdate, "",
-                new string[] { "projectName" }))
+                new string[] { "projectName", "projectSite", "projectBidDate", "projectEstStart", "projectEstEnd", "projectActStart", "projectActEnt", "projectEstCost", "projectActCost", "projectBidCustAccept", "projectBidMgmtAccept", "projectCureentPhase", "projectFlagged", "ClientID" }))
             {
                 try
                 {

@@ -97,7 +97,7 @@ namespace NBDProject.Controllers
             }
             var clientToUpdate = db.Clients.Find(id);
             if (TryUpdateModel(clientToUpdate, "",
-                new string[] { "cliFName", "cliLName", "cityID" }))
+                new string[] { "cliFName", "cliLName", "cliAddress", "cliProvince", "cliCode", "cliPhone", "cliConFname", "cliConLname", "cliConPostion", "cityID" }))
             {
                 try
                 {

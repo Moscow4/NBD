@@ -1,0 +1,58 @@
+﻿@model NBDProject.Models.ProjectTool
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>ProjectTool</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Project.projectName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Project.projectName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Tool.toolDesc)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tool.toolDesc)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ptQty)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ptQty)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ptDeliverFrom)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ptDeliverFrom)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ptDeliveryTo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ptDeliveryTo)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

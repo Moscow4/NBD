@@ -38,18 +38,22 @@ namespace NBDProject.Models
 
         [Display(Name = "Project Estimated Start")]
         [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime projectEstStart { get; set; }
 
         [Display(Name = "Project Estimated End")]
         [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime projectEstEnd { get; set; }
 
         [Display(Name = "Project Actual Start")]
         [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime projectActStart { get; set; }
 
         [Display(Name = "Project Actual End")]
         [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime projectActEnd { get; set; }
 
         [Display(Name = "Project Estimated Cost")]
@@ -67,18 +71,36 @@ namespace NBDProject.Models
         [Display(Name = "Project Current Phase")]
         public string projectCurrentPhase { get; set; }
 
-        public bool? projectFlagged { get; set; }
+        [Display(Name = "Project Condition")]
+        public bool projectFlagged {
+            get {
+                if (projectBidCustAccept && projectBidMgmtAccept)
+                {
+                    return true;
+                }
+                else {
+                    return false;
+                }
+            }
+        }
+
+        
 
         [Required(ErrorMessage = "Set A Client")]
         public int clientID { get; set; }
+
+
 
         // a disigner ID doesnt exist need to discuss with team 
         //[Required(ErrorMessage = "Set A Designer")]
         //public int designerID { get; set; }
 
         public virtual Client Client { get; set; }
+        
         public virtual ICollection<ProjectTeam> projectTeams { get; set; }
         public virtual ICollection<LabourSummary> LabourSummaries { get; set; }
+
+        
 
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {

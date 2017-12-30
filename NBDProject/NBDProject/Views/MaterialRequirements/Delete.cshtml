@@ -12,6 +12,14 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
+            @Html.DisplayNameFor(model => model.Inventory.invCode)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Inventory.invCode)
+        </dd>
+
+        <dt>
             @Html.DisplayNameFor(model => model.Project.projectName)
         </dt>
 
@@ -44,19 +52,35 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.mregNet)
+            @Html.DisplayNameFor(model => model.mregNetProPlan)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.mregNet)
+            @Html.DisplayFor(model => model.mregNetProPlan)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.mregExtCost)
+            @Html.DisplayNameFor(model => model.mregNetDesign)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.mregExtCost)
+            @Html.DisplayFor(model => model.mregNetDesign)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.mregExtCostDesign)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.mregExtCostDesign)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.mregExtCostProPlan)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.mregExtCostProPlan)
         </dd>
 
         <dt>

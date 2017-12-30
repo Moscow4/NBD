@@ -17,8 +17,14 @@ namespace NBDProject.Controllers
         private NBDCFEntities db = new NBDCFEntities();
 
         // GET: ProjectTeams
-        public ActionResult Index()
+        public ActionResult Index(int? ProjectID)
         {
+            PopulateDropDownList();
+            var projectTeam = db.ProjectTeams.Include(p => p.project);
+            if (ProjectID.HasValue)
+            {
+                projectTeam = projectTeam.Where(p => p.projectID == ProjectID);
+            }
             return View(db.ProjectTeams.ToList());
         }
 

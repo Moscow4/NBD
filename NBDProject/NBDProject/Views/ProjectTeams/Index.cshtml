@@ -12,7 +12,7 @@
 @using (Html.BeginForm("Index", "ProjectTeams", FormMethod.Get))
 {
     <p>
-        Select Project: @Html.DropDownList("ProjectID", null, "All Projects", htmlAttributes: new { @onchange = "this.form.submit();" })
+        Select Project: @Html.DropDownList("ProjectID", null, htmlAttributes: new { @onchange = "this.form.submit();" })
         @*<input type="Submit" value="Filter" class="btn btn-default" />*@
     </p>
 }

@@ -9,8 +9,18 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
+@using (Html.BeginForm("Index", "LabourRequirements", FormMethod.Get))
+{
+    <p>
+        Select Project: @Html.DropDownList("LabourRequirementDesignID", null, htmlAttributes: new { @onchange = "this.form.submit();" })
+        @*<input type="Submit" value="Filter" class="btn btn-default" />*@
+    </p>
+}
 <table class="table">
     <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.projectName)
+        </th>
         <th>
             @Html.DisplayNameFor(model => model.LabourRequirementDesign.lregDDesc)
         </th>
@@ -37,6 +47,9 @@
 
 @foreach (var item in Model) {
     <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.projectName)
+        </td>
         <td>
             @Html.DisplayFor(modelItem => item.LabourRequirementDesign.lregDDesc)
         </td>

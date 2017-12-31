@@ -33,7 +33,8 @@ namespace NBDProject.Models
         //[Required(ErrorMessage = "You have specified the labour Requirement.")]
         //public int labourRequirementID { get; set; }
 
-        
+
         public virtual ICollection<LabourRequirement> LabourRequirements { get; set; }
+
     }
 }

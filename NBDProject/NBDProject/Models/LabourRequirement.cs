@@ -65,6 +65,14 @@ namespace NBDProject.Models
         [Required(ErrorMessage = "You have to specify Woker.")]
         public int WorkerID { get; set; }
 
+        [Required(ErrorMessage = "Project Name is Required.")]
+        [Display(Name = "Project Name")]
+        public string projectName {
+            get {
+                return LabourRequirementDesign.Project.projectName.ToString();
+            }
+        }
+
         [Required(ErrorMessage = "Your have to specify Design Description.")]
         public int LabourRequirementDesignID { get; set; }
         

@@ -12,6 +12,7 @@ namespace NBDProject.Models
             this.LabourRequirements = new HashSet<LabourRequirement>();
         }
 
+
         public int ID { get; set; }
 
         [Required(ErrorMessage = "Hour is required.")]
@@ -31,6 +32,12 @@ namespace NBDProject.Models
         public decimal lregDExtPrice {
             get {
                 return lregDHour * lregDUnitPrice;
+            }
+        }
+        [Display(Name = "Summary")]
+        public string LregDsummary {
+            get {
+                return lregDDesc + " - " + Project.projectName;
             }
         }
 

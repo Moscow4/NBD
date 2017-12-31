@@ -7,5 +7,6 @@ namespace NBDProject.Models
 {
     public class BusinessRule
     {
+        public LabourRequirement LabourRequirement { get; set; }
     }
 }

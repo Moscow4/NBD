@@ -16,9 +16,14 @@ namespace NBDProject.Controllers
         private NBDCFEntities db = new NBDCFEntities();
 
         // GET: LabourRequirementDesigns
-        public ActionResult Index()
+        public ActionResult Index(int? ProjectID)
         {
+            PopulateDropDownList();
             var labourRequirementDesigns = db.LabourRequirementDesigns.Include(l => l.Project);
+            if (ProjectID.HasValue)
+            {
+                labourRequirementDesigns = labourRequirementDesigns.Where(l => l.projectID == ProjectID);
+            }
             return View(labourRequirementDesigns.ToList());
         }
 

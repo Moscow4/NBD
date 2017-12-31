@@ -19,6 +19,7 @@ namespace NBDProject.Controllers
         public ActionResult Index()
         {
             var projects = db.Projects.Include(p => p.Client);
+
             return View(projects.ToList());
         }
 

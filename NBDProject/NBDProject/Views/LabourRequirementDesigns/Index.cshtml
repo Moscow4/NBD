@@ -8,6 +8,13 @@
 
 <p>
     @Html.ActionLink("Create New", "Create")
+    @using (Html.BeginForm("Index", "LabourRequirementDesigns", FormMethod.Get))
+    {
+    <p>
+        Select Project: @Html.DropDownList("ProjectID", null, htmlAttributes: new { @onchange = "this.form.submit();" })
+        @*<input type="Submit" value="Filter" class="btn btn-default" />*@
+    </p>
+    }
 </p>
 <table class="table">
     <tr>

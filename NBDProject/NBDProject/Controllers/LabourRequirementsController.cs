@@ -16,9 +16,14 @@ namespace NBDProject.Controllers
         private NBDCFEntities db = new NBDCFEntities();
 
         // GET: LabourRequirements
-        public ActionResult Index()
+        public ActionResult Index(int? LabourRequirementDesignID)
         {
+            PopulateDropDownList();
             var labourRequirements = db.LabourRequirements.Include(l => l.LabourRequirementDesign).Include(l => l.Task).Include(l => l.Worker);
+            if (LabourRequirementDesignID.HasValue)
+            {
+                labourRequirements = labourRequirements.Where(l => l.LabourRequirementDesignID == LabourRequirementDesignID);
+            }
             return View(labourRequirements.ToList());
         }
 
@@ -166,7 +171,7 @@ namespace NBDProject.Controllers
             var lQuery = from l in db.LabourRequirementDesigns
                          orderby l.lregDDesc
                          select l;
-            ViewBag.LabourRequirementDesignID = new SelectList(lQuery, "ID", "lregDDesc", labour?.LabourRequirementDesignID);
+            ViewBag.LabourRequirementDesignID = new SelectList(lQuery, "ID", "LregDsummary", labour?.LabourRequirementDesignID);
         }
 
         protected override void Dispose(bool disposing)

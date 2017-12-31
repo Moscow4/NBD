@@ -153,10 +153,9 @@ namespace NBDProject.Controllers
 
         //private void PopulateDropDownList(TaskTest task = null)
         //{
-        //    var tQuery = from t in db.LabourRequirements
-        //                 orderby t.desc
-        //                 select t;
-        //    ViewBag.labourRequirementID = new SelectList(tQuery, "ID", "desc", task?.labourRequirementID);
+        //    var tQuery = db.LabourRequirements.Include(p => p.projectName)
+        //        .OrderBy(p => p.projectName);
+        //    ViewBag.labourRequirementID = new SelectList(tQuery, "ID", "projectName", task?.);
         //}
 
         protected override void Dispose(bool disposing)

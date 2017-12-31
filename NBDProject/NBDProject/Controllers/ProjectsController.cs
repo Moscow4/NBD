@@ -99,7 +99,7 @@ namespace NBDProject.Controllers
 
             var projectToUpdate = db.Projects.Find(id);
             if (TryUpdateModel(projectToUpdate, "",
-                new string[] { "projectName", "projectSite", "projectBidDate", "projectEstStart", "projectEstEnd", "projectActStart", "projectActEnt", "projectEstCost", "projectActCost", "projectBidCustAccept", "projectBidMgmtAccept", "projectCureentPhase", "projectFlagged", "ClientID" }))
+                new string[] { "projectName", "projectSite", "projectBidDate", "projectEstStart", "projectEstEnd", "projectActStart", "projectActEnd", "projectEstCost", "projectActCost", "projectBidCustAccept", "projectBidMgmtAccept", "projectCureentPhase", "projectFlagged", "ClientID" }))
             {
                 try
                 {
@@ -156,9 +156,9 @@ namespace NBDProject.Controllers
         private void PopulateDropDownList(Project project = null)
         {
             var cQuery = from c in db.Clients
-                         orderby c.cliFName,c.cliLName , c.cliConLName, c.cliConLName
+                         orderby c.cliName , c.cliConLName, c.cliConLName
                          select c;
-            ViewBag.clientID = new SelectList(cQuery, "ID", "cliFullName", project?.clientID);
+            ViewBag.clientID = new SelectList(cQuery, "ID", "cliName", project?.clientID);
         }
 
         protected override void Dispose(bool disposing)

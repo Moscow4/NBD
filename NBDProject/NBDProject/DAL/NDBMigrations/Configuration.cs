@@ -92,7 +92,7 @@ namespace NBDProject.DAL.NDBMigrations
             //new Client { cliFName = "", cliLName = "", cliAddress = "", cliProvince = "", cliCode = "Z9Z9Z9", cliPhone = 9999999999, cliConFname = "", cliConLName = "", cliConPostion = "", cityID = 1 },
             var clients = new List<Client>
             {
-                new Client { cliFName= "London Square",cliLName = "Mall", cliAddress = "12638 Mall Drive", cliProvince = "Califoronia",cliCode = "Z9Z9Z9", cliPhone = 4088345603, cliConFname = "Amy", cliConLName = "Besnon", cliConPostion = "Manager", cityID = 1 },
+                new Client { cliName= "London Square Mall", cliAddress = "12638 Mall Drive", cliProvince = "Califoronia",cliCode = "Z9Z9Z9", cliPhone = 4088345603, cliConFname = "Amy", cliConLName = "Besnon", cliConPostion = "Manager", cityID = 1 },
             };
             clients.ForEach(d => context.Clients.AddOrUpdate(n => n.cliPhone, d));
             SaveChanges(context);

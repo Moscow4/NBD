@@ -50,12 +50,12 @@ namespace NBDProject.Models
         [Display(Name = "Project Actual Start")]
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
-        public DateTime projectActStart { get; set; }
+        public DateTime? projectActStart { get; set; }
 
         [Display(Name = "Project Actual End")]
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
-        public DateTime projectActEnd { get; set; }
+        public DateTime? projectActEnd { get; set; }
 
         [Display(Name = "Project Estimated Cost")]
         public decimal? projectEstCost { get; set; }

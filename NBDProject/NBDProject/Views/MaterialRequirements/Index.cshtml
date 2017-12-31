@@ -16,6 +16,7 @@
             @*<input type="Submit" value="Filter" class="btn btn-default" />*@
         </p>
     }
+<script src="~/Scripts/jquery-1.10.2.js"></script>
 <table class="table">
     <tr>
         <th>
@@ -52,6 +53,14 @@
             @Html.DisplayNameFor(model => model.mreqInstall)
         </th>
         <th></th>
+        <!--Test Code-->
+        <th>
+            <script>
+                let req = @{Html.DisplayNameFor(model => model.mregSize)};
+                alert(req);
+            </script>
+        </th>
+        <!--...-->
     </tr>
 
 @foreach (var item in Model) {

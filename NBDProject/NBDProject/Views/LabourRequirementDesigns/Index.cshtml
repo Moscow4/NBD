@@ -1,0 +1,57 @@
+﻿@model IEnumerable<NBDProject.Models.LabourRequirementDesign>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Project.projectName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.lregDHour)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.lregDDesc)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.lregDUnitPrice)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.lregDExtPrice)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Project.projectName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.lregDHour)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.lregDDesc)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.lregDUnitPrice)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.lregDExtPrice)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+        </td>
+    </tr>
+}
+
+</table>

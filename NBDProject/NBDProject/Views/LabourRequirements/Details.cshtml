@@ -7,23 +7,32 @@
 <h2>Details</h2>
 
 <div>
-    <h4>LabourRequirement</h4>
+    <h4>Labour Requirement (Production Plan)</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.desc)
+            @Html.DisplayNameFor(model => model.LabourRequirementDesign.lregDDesc)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.desc)
+            @Html.DisplayFor(model => model.LabourRequirementDesign.lregDDesc)
+        </dd>
+
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Worker.FullName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Worker.FullName)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.lregEstHour)
+            @Html.DisplayNameFor(model => model.lregProdHour)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.lregEstHour)
+            @Html.DisplayFor(model => model.lregProdHour)
         </dd>
 
         <dt>
@@ -35,11 +44,27 @@
         </dd>
 
         <dt>
+            @Html.DisplayNameFor(model => model.LregEstCost)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LregEstCost)
+        </dd>
+
+        <dt>
             @Html.DisplayNameFor(model => model.lregTime)
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.lregTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Task.taskDesc)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Task.taskDesc)
         </dd>
 
     </dl>

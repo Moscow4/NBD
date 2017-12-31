@@ -18,11 +18,9 @@ namespace NBDProject.Controllers
         // GET: LabourRequirements
         public ActionResult Index()
         {
-
-            return View(db.LabourRequirements.ToList());
+            var labourRequirements = db.LabourRequirements.Include(l => l.LabourRequirementDesign).Include(l => l.Task).Include(l => l.Worker);
+            return View(labourRequirements.ToList());
         }
-
-
 
         // GET: LabourRequirements/Details/5
         public ActionResult Details(int? id)
@@ -36,13 +34,14 @@ namespace NBDProject.Controllers
             {
                 return HttpNotFound();
             }
+
             return View(labourRequirement);
         }
 
         // GET: LabourRequirements/Create
         public ActionResult Create()
         {
-
+            PopulateDropDownList();
             return View();
         }
 
@@ -51,19 +50,23 @@ namespace NBDProject.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,desc,lregEstHour,lregCost,lregTime")] LabourRequirement labourRequirement)
+        public ActionResult Create([Bind(Include = "ID,lregProdHour,lregCost,lregEstCost, lregTime,TaskID,WorkerID,LabourRequirementDesignID")] LabourRequirement labourRequirement)
         {
-
-
-            if (ModelState.IsValid)
+            try
             {
-                db.LabourRequirements.Add(labourRequirement);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                if (ModelState.IsValid)
+                {
+                    db.LabourRequirements.Add(labourRequirement);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+            }
+            catch (DataException)
+            {
+                ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists see your system administrator.");
             }
 
-
-
+            PopulateDropDownList(labourRequirement);
             return View(labourRequirement);
         }
 
@@ -79,7 +82,7 @@ namespace NBDProject.Controllers
             {
                 return HttpNotFound();
             }
-
+            PopulateDropDownList(labourRequirement);
             return View(labourRequirement);
         }
 
@@ -94,9 +97,9 @@ namespace NBDProject.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            var LabourRequirementsToUpdate = db.LabourRequirements.Find(id);
-            if (TryUpdateModel(LabourRequirementsToUpdate, "",
-                new string [] { "desc", "lregEstHour", "lregCost", "lregTime" }))
+            var labourRequirementToUpdate = db.LabourRequirements.Find(id);
+            if (TryUpdateModel(labourRequirementToUpdate, "",
+                new string[] { "lregProdHour", "lregCost", "lregEstCost", "lregTime", "TaskID", "WorkerID", "LabourRequirementDesignID" }))
             {
                 try
                 {
@@ -108,7 +111,9 @@ namespace NBDProject.Controllers
                     ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists see your system administrator.");
                 }
             }
-            return View(LabourRequirementsToUpdate);
+
+            PopulateDropDownList(labourRequirementToUpdate);
+            return View(labourRequirementToUpdate);
         }
 
         // GET: LabourRequirements/Delete/5
@@ -146,15 +151,23 @@ namespace NBDProject.Controllers
             return View(labourRequirement);
         }
 
-        //private void PopulateDropDownLists(LabourRequirement labour = null)
-        //{
-        //    var dQuery = from l in db.TaskTests
-        //                 orderby l.taskDesc
-        //                 select l;
-        //    ViewBag.TaskID = new SelectList(dQuery, "ID", "taskDesc", labour?.ID);
-        //}
+        private void PopulateDropDownList(LabourRequirement labour = null)
+        {
+            var tQuery = from t in db.TaskTests
+                         orderby t.taskDesc
+                         select t;
+            ViewBag.TaskID = new SelectList(tQuery, "ID", "taskDesc", labour?.TaskID);
 
+            var wQuery = from w in db.Workers
+                         orderby w.LName, w.FName
+                         select w;
+            ViewBag.WorkerID = new SelectList(wQuery, "ID", "FullName", labour?.WorkerID);
 
+            var lQuery = from l in db.LabourRequirementDesigns
+                         orderby l.lregDDesc
+                         select l;
+            ViewBag.LabourRequirementDesignID = new SelectList(lQuery, "ID", "lregDDesc", labour?.LabourRequirementDesignID);
+        }
 
         protected override void Dispose(bool disposing)
         {

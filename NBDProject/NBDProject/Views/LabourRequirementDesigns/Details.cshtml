@@ -1,0 +1,58 @@
+﻿@model NBDProject.Models.LabourRequirementDesign
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Labour Requirement (Design Bid)</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Project.projectName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Project.projectName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.lregDHour)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.lregDHour)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.lregDDesc)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.lregDDesc)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.lregDUnitPrice)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.lregDUnitPrice)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.lregDExtPrice)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.lregDExtPrice)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

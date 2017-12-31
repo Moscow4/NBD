@@ -23,7 +23,7 @@ namespace NBDProject.DAL
         public DbSet<Tool>                  Tools { get; set; }
         public DbSet<TaskTest>              TaskTests { get; set; }
         public DbSet<WorkType>              WorkTypes { get; set; }
-
+        public DbSet<LabourRequirementDesign> LabourRequirementDesigns { get; set; }
 
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

@@ -12,6 +12,9 @@ namespace NBDProject.Models
 {
     public class TaskTest
     {
+        public TaskTest() {
+            this.LabourRequirements = new HashSet<LabourRequirement>();
+        }
         public int ID { get; set; }
 
         [Display(Name = "Task Description")]
@@ -26,11 +29,11 @@ namespace NBDProject.Models
         [StringLength(20, ErrorMessage = "Task Standard Time Unit  cannot be more than 20 characters.")]
         public string taskStdTimeUnit { get; set; }
 
-        [Display(Name = "labourer Required")]
-        [Required(ErrorMessage = "You have specified the labour Requirement.")]
-        public int labourRequirementID { get; set; }
+        //[Display(Name = "labourer Required")]
+        //[Required(ErrorMessage = "You have specified the labour Requirement.")]
+        //public int labourRequirementID { get; set; }
 
         
-        public virtual LabourRequirement labourRequirement { get; set; }
+        public virtual ICollection<LabourRequirement> LabourRequirements { get; set; }
     }
 }

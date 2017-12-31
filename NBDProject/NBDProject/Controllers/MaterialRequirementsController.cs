@@ -18,6 +18,7 @@ namespace NBDProject.Controllers
         // GET: MaterialRequirements
         public ActionResult Index(int? ProjectID)
         {
+            PopulateDropDownList();
             var materialRequirements = db.MaterialRequirements.Include(m => m.Inventory).Include(m => m.Project);
             if (ProjectID.HasValue)
             {

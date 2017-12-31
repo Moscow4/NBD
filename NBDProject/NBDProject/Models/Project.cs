@@ -16,6 +16,7 @@ namespace NBDProject.Models
         {
             this.projectTeams = new HashSet<ProjectTeam>();
             this.LabourSummaries = new HashSet<LabourSummary>();
+            this.LabourRequirementDesigns = new HashSet<LabourRequirementDesign>();
         }
 
         public int ID { get; set; }
@@ -87,6 +88,7 @@ namespace NBDProject.Models
         
 
         [Required(ErrorMessage = "Set A Client")]
+        [Display(Name = "Client")]
         public int clientID { get; set; }
 
 
@@ -99,6 +101,7 @@ namespace NBDProject.Models
         
         public virtual ICollection<ProjectTeam> projectTeams { get; set; }
         public virtual ICollection<LabourSummary> LabourSummaries { get; set; }
+        public virtual ICollection<LabourRequirementDesign> LabourRequirementDesigns { get; set; }
 
         
 

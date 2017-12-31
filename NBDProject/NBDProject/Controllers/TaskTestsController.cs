@@ -18,8 +18,7 @@ namespace NBDProject.Controllers
         // GET: TaskTests
         public ActionResult Index()
         {
-            var taskTests = db.TaskTests.Include(t => t.labourRequirement);
-            return View(taskTests.ToList());
+            return View(db.TaskTests.ToList());
         }
 
         // GET: TaskTests/Details/5
@@ -40,7 +39,7 @@ namespace NBDProject.Controllers
         // GET: TaskTests/Create
         public ActionResult Create()
         {
-            PopulateDropDownList();
+
             return View();
         }
 
@@ -65,7 +64,7 @@ namespace NBDProject.Controllers
                 ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists see your system administrator.");
             }
 
-            PopulateDropDownList(taskTest);
+
             return View(taskTest);
         }
 
@@ -81,7 +80,7 @@ namespace NBDProject.Controllers
             {
                 return HttpNotFound();
             }
-            PopulateDropDownList(taskTest);
+
             return View(taskTest);
         }
 
@@ -112,7 +111,7 @@ namespace NBDProject.Controllers
                 }
             }
 
-            PopulateDropDownList(taskTestToUpdate);
+
             return View(taskTestToUpdate);
         }
 
@@ -152,13 +151,13 @@ namespace NBDProject.Controllers
             return View(taskTest);
         }
 
-        private void PopulateDropDownList(TaskTest task = null)
-        {
-            var tQuery = from t in db.LabourRequirements
-                         orderby t.desc
-                         select t;
-            ViewBag.labourRequirementID = new SelectList(tQuery, "ID", "desc", task?.labourRequirementID);
-        }
+        //private void PopulateDropDownList(TaskTest task = null)
+        //{
+        //    var tQuery = from t in db.LabourRequirements
+        //                 orderby t.desc
+        //                 select t;
+        //    ViewBag.labourRequirementID = new SelectList(tQuery, "ID", "desc", task?.labourRequirementID);
+        //}
 
         protected override void Dispose(bool disposing)
         {

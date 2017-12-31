@@ -134,6 +134,7 @@ namespace NBDProject.DAL.NDBMigrations
                                         new Worker { FName = "Monica", LName = "Goce", worktypeID = 3},
                                         new Worker { FName = "Bert", LName = "Swenson", worktypeID = 3}
 
+
                                     } }
             };
             projectteams.ForEach(t => context.ProjectTeams.AddOrUpdate(n => n.teamPhaseIn, t));
@@ -193,21 +194,33 @@ namespace NBDProject.DAL.NDBMigrations
 
             //seed data for labour Requiremnts
             //new LabourRequirement { desc = "", lregEstHour = 0, lregCost = 0, lregTime = DateTime.Parse("")}
-            var labourRequiremnts = new List<LabourRequirement>
-            {
-                new LabourRequirement { desc = "Desgin Consultant", lregEstHour =0 , lregCost = 0, lregTime = DateTime.Parse("2018-06-11")}
-            };
-            labourRequiremnts.ForEach(l => context.LabourRequirements.AddOrUpdate(n => n.desc, l));
-            SaveChanges(context);
 
-            // seed data for TaskTest
-            //new TaskTest { taskDesc = "", taskStdTImeAmnt = 0, taskStdTimeUnit = "", labourRequirementID = 1 }
             var Tasks = new List<TaskTest>
             {
-                new TaskTest { taskDesc = "Bid Process", taskStdTImeAmnt = 0, taskStdTimeUnit = "", labourRequirementID = 1}
+                new TaskTest { taskDesc = "Bid Process", taskStdTImeAmnt = 0, taskStdTimeUnit = ""}
             };
             Tasks.ForEach(t => context.TaskTests.AddOrUpdate(n => n.taskDesc, t));
             SaveChanges(context);
+
+            var labourRequirementDesigns = new List<LabourRequirementDesign>
+            {
+                new LabourRequirementDesign { lregDHour = 10, lregDDesc = "Design Consultant", lregDUnitPrice = 65.00m, projectID = 1 }
+            };
+            labourRequirementDesigns.ForEach(l => context.LabourRequirementDesigns.AddOrUpdate(n => n.ID, l));
+            SaveChanges(context);
+
+            var labourRequiremnts = new List<LabourRequirement>
+            {
+                new LabourRequirement { lregProdHour = 12 , lregCost = 40.00m, lregTime = DateTime.Parse("2018-06-11"), TaskID = 1, WorkerID = 2, LabourRequirementDesignID = 1 }
+            };
+            labourRequiremnts.ForEach(l => context.LabourRequirements.AddOrUpdate(n => n.lregProdHour, l));
+            SaveChanges(context);
+
+           
+
+            // seed data for TaskTest
+            //new TaskTest { taskDesc = "", taskStdTImeAmnt = 0, taskStdTimeUnit = "", labourRequirementID = 1 }
+            
 
 
             //Many to Many with ProjectTeam

@@ -12,13 +12,22 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.desc)
+            @Html.DisplayNameFor(model => model.LabourRequirementDesign.lregDDesc)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.lregEstHour)
+            @Html.DisplayNameFor(model => model.Task.taskDesc)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Worker.FullName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.lregProdHour)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.lregCost)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LregEstCost)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.lregTime)
@@ -29,13 +38,22 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.desc)
+            @Html.DisplayFor(modelItem => item.LabourRequirementDesign.lregDDesc)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.lregEstHour)
+            @Html.DisplayFor(modelItem => item.Task.taskDesc)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Worker.FName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.lregProdHour)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.lregCost)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LregEstCost)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.lregTime)

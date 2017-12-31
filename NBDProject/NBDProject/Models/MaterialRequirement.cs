@@ -35,15 +35,16 @@ namespace NBDProject.Models
         [Display(Name = "Net/Unit")]
         [Required(ErrorMessage = "Net/Unit is required.")]
         public decimal mregNetDesign { get; set; }
-   
 
         [Display(Name = "Ext. Cost(Design)")]
         [Required(ErrorMessage = "Ext. Cost is required.")]
-        public decimal mregExtCostDesign {
-            get {
+        public decimal mregExtCostDesign
+        {
+            get
+            {
                 return mreqQty * mregNetDesign;
             }
-           
+
         }
 
         [Display(Name = "Ext. Cost(Production Plan)")]
@@ -54,9 +55,8 @@ namespace NBDProject.Models
             {
                 return mreqQty * mregNetProPlan;
             }
-           
-        }
 
+        }
 
         [Display(Name = "Deliver Day")]
         [Required(ErrorMessage = "Deliver Day is required.")]

@@ -12,7 +12,7 @@
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>TaskTest</h4>
+        <h4>Task Test</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
@@ -39,13 +39,7 @@
             </div>
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.labourRequirementID, "Labourer Required", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("labourRequirementID", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.labourRequirementID, "", new { @class = "text-danger" })
-            </div>
-        </div>
+    
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">

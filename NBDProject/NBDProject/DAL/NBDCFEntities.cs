@@ -24,7 +24,7 @@ namespace NBDProject.DAL
         public DbSet<TaskTest>              TaskTests { get; set; }
         public DbSet<WorkType>              WorkTypes { get; set; }
         public DbSet<LabourRequirementDesign> LabourRequirementDesigns { get; set; }
-        public DbSet<BusinessRule>          BusinessRules { get; set; }
+        //public DbSet<BusinessRule>          BusinessRules { get; set; }
 
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

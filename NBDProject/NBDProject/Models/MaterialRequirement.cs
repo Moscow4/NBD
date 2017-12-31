@@ -18,23 +18,35 @@ namespace NBDProject.Models
         [Required(ErrorMessage = "Quantity is required.")]
         public int mreqQty {get; set; }
 
-        [Display(Name = "Code")]
-        [Required(ErrorMessage = "Code is required.")]
-        public string mregCode { get; set; }
+        //[Display(Name = "Code")]
+        //[Required(ErrorMessage = "Code is required.")]
+        //public string mregCode { get; set; }
 
 
         [Display(Name = "Size")]
         [Required(ErrorMessage = "Size is required.")]
-        public string mregSize { get; set; }
+        public string mregSize {
+            get {
+                return Inventory.SizeAmnt.ToString() + " " + Inventory.SizeUnit.ToString();
+            }
+        }
 
         [Display(Name = "Net/Unit")]
         [Required(ErrorMessage = "Net/Unit is required.")]
-        public decimal mregNetProPlan { get; set; }
+        public decimal mregNetProPlan {
+            get {
+                return Inventory.AvgNet;
+            }
+        }
          
 
         [Display(Name = "Net/Unit")]
         [Required(ErrorMessage = "Net/Unit is required.")]
-        public decimal mregNetDesign { get; set; }
+        public decimal mregNetDesign {
+            get {
+                return Inventory.List;
+            }
+        }
 
         [Display(Name = "Ext. Cost(Design)")]
         [Required(ErrorMessage = "Ext. Cost is required.")]

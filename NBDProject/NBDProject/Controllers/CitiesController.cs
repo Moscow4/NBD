@@ -21,6 +21,27 @@ namespace NBDProject.Controllers
             return View(db.Cities.ToList());
         }
 
+        public ActionResult IndexClient()
+        {
+            var clients = db.Clients.Include(c => c.City);
+            return View(clients.ToList());
+        }
+
+        // GET: Clients/Details/5
+        public ActionResult DetailsClient(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Client client = db.Clients.Find(id);
+            if (client == null)
+            {
+                return HttpNotFound();
+            }
+            return View(client);
+        }
+
         // GET: Cities/Details/5
         public ActionResult Details(int? id)
         {

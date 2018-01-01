@@ -11,7 +11,7 @@ using NBDProject.Models;
 
 namespace NBDProject.Controllers
 {
-    
+    [Authorize]
     public class ClientsController : Controller
     {
         private NBDCFEntities db = new NBDCFEntities();

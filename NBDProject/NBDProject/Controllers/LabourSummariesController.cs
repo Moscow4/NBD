@@ -12,6 +12,8 @@ using System.Data.Entity.Infrastructure;
 
 namespace NBDProject.Controllers
 {
+    [Authorize]
+
     public class LabourSummariesController : Controller
     {
         private NBDCFEntities db = new NBDCFEntities();

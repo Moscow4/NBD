@@ -212,6 +212,10 @@
     <Compile Include="DAL\NDBMigrations\201801010451194_Initial2.Designer.cs">
       <DependentUpon>201801010451194_Initial2.cs</DependentUpon>
     </Compile>
+    <Compile Include="DAL\NDBMigrations\201801011843365_int.cs" />
+    <Compile Include="DAL\NDBMigrations\201801011843365_int.Designer.cs">
+      <DependentUpon>201801011843365_int.cs</DependentUpon>
+    </Compile>
     <Compile Include="DAL\NDBMigrations\Configuration.cs" />
     <Compile Include="DAL\SecurityMigrations\201712300200056_InitialSecurity.cs" />
     <Compile Include="DAL\SecurityMigrations\201712300200056_InitialSecurity.Designer.cs">
@@ -398,6 +402,9 @@
   <ItemGroup>
     <EmbeddedResource Include="DAL\NDBMigrations\201801010451194_Initial2.resx">
       <DependentUpon>201801010451194_Initial2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DAL\NDBMigrations\201801011843365_int.resx">
+      <DependentUpon>201801011843365_int.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DAL\SecurityMigrations\201712300200056_InitialSecurity.resx">
       <DependentUpon>201712300200056_InitialSecurity.cs</DependentUpon>

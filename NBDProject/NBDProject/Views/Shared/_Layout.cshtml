@@ -25,72 +25,72 @@
                     <li>@Html.ActionLink("About", "About", "Home")</li>
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
                     @if (User.IsInRole("Admin") || User.IsInRole("Admin Assistant") || User.IsInRole("Sales"))
-                    {
-                    <li>@Html.ActionLink("Client", "Index", "Clients")</li>
-                    }
+            {
+                <li>@Html.ActionLink("Client", "Index", "Clients")</li>
+    }
                     @if (User.IsInRole("Admin") || User.IsInRole("Admin Assistant") || User.IsInRole("Sales"))
-                    {
-                        <li>@Html.ActionLink("City", "Index", "Cities")</li>
-                    }
+            {
+                <li>@Html.ActionLink("City", "Index", "Cities")</li>
+    }
                     @if (User.IsInRole("Admin") || User.IsInRole("Admin Assistant") || User.IsInRole("Production Manager") || User.IsInRole("Production Worker") || User.IsInRole("Chief Designer"))
-                    {
+            {
 
-                    <li>@Html.ActionLink("Tools", "Index", "Tools")</li>
-                    }
+                <li>@Html.ActionLink("Tools", "Index", "Tools")</li>
+    }
                     @if (User.IsInRole("Admin") || User.IsInRole("Admin Assistant") || User.IsInRole("Production Manager") || User.IsInRole("Group Manager") || User.IsInRole("Production Worker"))
-                    {
-                        <li>@Html.ActionLink("Inventory", "Index", "Inventories")</li>
-                    }
-                    @*<li>@Html.ActionLink("Projects", "Index", "Projects")</li>*@
-                    @if(User.IsInRole("Admin") || User.IsInRole("Admin Assistant") || User.IsInRole("Designer") || User.IsInRole("Chief Designer") || User.IsInRole("Production Manager") || User.IsInRole("Group Manager"))
-                    { 
-                    <li class="dropdown">
-                        <a href="#" data-toggle="dropdown" class="dropdown-toggle">Project<b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                             @if (User.IsInRole("Admin") || User.IsInRole("Admin Assistant") || User.IsInRole("Designer") || User.IsInRole("Chief Designer") || User.IsInRole("Production Manager") || User.IsInRole("Group Manager"))
-                             {
-                                <li>@Html.ActionLink("Project", "Index", "Projects")</li>
-                             }
-                            @if (User.IsInRole("Admin") || User.IsInRole("Admin Assistant") || User.IsInRole("Designer") || User.IsInRole("Chief Designer") || User.IsInRole("Production Manager") || User.IsInRole("Production Worker") || User.IsInRole("Group Manager"))
-                            {
-                                
-                                <li>@Html.ActionLink("Material Requirements", "Index", "MaterialRequirements")</li>
-                                if (User.IsInRole("Admin") || User.IsInRole("Admin Assistant") || User.IsInRole("Production Manager") || User.IsInRole("Production Worker") || User.IsInRole("Group Manager") || User.IsInRole("Chief Designer"))
-                                {
+            {
+                <li>@Html.ActionLink("Inventory", "Index", "Inventories")</li>
+    }
+        @*<li>@Html.ActionLink("Projects", "Index", "Projects")</li>*@
+                    @if (User.IsInRole("Admin") || User.IsInRole("Admin Assistant") || User.IsInRole("Designer") || User.IsInRole("Chief Designer") || User.IsInRole("Production Manager") || User.IsInRole("Group Manager"))
+            {
+                <li class="dropdown">
+                    <a href="#" data-toggle="dropdown" class="dropdown-toggle">Project<b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        @if (User.IsInRole("Admin") || User.IsInRole("Admin Assistant") || User.IsInRole("Designer") || User.IsInRole("Chief Designer") || User.IsInRole("Production Manager") || User.IsInRole("Group Manager"))
+                {
+                    <li>@Html.ActionLink("Project", "Index", "Projects")</li>
+        }
+                        @if (User.IsInRole("Admin") || User.IsInRole("Admin Assistant") || User.IsInRole("Designer") || User.IsInRole("Chief Designer") || User.IsInRole("Production Manager") || User.IsInRole("Production Worker") || User.IsInRole("Group Manager"))
+                {
 
-                                    <li>@Html.ActionLink("Project Tools", "Index", "ProjectTools")</li>
-                                }
-                            }
-                            
-                            @if (User.IsInRole("Designer") || User.IsInRole("Group Manager"))
-                            {
-                                <li>@Html.ActionLink("Labour Requirements", "Index", "LabourRequirementDesigns")</li>
-                            }
-                            @if (User.IsInRole("Admin") || User.IsInRole("Admin Assistant") || User.IsInRole("Production Manager") || User.IsInRole("Chief Designer"))
-                            {
-                                <li>@Html.ActionLink("Labour Requirements", "Index", "LabourRequirements")</li>
-                                <li>@Html.ActionLink("Project Teams", "Index", "ProjectTeams")</li>
-                                <li>@Html.ActionLink("Tasks", "Index", "TaskTests")</li>
-                            }
-                           
-                            
+                    <li>@Html.ActionLink("Material Requirements", "Index", "MaterialRequirements")</li>
+            if (User.IsInRole("Admin") || User.IsInRole("Admin Assistant") || User.IsInRole("Production Manager") || User.IsInRole("Production Worker") || User.IsInRole("Group Manager") || User.IsInRole("Chief Designer"))
+            {
 
-                            <li class="divider"></li>
-                            @if (User.IsInRole("Admin") || User.IsInRole("Admin Assistant"))
-                            {
-                                <li>@Html.ActionLink("Workers", "Index", "Workers")</li>
-                            }
-                            @if (User.IsInRole("Admin"))
-                            {
-                                <li>@Html.ActionLink("Positions", "Index", "WorkTypes")</li>
-                            }
+                <li>@Html.ActionLink("Project Tools", "Index", "ProjectTools")</li>
+    }
+}
 
-                        </ul>
-                    </li>
+                        @if (User.IsInRole("Designer") || User.IsInRole("Group Manager"))
+                {
+                    <li>@Html.ActionLink("Labour Requirements", "Index", "LabourRequirementDesigns")</li>
+        }
+                        @if (User.IsInRole("Admin") || User.IsInRole("Admin Assistant") || User.IsInRole("Production Manager") || User.IsInRole("Chief Designer"))
+                {
+                    <li>@Html.ActionLink("Labour Requirements", "Index", "LabourRequirements")</li>
+                    <li>@Html.ActionLink("Project Teams", "Index", "ProjectTeams")</li>
+                    <li>@Html.ActionLink("Tasks", "Index", "TaskTests")</li>
+        }
 
-                    }
 
-                    
+
+                        <li class="divider"></li>
+                        @if (User.IsInRole("Admin") || User.IsInRole("Admin Assistant"))
+                {
+                    <li>@Html.ActionLink("Workers", "Index", "Workers")</li>
+        }
+                        @if (User.IsInRole("Admin"))
+                {
+                    <li>@Html.ActionLink("Positions", "Index", "WorkTypes")</li>
+        }
+
+                    </ul>
+                </li>
+
+    }
+
+
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>

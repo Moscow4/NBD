@@ -41,12 +41,15 @@
             @Html.DisplayNameFor(model => model.mregNetProPlan)
         </th>
         }
+        @if (User.IsInRole("Desginer"))
+        {
         <th>
             @Html.DisplayNameFor(model => model.mregNetDesign)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.mregExtCostDesign)
         </th>
+        }
         @if (User.IsInRole("Production Manager"))
         {
         <th>
@@ -79,56 +82,69 @@
         <td>
             @Html.DisplayFor(modelItem => item.mregSize)
         </td>
-        @if (User.IsInRole("Production Manager") && item.mregFlag)
+        @if (User.IsInRole("Production Manager"))
         {
+            if (item.Project.projectChiefDesignAccept)
+            {
         <td>
             @Html.DisplayFor(modelItem => item.mregNetProPlan)
         </td>
 
-        }
-        else {
+            }
+
+            else
+            {
            <td style="color:red">
                Waiting To Approved...
            </td>
+
+            }
         }
+        @if (User.IsInRole("Desginer"))
+        {
         <td>
             @Html.DisplayFor(modelItem => item.mregNetDesign)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.mregExtCostDesign)
         </td>
-        @if (User.IsInRole("Production Manager") && item.mregFlag)
+        }
+        @if (User.IsInRole("Production Manager"))
         {
+            if (item.Project.projectChiefDesignAccept)
+            {
         <td>
             @Html.DisplayFor(modelItem => item.mregExtCostProPlan)
         </td>
-            if (item.mreqDeliver != null)
-            {
+                if (item.mreqDeliver != null)
+                {
             <td>
                 @Html.DisplayFor(modelItem => item.mreqDeliver)
 
             </td>
-            }
-            else {
+                }
+                else
+                {
                 <td style="color:green">
                     Able To Edit...
                     </td>
-            }
-            if (item.mreqInstall != null)
-            {
+                }
+                if (item.mreqInstall != null)
+                {
             <td>
                 @Html.DisplayFor(modelItem => item.mreqInstall)
             </td>
-            }
-            else
-            {
+                }
+                else
+                {
                 <td style="color:green">
                     Able To Edit...
                 </td>
+                }
             }
-        }
-        else
-        {
+
+            else
+            {
             <td style="color:red">
                 Waiting To Approved...
             </td>
@@ -138,6 +154,7 @@
             <td style="color:red">
                 Waiting To Approved...
             </td>
+            }
         }
         @if (User.IsInRole("Admin") || User.IsInRole("Admin Assistant") || User.IsInRole("Designer") || User.IsInRole("Chief Designer") || User.IsInRole("Group Manager") || User.IsInRole("Production Manager"))
         {
@@ -151,3 +168,5 @@
 }
 
 </table>
+
+<div class="position-fixed">abcdefe</div>

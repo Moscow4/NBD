@@ -3,7 +3,7 @@ namespace NBDProject.DAL.NDBMigrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class InitialCreate : DbMigration
+    public partial class Initial2 : DbMigration
     {
         public override void Up()
         {
@@ -12,7 +12,7 @@ namespace NBDProject.DAL.NDBMigrations
                 c => new
                     {
                         ID = c.Int(nullable: false, identity: true),
-                        city = c.String(nullable: false, maxLength: 50),
+                        cityName = c.String(nullable: false, maxLength: 50),
                     })
                 .PrimaryKey(t => t.ID);
             
@@ -32,7 +32,7 @@ namespace NBDProject.DAL.NDBMigrations
                         cityID = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.ID)
-                .ForeignKey("dbo.City", t => t.cityID, cascadeDelete: true)
+                .ForeignKey("dbo.City", t => t.cityID)
                 .Index(t => t.cityID);
             
             CreateTable(
@@ -56,7 +56,7 @@ namespace NBDProject.DAL.NDBMigrations
                         clientID = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.ID)
-                .ForeignKey("dbo.Client", t => t.clientID, cascadeDelete: true)
+                .ForeignKey("dbo.Client", t => t.clientID)
                 .Index(t => t.clientID);
             
             CreateTable(
@@ -70,7 +70,7 @@ namespace NBDProject.DAL.NDBMigrations
                         projectID = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.ID)
-                .ForeignKey("dbo.Project", t => t.projectID, cascadeDelete: true)
+                .ForeignKey("dbo.Project", t => t.projectID)
                 .Index(t => t.projectID);
             
             CreateTable(
@@ -86,9 +86,9 @@ namespace NBDProject.DAL.NDBMigrations
                         LabourRequirementDesignID = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.ID)
-                .ForeignKey("dbo.LabourRequirementDesign", t => t.LabourRequirementDesignID, cascadeDelete: true)
-                .ForeignKey("dbo.TaskTest", t => t.TaskID, cascadeDelete: true)
-                .ForeignKey("dbo.Worker", t => t.WorkerID, cascadeDelete: true)
+                .ForeignKey("dbo.LabourRequirementDesign", t => t.LabourRequirementDesignID)
+                .ForeignKey("dbo.TaskTest", t => t.TaskID)
+                .ForeignKey("dbo.Worker", t => t.WorkerID)
                 .Index(t => t.TaskID)
                 .Index(t => t.WorkerID)
                 .Index(t => t.LabourRequirementDesignID);
@@ -114,7 +114,7 @@ namespace NBDProject.DAL.NDBMigrations
                         worktypeID = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.ID)
-                .ForeignKey("dbo.WorkType", t => t.worktypeID, cascadeDelete: true)
+                .ForeignKey("dbo.WorkType", t => t.worktypeID)
                 .Index(t => t.worktypeID);
             
             CreateTable(
@@ -126,7 +126,7 @@ namespace NBDProject.DAL.NDBMigrations
                         projectID = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.ID)
-                .ForeignKey("dbo.Project", t => t.projectID, cascadeDelete: true)
+                .ForeignKey("dbo.Project", t => t.projectID)
                 .Index(t => t.projectID);
             
             CreateTable(
@@ -140,7 +140,38 @@ namespace NBDProject.DAL.NDBMigrations
                     })
                 .PrimaryKey(t => t.ID);
             
-           
+            CreateTable(
+                "dbo.LabourSummary",
+                c => new
+                    {
+                        ID = c.Int(nullable: false, identity: true),
+                        lsHours = c.Int(nullable: false),
+                        projectID = c.Int(nullable: false),
+                        workerTypeID = c.Int(nullable: false),
+                        WorkType_ID = c.Int(),
+                    })
+                .PrimaryKey(t => t.ID)
+                .ForeignKey("dbo.Project", t => t.projectID)
+                .ForeignKey("dbo.WorkType", t => t.WorkType_ID)
+                .Index(t => t.projectID)
+                .Index(t => t.WorkType_ID);
+            
+            CreateTable(
+                "dbo.MaterialRequirement",
+                c => new
+                    {
+                        ID = c.Int(nullable: false, identity: true),
+                        mreqQty = c.Int(nullable: false),
+                        mreqDeliver = c.DateTime(),
+                        mreqInstall = c.DateTime(),
+                        projectID = c.Int(nullable: false),
+                        inventoryID = c.Int(nullable: false),
+                    })
+                .PrimaryKey(t => t.ID)
+                .ForeignKey("dbo.Inventory", t => t.inventoryID)
+                .ForeignKey("dbo.Project", t => t.projectID)
+                .Index(t => t.projectID)
+                .Index(t => t.inventoryID);
             
             CreateTable(
                 "dbo.Inventory",
@@ -157,23 +188,6 @@ namespace NBDProject.DAL.NDBMigrations
                 .PrimaryKey(t => t.ID);
             
             CreateTable(
-                "dbo.MaterialRequirement",
-                c => new
-                    {
-                        ID = c.Int(nullable: false, identity: true),
-                        mreqQty = c.Int(nullable: false),
-                        mreqDeliver = c.DateTime(),
-                        mreqInstall = c.DateTime(),
-                        projectID = c.Int(nullable: false),
-                        inventoryID = c.Int(nullable: false),
-                    })
-                .PrimaryKey(t => t.ID)
-                .ForeignKey("dbo.Inventory", t => t.inventoryID, cascadeDelete: true)
-                .ForeignKey("dbo.Project", t => t.projectID, cascadeDelete: true)
-                .Index(t => t.projectID)
-                .Index(t => t.inventoryID);
-            
-            CreateTable(
                 "dbo.ProjectTool",
                 c => new
                     {
@@ -185,8 +199,8 @@ namespace NBDProject.DAL.NDBMigrations
                         toolID = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.ID)
-                .ForeignKey("dbo.Project", t => t.projectID, cascadeDelete: true)
-                .ForeignKey("dbo.Tool", t => t.toolID, cascadeDelete: true)
+                .ForeignKey("dbo.Project", t => t.projectID)
+                .ForeignKey("dbo.Tool", t => t.toolID)
                 .Index(t => t.projectID)
                 .Index(t => t.toolID);
             
@@ -251,8 +265,8 @@ namespace NBDProject.DAL.NDBMigrations
             DropTable("dbo.ProjectTeamWorker");
             DropTable("dbo.Tool");
             DropTable("dbo.ProjectTool");
-            DropTable("dbo.MaterialRequirement");
             DropTable("dbo.Inventory");
+            DropTable("dbo.MaterialRequirement");
             DropTable("dbo.LabourSummary");
             DropTable("dbo.WorkType");
             DropTable("dbo.ProjectTeam");

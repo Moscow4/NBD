@@ -57,9 +57,9 @@ namespace NBDProject.DAL.NDBMigrations
             //new City { city = "" }
             var cities = new List<City>
             {
-                new City { city = "Scotts Valley" }
+                new City { cityName = "Scotts Valley" }
             };
-            cities.ForEach(d => context.Cities.AddOrUpdate(n => n.city, d));
+            cities.ForEach(d => context.Cities.AddOrUpdate(n => n.ID, d));
             SaveChanges(context);
 
             //Material Seed

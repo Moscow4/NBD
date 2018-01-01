@@ -59,7 +59,7 @@ namespace NBDProject.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Admin, Admin Assistant, Designer, Chief Designer, Group Manager")]
-        public ActionResult Create([Bind(Include = "ID,mreqQty,mregCode,mregSize,mregNetProPlan,mregNetDesign,mregExtCostDesign,mregExtCostProPlan, mregFlag,mreqDeliver,mreqInstall,projectID,inventoryID")] MaterialRequirement materialRequirement)
+        public ActionResult Create([Bind(Include = "ID,mreqQty,mregCode,mregSize,mregNetProPlan,mregNetDesign,mregExtCostDesign,mregExtCostProPlan, mreqDeliver,mreqInstall,projectID,inventoryID")] MaterialRequirement materialRequirement)
         {
             if (ModelState.IsValid)
             {

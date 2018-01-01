@@ -15,7 +15,7 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.city)
+            @Html.DisplayNameFor(model => model.cityName)
         </th>
         <th></th>
     </tr>
@@ -23,7 +23,7 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.city)
+            @Html.DisplayFor(modelItem => item.cityName)
         </td>
         @if (User.IsInRole("Admin") || User.IsInRole("Admin Assistant") || User.IsInRole("Sales"))
         {

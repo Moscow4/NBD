@@ -21,7 +21,7 @@ namespace NBDProject.Models
         [Display(Name = "City")]
         [Required(ErrorMessage = "You cannot leave city blank.")]
         [StringLength(50, ErrorMessage = "City name can be no longer then 50 characters")]
-        public string city { get; set; }
+        public string cityName { get; set; }
 
         public virtual ICollection<Client> Clients { get; set; }
 

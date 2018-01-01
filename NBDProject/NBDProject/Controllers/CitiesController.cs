@@ -73,7 +73,7 @@ namespace NBDProject.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Admin, Admin Assistant, Sales")]
-        public ActionResult Create([Bind(Include = "ID,city")] City city)
+        public ActionResult Create([Bind(Include = "ID,cityName")] City city)
         {
             if (ModelState.IsValid)
             {
@@ -107,7 +107,7 @@ namespace NBDProject.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Admin, Admin Assistant, Sales")]
-        public ActionResult Edit([Bind(Include = "ID,city")] City city)
+        public ActionResult Edit([Bind(Include = "ID,cityName")] City city)
         {
             if (ModelState.IsValid)
             {

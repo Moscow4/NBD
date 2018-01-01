@@ -157,9 +157,9 @@ namespace NBDProject.Controllers
         private void PopulateDropDownList(Client client = null)
         {
             var cQuery = from c in db.Cities
-                         orderby c.city
+                         orderby c.cityName
                          select c;
-            ViewBag.cityID = new SelectList(cQuery, "ID", "city", client?.cityID);
+            ViewBag.cityID = new SelectList(cQuery, "ID", "cityName", client?.cityID);
         }
 
         protected override void Dispose(bool disposing)

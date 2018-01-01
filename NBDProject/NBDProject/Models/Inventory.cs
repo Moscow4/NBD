@@ -24,15 +24,19 @@ namespace NBDProject.Models
         [Required(ErrorMessage = "Inventory Description is required.")]
         public string invDesc { get; set; }
 
+        [Display(Name = "AvgNet$")]
         [Required(ErrorMessage = "Unsure about this value, but it is needed!")]
         public decimal AvgNet { get; set; }
 
+        [Display(Name = "List$")]
         [Required(ErrorMessage = "Inventory list cannot be left blank.")]
         public decimal List { get; set; }
 
         [Required(ErrorMessage = "Size amount cannot be left blank.")]
+        [Display(Name = "Size Amount")]
         public int SizeAmnt { get; set; }
 
+        [Display (Name = "Size Unit")]
         [Required(ErrorMessage = "Size of unit cannot be left blank.")]
         public string SizeUnit { get; set; }
 

@@ -69,12 +69,7 @@ namespace NBDProject.Models
 
         }
 
-        public bool mregFlag
-        {
-            get {
-                return Project.projectChiefDesignAccept;
-            }
-        }
+
 
         [Display(Name = "Deliver Day")]
         [DataType(DataType.DateTime)]
@@ -96,6 +91,8 @@ namespace NBDProject.Models
         public virtual Inventory Inventory { get; set; }
 
         public virtual Project Project { get; set; }
+
+
 
 
 

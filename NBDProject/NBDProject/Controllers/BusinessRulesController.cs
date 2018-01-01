@@ -51,12 +51,20 @@ namespace NBDProject.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "ID,designBid,productionPlanTotalCost,designPercent,ProjectID")] BusinessRule businessRule)
         {
-            if (ModelState.IsValid)
+            try
             {
-                db.BusinessRules.Add(businessRule);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                if (ModelState.IsValid)
+                {
+                    db.BusinessRules.Add(businessRule);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
             }
+            catch(DataException)
+            {
+                ModelState.AddModelError("", "Unable to save changes after multiple attempts. Try again, and if the problem persists, see your system administrator.");
+            }
+
 
             ViewBag.ProjectID = new SelectList(db.Projects, "ID", "projectName", businessRule.ProjectID);
             return View(businessRule);

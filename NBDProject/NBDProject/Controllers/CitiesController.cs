@@ -11,6 +11,8 @@ using NBDProject.Models;
 
 namespace NBDProject.Controllers
 {
+    [Authorize]
+
     public class CitiesController : Controller
     {
         private NBDCFEntities db = new NBDCFEntities();

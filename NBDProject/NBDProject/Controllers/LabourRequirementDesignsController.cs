@@ -11,7 +11,8 @@ using NBDProject.Models;
 
 namespace NBDProject.Controllers
 {
-    
+    [Authorize]
+
     public class LabourRequirementDesignsController : Controller
     {
         private NBDCFEntities db = new NBDCFEntities();

@@ -24,7 +24,10 @@
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
                     <li>@Html.ActionLink("About", "About", "Home")</li>
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    @if (User.IsInRole("Admin") || User.IsInRole("Admin Assistant") || User.IsInRole("Sales"))
+                    {
                     <li>@Html.ActionLink("Client", "Index", "Clients")</li>
+                    }
                     @if (User.IsInRole("Admin") || User.IsInRole("Admin Assistant") || User.IsInRole("Sales"))
                     {
                         <li>@Html.ActionLink("City", "Index", "Cities")</li>
@@ -34,11 +37,13 @@
 
                     <li>@Html.ActionLink("Tools", "Index", "Tools")</li>
                     }
-                    @if (User.IsInRole("Admin") || User.IsInRole("Admin Assistant") || User.IsInRole("Production Manager") || User.IsInRole("Group Manager"))
+                    @if (User.IsInRole("Admin") || User.IsInRole("Admin Assistant") || User.IsInRole("Production Manager") || User.IsInRole("Group Manager") || User.IsInRole("Production Worker"))
                     {
                         <li>@Html.ActionLink("Inventory", "Index", "Inventories")</li>
                     }
                     @*<li>@Html.ActionLink("Projects", "Index", "Projects")</li>*@
+                    @if(User.IsInRole("Admin") || User.IsInRole("Admin Assistant") || User.IsInRole("Designer") || User.IsInRole("Chief Designer") || User.IsInRole("Production Manager") || User.IsInRole("Group Manager"))
+                    { 
                     <li class="dropdown">
                         <a href="#" data-toggle="dropdown" class="dropdown-toggle">Project<b class="caret"></b></a>
                         <ul class="dropdown-menu">
@@ -83,7 +88,7 @@
                         </ul>
                     </li>
 
-
+                    }
 
                     
                 </ul>

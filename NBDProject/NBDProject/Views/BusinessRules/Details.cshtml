@@ -1,0 +1,50 @@
+﻿@model NBDProject.Models.BusinessRule
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>BusinessRule</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Project.projectName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Project.projectName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.designBid)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.designBid)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.productionPlanTotalCost)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.productionPlanTotalCost)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.designPercent)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.designPercent)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

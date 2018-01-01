@@ -190,6 +190,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\BusinessRulesController.cs" />
     <Compile Include="Controllers\CitiesController.cs" />
     <Compile Include="Controllers\ClientsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -389,6 +390,11 @@
     <Content Include="Views\LabourRequirementDesigns\Details.cshtml" />
     <Content Include="Views\LabourRequirementDesigns\Edit.cshtml" />
     <Content Include="Views\LabourRequirementDesigns\Index.cshtml" />
+    <Content Include="Views\BusinessRules\Create.cshtml" />
+    <Content Include="Views\BusinessRules\Delete.cshtml" />
+    <Content Include="Views\BusinessRules\Details.cshtml" />
+    <Content Include="Views\BusinessRules\Edit.cshtml" />
+    <Content Include="Views\BusinessRules\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

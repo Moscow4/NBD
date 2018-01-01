@@ -39,5 +39,6 @@ namespace NBDProject.DAL
             return base.SaveChanges();
         }
 
+        public System.Data.Entity.DbSet<NBDProject.Models.BusinessRule> BusinessRules { get; set; }
     }
 }

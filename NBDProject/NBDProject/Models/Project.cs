@@ -93,7 +93,13 @@ namespace NBDProject.Models
                 }
             }
         }
-
+        public double DesignBid
+        {
+            get
+            {
+                return 0;
+            }
+        }
         
 
         

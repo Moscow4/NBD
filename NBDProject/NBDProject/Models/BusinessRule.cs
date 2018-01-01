@@ -8,43 +8,46 @@ namespace NBDProject.Models
 {
     public class BusinessRule
     {
+
+        public int ID { get; set; }
+
         [Display(Name = "Design Bid")]
         public decimal designBid { get; set; }
-        //public decimal labourCostDesginBid {
-        //    get {
-        //        return LabourRequirementDesign.lregDExtPrice;
-        //    }
-        //}
-        //public decimal MaterialCostDesginBid {
-        //    get {
-        //        return MaterialRequirement.mregExtCostDesign;
-        //    }
-        //}
+        public decimal labourCostDesignBid {
+            get {
+                return LabourRequirementDesign.lregDExtPrice;
+            }
+        }
+        public decimal MaterialCostDesignBid {
+            get {
+                return MaterialRequirement.mregExtCostDesign;
+            }
+        }
 
-        //public decimal labourCost {
-        //    get {
-        //        return LabourRequirement.LregEstCost;
-        //    }
-        //}
-        //public decimal MaterialCost {
-        //    get {
-        //        return MaterialRequirement.mregExtCostProPlan;
-        //    }
-        //}
+        public decimal LabourCost {
+            get {
+                return LabourRequirement.LregEstCost;
+            }
+        }
+        public decimal MaterialCost {
+            get {
+                return MaterialRequirement.mregExtCostProPlan;
+            }
+        }
 
         [Display(Name = "Production Plan Total Cost")]
         public decimal productionPlanTotalCost { get; set; }
 
 
-        //[Display(Name = "Production Plan Total Percent")]
-        //public decimal productionPlanTotalPercent {
-        //    get {
+        [Display(Name = "Production Plan Total Percent")]
+        public decimal productionPlanTotalPercent {
+            get {
+                return 0.0m;
+            }
+        }
 
-        //    }
-        //}
-
-        //[Display(Name = "Desgin cost percent")]
-        //public decimal designPercent { get; set; }
+        [Display(Name = "Design cost percent")]
+        public decimal designPercent { get; set; }
 
         public int ProjectID { get; set; }
 

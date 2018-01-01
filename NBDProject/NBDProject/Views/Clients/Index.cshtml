@@ -8,25 +8,22 @@
 @if (User.IsInRole("Admin") || User.IsInRole("Admin Assistant") || User.IsInRole("Sales"))
 {
 <p>
-    @Html.ActionLink("Create New Client", "Create")
+    @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-success" })
 </p>
 }
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.City.cityName)
+            @Html.DisplayNameFor(model => model.cliName)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.cliName)
+            @Html.DisplayNameFor(model => model.City.cityName)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.cliAddress)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.cliProvince)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.cliCode)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.cliPhone)
@@ -46,19 +43,16 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.City.cityName)
+            @Html.DisplayFor(modelItem => item.cliName)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.cliName)
+            @Html.DisplayFor(modelItem => item.City.cityName)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.cliAddress)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.cliProvince)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.cliCode)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.cliPhone)
@@ -73,13 +67,13 @@
             @Html.DisplayFor(modelItem => item.cliConPostion)
         </td>
         @if (User.IsInRole("Admin") || User.IsInRole("Admin Assistant") || User.IsInRole("Sales"))
-        {
+    {
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id = item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+            @Html.ActionLink("Edit", "Edit", new { id = item.ID }, new { @class = "btn btn-primary" }) |
+            @Html.ActionLink("Details", "Details", new { id = item.ID }, new { @class = "btn btn-info" }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.ID }, new { @class = "btn btn-danger" })
         </td>
-        }
+}
     </tr>
 }
 

@@ -7,9 +7,9 @@
 <h2>Index</h2>
 @if (User.IsInRole("Admin") || User.IsInRole("Admin Assistant") || User.IsInRole("Designer"))
 {
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+    <p>
+        @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-success" })
+    </p>
 }
 <table class="table">
     <tr>
@@ -18,9 +18,6 @@
         </th>
         <th>
             @Html.DisplayNameFor(model => model.projectName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.projectSite)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.projectBidDate)
@@ -33,33 +30,33 @@
         </th>
         @if (User.IsInRole("Production Manager") || User.IsInRole("Chief Designer"))
         {
-        <th>
-            @Html.DisplayNameFor(model => model.projectActStart)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.projectActEnd)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.projectActCost)
-        </th>
+            <th>
+                @Html.DisplayNameFor(model => model.projectActStart)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.projectActEnd)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.projectActCost)
+            </th>
         }
         <th>
             @Html.DisplayNameFor(model => model.projectEstCost)
         </th>
         @if (User.IsInRole("Group Manager"))
         {
-        <th>
-            @Html.DisplayNameFor(model => model.projectBidCustAccept)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.projectBidMgmtAccept)
-        </th>
+            <th>
+                @Html.DisplayNameFor(model => model.projectBidCustAccept)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.projectBidMgmtAccept)
+            </th>
         }
         @if (User.IsInRole("Chief Designer"))
         {
-        <th>
-            @Html.DisplayNameFor(model => model.projectChiefDesignAccept)
-        </th>
+            <th>
+                @Html.DisplayNameFor(model => model.projectChiefDesignAccept)
+            </th>
         }
         <th>
             @Html.DisplayNameFor(model => model.projectFlagged)
@@ -67,105 +64,107 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Client.cliName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.projectName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.projectSite)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.projectBidDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.projectEstStart)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.projectEstEnd)
-        </td>
-         @if (User.IsInRole("Production Manager") || User.IsInRole("Chief Designer"))
-         {
-        <td>
-            @Html.DisplayFor(modelItem => item.projectActStart)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.projectActEnd)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.projectActCost)
-        </td>
-         }
-        <td>
-            @Html.DisplayFor(modelItem => item.projectEstCost)
-        </td>
-        @if (User.IsInRole("Group Manager"))
-        {
-        <td>
-            @if (item.projectBidCustAccept)
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Client.cliName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.projectName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.projectBidDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.projectEstStart)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.projectEstEnd)
+            </td>
+            @if (User.IsInRole("Production Manager") || User.IsInRole("Chief Designer"))
             {
-                @: <p style="color:green">Approved</p>
+                <td>
+                    @Html.DisplayFor(modelItem => item.projectActStart)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.projectActEnd)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.projectActCost)
+                </td>
             }
-            else
+            <td>
+                @Html.DisplayFor(modelItem => item.projectEstCost)
+            </td>
+            @if (User.IsInRole("Group Manager"))
             {
-                @: <p style="color:red">Not Approved</p>
+                <td>
+                    @if (item.projectBidCustAccept)
+                    {
+                        @: <p style="color:green">Approved</p>
+                    }
+                    else
+                    {
+                        @: <p style="color:red">Not Approved</p>
+                    }
+                </td>
+                <td>
+                    @if (item.projectBidMgmtAccept)
+                    {
+                        @: <p style="color:green">Approved</p>
+                    }
+                    else
+                    {
+                        @: <p style="color:red">Not Approved</p>
+                    }
+                </td>
             }
-        </td>
-        <td>
-            @if (item.projectBidMgmtAccept)
+            @if (User.IsInRole("Chief Designer"))
             {
-                @: <p style="color:green">Approved</p>
+                <td>
+                    @if (item.projectChiefDesignAccept)
+                    {
+                        @: <p style="color:green">Approved</p>
+                    }
+                    else
+                    {
+                        @: <p style="color:red">Not Approved</p>
+                    }
+                </td>
             }
-            else
-            {
-                @: <p style="color:red">Not Approved</p>
-            }
-        </td>
-        }
-        @if (User.IsInRole("Chief Designer"))
-        {
-        <td>
-            @if (item.projectChiefDesignAccept)
-            {
-                @: <p style="color:green">Approved</p>
-            }
-            else
-            {
-                @: <p style="color:red">Not Approved</p>
-            }
-        </td>
-        }
-        <td>
-            @if (item.projectFlagged)
-            {
-                @: <p style="color:green">Approved</p>
-            }
-            else
-            {
-                @: <p style="color:red">Not Approved</p>
-            }
-        </td>
-       
-        
-        <td>
-            @if (User.IsInRole("Admin") || User.IsInRole("Admin Assistant") || User.IsInRole("Designer") || User.IsInRole("Chief Designer") || User.IsInRole("Group Manager"))
-            {
-            @Html.ActionLink("Edit", "Edit", new { id = item.ID }) 
-            }
-             @if (User.IsInRole("Admin") || User.IsInRole("Admin Assistant") || User.IsInRole("Designer") || User.IsInRole("Chief Designer") || User.IsInRole("Group Manager") || User.IsInRole("Production Manager"))
-             {
-                @Html.ActionLink("Details", "Details", new { id = item.ID })
-             }
-            @if (User.IsInRole("Admin") || User.IsInRole("Admin Assistant") || User.IsInRole("Chief Designer") || User.IsInRole("Group Manager"))
-            {
-            @Html.ActionLink("Delete", "Delete", new { id = item.ID })
-            }
-        </td>
-        
-    </tr>
-}
+            <td>
+                @if (item.projectFlagged)
+                {
+                    @: <p style="color:green">Approved</p>
+                }
+                else
+                {
+                    @: <p style="color:red">Not Approved</p>
+                }
+            </td>
+
+
+            <td>
+                @if (User.IsInRole("Admin") || User.IsInRole("Admin Assistant") || User.IsInRole("Designer") || User.IsInRole("Chief Designer") || User.IsInRole("Group Manager"))
+                {
+                    @Html.ActionLink("Edit", "Edit", new { id = item.ID }, new { @class = "btn btn-primary" })
+                }
+                @if (User.IsInRole("Admin") || User.IsInRole("Admin Assistant") || User.IsInRole("Designer") || User.IsInRole("Chief Designer") || User.IsInRole("Group Manager") || User.IsInRole("Production Manager"))
+                {
+                    @Html.ActionLink("Details", "Details", new { id = item.ID }, new { @class = "btn btn-info" })
+                }
+                @if (User.IsInRole("Admin") || User.IsInRole("Admin Assistant") || User.IsInRole("Chief Designer") || User.IsInRole("Group Manager"))
+                {
+                    @Html.ActionLink("Delete", "Delete", new { id = item.ID }, new { @class = "btn btn-danger" })
+                }
+            </td>
+
+        </tr>
+    }
 
 </table>
+
+@*@Html.ActionLink("Edit", "Edit", new { id = item.ID }, new { @class = "btn btn-primary" }) |
+@Html.ActionLink("Details", "Details", new { id = item.ID }, new { @class = "btn btn-info" }) |
+@Html.ActionLink("Delete", "Delete", new { id = item.ID }, new { @class = "btn btn-danger" })*@

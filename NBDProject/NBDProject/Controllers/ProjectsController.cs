@@ -16,6 +16,7 @@ namespace NBDProject.Controllers
         private NBDCFEntities db = new NBDCFEntities();
 
         // GET: Projects
+        [Authorize(Roles = "Admin, Admin Assistant, Designer, Chief Designer, Production Manager, Group Manager")]
         public ActionResult Index()
         {
             var projects = db.Projects.Include(p => p.Client);
@@ -24,6 +25,7 @@ namespace NBDProject.Controllers
         }
 
         // GET: Projects/Details/5
+        [Authorize(Roles = "Admin, Admin Assistant, Designer, Chief Designer, Production Manager, Group Manager")]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -39,6 +41,7 @@ namespace NBDProject.Controllers
         }
 
         // GET: Projects/Create
+        [Authorize(Roles = "Admin, Admin Assistant, Designer")]
         public ActionResult Create()
         {
             PopulateDropDownList();
@@ -50,7 +53,8 @@ namespace NBDProject.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,projectName,projectSite,projectBidDate,projectEstStart,projectEstEnd,projectActStart,projectActEnd,projectEstCost,projectActCost,projectBidCustAccept,projectBidMgmtAccept,projectCurrentPhase,projectFlagged,clientID")] Project project)
+        [Authorize(Roles = "Admin, Admin Assistant, Designer")]
+        public ActionResult Create([Bind(Include = "ID,projectName,projectSite,projectBidDate,projectEstStart,projectEstEnd,projectActStart,projectActEnd,projectEstCost,projectActCost,projectBidCustAccept,projectBidMgmtAccept, projectChiefDesignAccept ,projectCurrentPhase,projectFlagged,clientID")] Project project)
         {
             try
             {
@@ -71,6 +75,7 @@ namespace NBDProject.Controllers
         }
 
         // GET: Projects/Edit/5
+        [Authorize(Roles = "Admin, Admin Assistant, Designer, Chief Designer, Group Manager")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -91,6 +96,7 @@ namespace NBDProject.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost, ActionName("Edit")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin, Admin Assistant, Designer, Chief Designer, Group Manager")]
         public ActionResult EditPost(int? id)
         {
             if (id == null)
@@ -100,7 +106,7 @@ namespace NBDProject.Controllers
 
             var projectToUpdate = db.Projects.Find(id);
             if (TryUpdateModel(projectToUpdate, "",
-                new string[] { "projectName", "projectSite", "projectBidDate", "projectEstStart", "projectEstEnd", "projectActStart", "projectActEnd", "projectEstCost", "projectActCost", "projectBidCustAccept", "projectBidMgmtAccept", "projectCureentPhase", "projectFlagged", "ClientID" }))
+                new string[] { "projectName", "projectSite", "projectBidDate", "projectEstStart", "projectEstEnd", "projectActStart", "projectActEnd", "projectEstCost", "projectActCost", "projectBidCustAccept", "projectBidMgmtAccept", "projectChiefDesignAccept","projectCureentPhase", "projectFlagged", "ClientID" }))
             {
                 try
                 {
@@ -118,6 +124,7 @@ namespace NBDProject.Controllers
         }
 
         // GET: Projects/Delete/5
+        [Authorize(Roles = "Admin, Admin Assistant, Chief Designer, Group Manager")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -135,6 +142,7 @@ namespace NBDProject.Controllers
         // POST: Projects/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin, Admin Assistant, Chief Designer, Group Manager")]
         public ActionResult DeleteConfirmed(int id)
         {
             Project project = db.Projects.Find(id);

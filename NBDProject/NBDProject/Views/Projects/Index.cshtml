@@ -5,10 +5,12 @@
 }
 
 <h2>Index</h2>
-
+@if (User.IsInRole("Admin") || User.IsInRole("Admin Assistant") || User.IsInRole("Designer"))
+{
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
+}
 <table class="table">
     <tr>
         <th>
@@ -29,6 +31,8 @@
         <th>
             @Html.DisplayNameFor(model => model.projectEstEnd)
         </th>
+        @if (User.IsInRole("Production Manager") || User.IsInRole("Chief Designer"))
+        {
         <th>
             @Html.DisplayNameFor(model => model.projectActStart)
         </th>
@@ -36,14 +40,27 @@
             @Html.DisplayNameFor(model => model.projectActEnd)
         </th>
         <th>
+            @Html.DisplayNameFor(model => model.projectActCost)
+        </th>
+        }
+        <th>
             @Html.DisplayNameFor(model => model.projectEstCost)
         </th>
+        @if (User.IsInRole("Group Manager"))
+        {
         <th>
             @Html.DisplayNameFor(model => model.projectBidCustAccept)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.projectBidMgmtAccept)
         </th>
+        }
+        @if (User.IsInRole("Chief Designer"))
+        {
+        <th>
+            @Html.DisplayNameFor(model => model.projectChiefDesignAccept)
+        </th>
+        }
         <th>
             @Html.DisplayNameFor(model => model.projectFlagged)
         </th>
@@ -70,6 +87,8 @@
         <td>
             @Html.DisplayFor(modelItem => item.projectEstEnd)
         </td>
+         @if (User.IsInRole("Production Manager") || User.IsInRole("Chief Designer"))
+         {
         <td>
             @Html.DisplayFor(modelItem => item.projectActStart)
         </td>
@@ -77,14 +96,21 @@
             @Html.DisplayFor(modelItem => item.projectActEnd)
         </td>
         <td>
+            @Html.DisplayFor(modelItem => item.projectActCost)
+        </td>
+         }
+        <td>
             @Html.DisplayFor(modelItem => item.projectEstCost)
         </td>
+        @if (User.IsInRole("Group Manager"))
+        {
         <td>
             @if (item.projectBidCustAccept)
             {
                 @: <p style="color:green">Approved</p>
             }
-            else {
+            else
+            {
                 @: <p style="color:red">Not Approved</p>
             }
         </td>
@@ -98,6 +124,20 @@
                 @: <p style="color:red">Not Approved</p>
             }
         </td>
+        }
+        @if (User.IsInRole("Chief Designer"))
+        {
+        <td>
+            @if (item.projectChiefDesignAccept)
+            {
+                @: <p style="color:green">Approved</p>
+            }
+            else
+            {
+                @: <p style="color:red">Not Approved</p>
+            }
+        </td>
+        }
         <td>
             @if (item.projectFlagged)
             {
@@ -108,11 +148,23 @@
                 @: <p style="color:red">Not Approved</p>
             }
         </td>
+       
+        
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+            @if (User.IsInRole("Admin") || User.IsInRole("Admin Assistant") || User.IsInRole("Designer") || User.IsInRole("Chief Designer") || User.IsInRole("Group Manager"))
+            {
+            @Html.ActionLink("Edit", "Edit", new { id = item.ID }) 
+            }
+             @if (User.IsInRole("Admin") || User.IsInRole("Admin Assistant") || User.IsInRole("Designer") || User.IsInRole("Chief Designer") || User.IsInRole("Group Manager") || User.IsInRole("Production Manager"))
+             {
+                @Html.ActionLink("Details", "Details", new { id = item.ID })
+             }
+            @if (User.IsInRole("Admin") || User.IsInRole("Admin Assistant") || User.IsInRole("Chief Designer") || User.IsInRole("Group Manager"))
+            {
+            @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+            }
         </td>
+        
     </tr>
 }
 

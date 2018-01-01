@@ -233,12 +233,12 @@ namespace NBDProject.DAL.NDBMigrations
 
             //seed data for laboursummaries 
             //new LabourSummary { lsHours = 0, projectID = 1, workerTypeID = 1 }
-            var labourSummaries = new List<LabourSummary>
-            {
-                new LabourSummary { lsHours = 0, projectID = 1, workerTypeID = 1 }
-            };
-            labourSummaries.ForEach(l => context.LabourSummaries.AddOrUpdate(n => n.ID, l));
-            SaveChanges(context);
+            //var labourSummaries = new List<LabourSummary>
+            //{
+            //    new LabourSummary { lsHours = 0, projectID = 1, workerTypeID = 1 }
+            //};
+            //labourSummaries.ForEach(l => context.LabourSummaries.AddOrUpdate(n => n.ID, l));
+            //SaveChanges(context);
 
         }
     }

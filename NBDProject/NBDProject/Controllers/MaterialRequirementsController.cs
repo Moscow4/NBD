@@ -11,11 +11,13 @@ using NBDProject.Models;
 
 namespace NBDProject.Controllers
 {
+    
     public class MaterialRequirementsController : Controller
     {
         private NBDCFEntities db = new NBDCFEntities();
 
         // GET: MaterialRequirements
+        [Authorize(Roles = "Admin, Admin Assistant, Designer, Chief Designer, Production Manager, Production Worker, Group Manager")]
         public ActionResult Index(int? ProjectID)
         {
             PopulateDropDownList();
@@ -28,6 +30,7 @@ namespace NBDProject.Controllers
         }
 
         // GET: MaterialRequirements/Details/5
+        [Authorize(Roles = "Admin, Admin Assistant, Designer, Chief Designer, Production Manager, Group Manager")]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -43,6 +46,7 @@ namespace NBDProject.Controllers
         }
 
         // GET: MaterialRequirements/Create
+        [Authorize(Roles = "Admin, Admin Assistant, Designer, Chief Designer, Group Manager")]
         public ActionResult Create()
         {
             PopulateDropDownList();
@@ -54,7 +58,8 @@ namespace NBDProject.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,mreqQty,mregCode,mregSize,mregNetProPlan,mregNetDesign,mregExtCostDesign,mregExtCostProPlan,mreqDeliver,mreqInstall,projectID,inventoryID")] MaterialRequirement materialRequirement)
+        [Authorize(Roles = "Admin, Admin Assistant, Designer, Chief Designer, Group Manager")]
+        public ActionResult Create([Bind(Include = "ID,mreqQty,mregCode,mregSize,mregNetProPlan,mregNetDesign,mregExtCostDesign,mregExtCostProPlan, mregFlag,mreqDeliver,mreqInstall,projectID,inventoryID")] MaterialRequirement materialRequirement)
         {
             if (ModelState.IsValid)
             {
@@ -68,6 +73,7 @@ namespace NBDProject.Controllers
         }
 
         // GET: MaterialRequirements/Edit/5
+        [Authorize(Roles = "Admin, Admin Assistant, Designer, Chief Designer, Production Manager, Group Manager")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -88,6 +94,7 @@ namespace NBDProject.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost, ActionName("Edit")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin, Admin Assistant, Designer, Chief Designer, Production Manager, Group Manager")]
         public ActionResult EditPost(int? id)
         {
             if (id == null)
@@ -114,6 +121,7 @@ namespace NBDProject.Controllers
         }
 
         // GET: MaterialRequirements/Delete/5
+        [Authorize(Roles = "Admin, Admin Assistant, Designer, Chief Designer, Production Manager, Group Manager")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -131,6 +139,7 @@ namespace NBDProject.Controllers
         // POST: MaterialRequirements/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin, Admin Assistant, Designer, Chief Designer, Production Manager, Group Manager")]
         public ActionResult DeleteConfirmed(int id)
         {
             MaterialRequirement materialRequirement = db.MaterialRequirements.Find(id);

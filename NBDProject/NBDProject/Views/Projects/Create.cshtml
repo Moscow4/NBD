@@ -55,21 +55,32 @@
             </div>
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.projectActStart, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.projectActStart, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.projectActStart, "", new { @class = "text-danger" })
+        @if (User.IsInRole("Production Manager") || User.IsInRole("Chief Designer") || User.IsInRole("Admin"))
+        {
+            <div class="form-group">
+                @Html.LabelFor(model => model.projectActStart, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.projectActStart, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.projectActStart, "", new { @class = "text-danger" })
+                </div>
             </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.projectActEnd, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.projectActEnd, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.projectActEnd, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.projectActEnd, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.projectActEnd, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.projectActEnd, "", new { @class = "text-danger" })
+                </div>
             </div>
-        </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.projectActCost, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.projectActCost, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.projectActCost, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        }
 
         <div class="form-group">
             @Html.LabelFor(model => model.projectEstCost, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -87,33 +98,50 @@
             </div>
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.projectBidCustAccept, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <div class="checkbox">
-                    @Html.EditorFor(model => model.projectBidCustAccept)
-                    @Html.ValidationMessageFor(model => model.projectBidCustAccept, "", new { @class = "text-danger" })
+        @if (User.IsInRole("Group Manager") || User.IsInRole("Admin"))
+        {
+            <div class="form-group">
+                @Html.LabelFor(model => model.projectBidCustAccept, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <div class="checkbox">
+                        @Html.EditorFor(model => model.projectBidCustAccept)
+                        @Html.ValidationMessageFor(model => model.projectBidCustAccept, "", new { @class = "text-danger" })
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.projectBidMgmtAccept, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <div class="checkbox">
-                    @Html.EditorFor(model => model.projectBidMgmtAccept)
-                    @Html.ValidationMessageFor(model => model.projectBidMgmtAccept, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.projectBidMgmtAccept, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <div class="checkbox">
+                        @Html.EditorFor(model => model.projectBidMgmtAccept)
+                        @Html.ValidationMessageFor(model => model.projectBidMgmtAccept, "", new { @class = "text-danger" })
+                    </div>
                 </div>
             </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.projectCurrentPhase, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.projectCurrentPhase, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.projectCurrentPhase, "", new { @class = "text-danger" })
+        }
+        @if (User.IsInRole("Chief Designer") || User.IsInRole("Admin"))
+        {
+            <div class="form-group">
+                @Html.LabelFor(model => model.projectChiefDesignAccept, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <div class="checkbox">
+                        @Html.EditorFor(model => model.projectChiefDesignAccept)
+                        @Html.ValidationMessageFor(model => model.projectChiefDesignAccept, "", new { @class = "text-danger" })
+                    </div>
+                </div>
             </div>
-        </div>
+        }
+        @if (User.IsInRole("Production Worker") || User.IsInRole("Admin"))
+        {
+            <div class="form-group">
+                @Html.LabelFor(model => model.projectCurrentPhase, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.projectCurrentPhase, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.projectCurrentPhase, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        }
 
         @*<div class="form-group">
             @Html.LabelFor(model => model.projectFlagged, htmlAttributes: new { @class = "control-label col-md-2" })

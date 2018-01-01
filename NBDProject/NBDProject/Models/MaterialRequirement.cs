@@ -12,6 +12,10 @@ namespace NBDProject.Models
 {
     public class MaterialRequirement
     {
+        public MaterialRequirement() {
+            this.mreqDeliver = null;
+            this.mreqInstall = null;
+        }
         public int ID { get; set; }
 
         [Display(Name = "Quantity")]
@@ -24,7 +28,6 @@ namespace NBDProject.Models
 
 
         [Display(Name = "Size")]
-        [Required(ErrorMessage = "Size is required.")]
         public string mregSize {
             get {
                 return Inventory.SizeAmnt.ToString() + " " + Inventory.SizeUnit.ToString();
@@ -32,8 +35,7 @@ namespace NBDProject.Models
         }
 
         [Display(Name = "Net/Unit")]
-        [Required(ErrorMessage = "Net/Unit is required.")]
-        public decimal mregNetProPlan {
+        public decimal? mregNetProPlan {
             get {
                 return Inventory.AvgNet;
             }
@@ -41,16 +43,14 @@ namespace NBDProject.Models
          
 
         [Display(Name = "Net/Unit")]
-        [Required(ErrorMessage = "Net/Unit is required.")]
-        public decimal mregNetDesign {
+        public decimal? mregNetDesign {
             get {
                 return Inventory.List;
             }
         }
 
         [Display(Name = "Ext. Cost(Design)")]
-        [Required(ErrorMessage = "Ext. Cost is required.")]
-        public decimal mregExtCostDesign
+        public decimal? mregExtCostDesign
         {
             get
             {
@@ -60,8 +60,7 @@ namespace NBDProject.Models
         }
 
         [Display(Name = "Ext. Cost(Production Plan)")]
-        [Required(ErrorMessage = "Ext. Cost is required.")]
-        public decimal mregExtCostProPlan
+        public decimal? mregExtCostProPlan
         {
             get
             {
@@ -70,17 +69,22 @@ namespace NBDProject.Models
 
         }
 
+        public bool mregFlag
+        {
+            get {
+                return Project.projectChiefDesignAccept;
+            }
+        }
+
         [Display(Name = "Deliver Day")]
-        [Required(ErrorMessage = "Deliver Day is required.")]
         [DataType(DataType.DateTime)]
         [DisplayFormat(DataFormatString = "{0:MM-dd HH}", ApplyFormatInEditMode = false)]
-        public DateTime mreqDeliver { get; set; }
+        public DateTime? mreqDeliver { get; set; }
 
         [Display(Name = "Install Day")]
-        [Required(ErrorMessage = "Install Day is required.")]
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:MM-dd}", ApplyFormatInEditMode = false)]
-        public DateTime mreqInstall { get; set; }
+        public DateTime? mreqInstall { get; set; }
 
         [Required(ErrorMessage = "You must specify the Project.")]
         public int projectID { get; set; }

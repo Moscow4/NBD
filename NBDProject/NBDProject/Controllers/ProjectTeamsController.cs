@@ -12,6 +12,7 @@ using NBDProject.ViewModels;
 
 namespace NBDProject.Controllers
 {
+    [Authorize(Roles = "Admin, Admin Assistant, Production Manager, Chief Designer")]
     public class ProjectTeamsController : Controller
     {
         private NBDCFEntities db = new NBDCFEntities();

@@ -42,9 +42,10 @@
                 {
                     new SelectListItem {Value = "Admin Assistant", Text = "Admin Assistant"},
                     new SelectListItem {Value = "Chief Designer", Text = "Chief Designer"},
+                    new SelectListItem {Value = "Group Manager", Text = "Group Manager"},
                     new SelectListItem {Value = "Designer", Text = "Designer"},
                     new SelectListItem {Value = "Production Manager", Text = "Production Manager"},
-                    new SelectListItem {Value = "Group Manager", Text = "Group Manager"},
+                    new SelectListItem { Value = "Prodction Worker", Text = "Production Worker"},
                     new SelectListItem {Value = "Sales", Text = "Sales"},
                 }, "--Select Employee type--", new { @class = "form-control", title = "The employee could be of the listed job titles" })
             @Html.ValidationMessageFor(model => model.Position, "", new { @class = "text-danger" })

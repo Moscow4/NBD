@@ -16,11 +16,12 @@ namespace NBDProject.Controllers
         private NBDCFEntities db = new NBDCFEntities();
 
         // GET: Cities
+        [Authorize(Roles = "Admin, Admin Assistant, Sales")]
         public ActionResult Index()
         {
             return View(db.Cities.ToList());
         }
-
+        [Authorize(Roles = "Admin, Admin Assistant, Sales")]
         public ActionResult IndexClient()
         {
             var clients = db.Clients.Include(c => c.City);
@@ -28,6 +29,7 @@ namespace NBDProject.Controllers
         }
 
         // GET: Clients/Details/5
+        [Authorize(Roles = "Admin, Admin Assistant, Sales")]
         public ActionResult DetailsClient(int? id)
         {
             if (id == null)
@@ -43,6 +45,7 @@ namespace NBDProject.Controllers
         }
 
         // GET: Cities/Details/5
+        [Authorize(Roles = "Admin, Admin Assistant, Sales")]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -58,6 +61,7 @@ namespace NBDProject.Controllers
         }
 
         // GET: Cities/Create
+        [Authorize(Roles = "Admin, Admin Assistant, Sales")]
         public ActionResult Create()
         {
             return View();
@@ -68,6 +72,7 @@ namespace NBDProject.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin, Admin Assistant, Sales")]
         public ActionResult Create([Bind(Include = "ID,city")] City city)
         {
             if (ModelState.IsValid)
@@ -81,6 +86,7 @@ namespace NBDProject.Controllers
         }
 
         // GET: Cities/Edit/5
+        [Authorize(Roles = "Admin, Admin Assistant, Sales")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -100,6 +106,7 @@ namespace NBDProject.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin, Admin Assistant, Sales")]
         public ActionResult Edit([Bind(Include = "ID,city")] City city)
         {
             if (ModelState.IsValid)
@@ -112,6 +119,7 @@ namespace NBDProject.Controllers
         }
 
         // GET: Cities/Delete/5
+        [Authorize(Roles = "Admin, Admin Assistant, Sales")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -129,6 +137,7 @@ namespace NBDProject.Controllers
         // POST: Cities/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin, Admin Assistant, Sales")]
         public ActionResult DeleteConfirmed(int id)
         {
             City city = db.Cities.Find(id);

@@ -11,6 +11,7 @@ using NBDProject.Models;
 
 namespace NBDProject.Controllers
 {
+    [Authorize(Roles = "Admin, Admin Assistant, Production Manager, Chief Designer")]
     public class LabourRequirementsController : Controller
     {
         private NBDCFEntities db = new NBDCFEntities();

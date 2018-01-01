@@ -11,11 +11,13 @@ using NBDProject.Models;
 
 namespace NBDProject.Controllers
 {
+    
     public class LabourRequirementDesignsController : Controller
     {
         private NBDCFEntities db = new NBDCFEntities();
 
         // GET: LabourRequirementDesigns
+        [Authorize(Roles = "Admin, Admin Assistant, Designer, Group Manager, Chief Designer")]
         public ActionResult Index(int? ProjectID)
         {
             PopulateDropDownList();
@@ -28,6 +30,7 @@ namespace NBDProject.Controllers
         }
 
         // GET: LabourRequirementDesigns/Details/5
+        [Authorize(Roles = "Admin, Admin Assistant, Designer, Group Manager, Chief Designer")]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -43,6 +46,7 @@ namespace NBDProject.Controllers
         }
 
         // GET: LabourRequirementDesigns/Create
+        [Authorize(Roles = "Admin, Admin Assistant, Designer, Group Manager")]
         public ActionResult Create()
         {
             PopulateDropDownList();
@@ -54,6 +58,7 @@ namespace NBDProject.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin, Admin Assistant, Designer, Group Manager")]
         public ActionResult Create([Bind(Include = "ID,lregDHour,lregDDesc,lregDUnitPrice, lregDExtPrice,projectID")] LabourRequirementDesign labourRequirementDesign)
         {
             try
@@ -75,6 +80,7 @@ namespace NBDProject.Controllers
         }
 
         // GET: LabourRequirementDesigns/Edit/5
+        [Authorize(Roles = "Admin, Admin Assistant, Designer, Group Manager")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -95,6 +101,7 @@ namespace NBDProject.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost, ActionName("Edit")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin, Admin Assistant, Designer, Group Manager")]
         public ActionResult EditPost(int? id)
         {
             if (id == null)
@@ -122,6 +129,7 @@ namespace NBDProject.Controllers
         }
 
         // GET: LabourRequirementDesigns/Delete/5
+        [Authorize(Roles = "Admin, Admin Assistant, Designer, Group Manager")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -139,6 +147,7 @@ namespace NBDProject.Controllers
         // POST: LabourRequirementDesigns/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin, Admin Assistant, Designer, Group Manager")]
         public ActionResult DeleteConfirmed(int id)
         {
             LabourRequirementDesign labourRequirementDesign = db.LabourRequirementDesigns.Find(id);

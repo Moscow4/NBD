@@ -5,10 +5,12 @@
 }
 
 <h2>Index</h2>
-
+@if (User.IsInRole("Admin") || User.IsInRole("Admin Assistant") || User.IsInRole("Production Manager") || User.IsInRole("Chief Manager"))
+{
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
+}
 @using (Html.BeginForm("Index", "ProjectTeams", FormMethod.Get))
 {
     <p>
@@ -46,11 +48,14 @@
                     }
                     }
         </td>
+        @if (User.IsInRole("Admin") || User.IsInRole("Admin Assistant") || User.IsInRole("Production Manager") || User.IsInRole("Chief Manager"))
+        {
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+            @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+            @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.ID })
         </td>
+        }
     </tr>
 }
 

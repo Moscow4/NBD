@@ -11,6 +11,7 @@ using NBDProject.Models;
 
 namespace NBDProject.Controllers
 {
+    
     public class ClientsController : Controller
     {
         private NBDCFEntities db = new NBDCFEntities();
@@ -23,6 +24,7 @@ namespace NBDProject.Controllers
         }
 
         // GET: Clients/Details/5
+        [Authorize(Roles = "Admin, Admin Assistant, Sales")]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -38,6 +40,7 @@ namespace NBDProject.Controllers
         }
 
         // GET: Clients/Create
+        [Authorize(Roles = "Admin, Admin Assistant, Sales")]
         public ActionResult Create()
         {
             PopulateDropDownList();
@@ -49,6 +52,7 @@ namespace NBDProject.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin, Admin Assistant, Sales")]
         public ActionResult Create([Bind(Include = "ID,cliName,cliAddress,cliProvince,cliCode,cliPhone,cliConFname,cliConLName,cliConPostion,cityID")] Client client)
         {
             try
@@ -69,6 +73,7 @@ namespace NBDProject.Controllers
         }
 
         // GET: Clients/Edit/5
+        [Authorize(Roles = "Admin, Admin Assistant, Sales")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -89,6 +94,7 @@ namespace NBDProject.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost, ActionName("Edit")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin, Admin Assistant, Sales")]
         public ActionResult EditPost(int? id)
         {
             if (id == null)
@@ -113,6 +119,7 @@ namespace NBDProject.Controllers
         }
 
         // GET: Clients/Delete/5
+        [Authorize(Roles = "Admin, Admin Assistant, Sales")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -130,6 +137,7 @@ namespace NBDProject.Controllers
         // POST: Clients/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin, Admin Assistant, Sales")]
         public ActionResult DeleteConfirmed(int id)
         {
             Client client = db.Clients.Find(id);

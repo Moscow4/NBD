@@ -57,7 +57,8 @@
         <dd>
             @Html.DisplayFor(model => model.projectEstEnd)
         </dd>
-
+        @if (User.IsInRole("Production Manager") || User.IsInRole("Chief Designer"))
+        {
         <dt>
             @Html.DisplayNameFor(model => model.projectActStart)
         </dt>
@@ -75,6 +76,14 @@
         </dd>
 
         <dt>
+            @Html.DisplayNameFor(model => model.projectActCost)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.projectActCost)
+        </dd>
+        }
+        <dt>
             @Html.DisplayNameFor(model => model.projectEstCost)
         </dt>
 
@@ -83,58 +92,74 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.projectActCost)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.projectActCost)
-        </dd>
-
-        <dt>
             @Html.DisplayNameFor(model => model.projectBidCustAccept)
         </dt>
 
-        <dd>
-            @if (Model.projectBidCustAccept)
-            {
-                @: <p style="color:green">Approved</p>
-            }
-            else
-            {
-                @: <p style="color:red">Not Approved</p>
-            }
+        @if (Model.projectBidCustAccept)
+        {
+        <dd style="color:green">
+            Approved 
         </dd>
+        }
+        else {
+        <dd style="color:red"> 
+            Not Approved 
+        </dd>
+        }
 
         <dt>
             @Html.DisplayNameFor(model => model.projectBidMgmtAccept)
         </dt>
 
-        <dd>
-            @if (Model.projectBidMgmtAccept)
-            {
-                @: <p style="color:green">Approved</p>
-            }
-            else
-            {
-                @: <p style="color:red">Not Approved</p>
-            }
+        @if (Model.projectBidMgmtAccept)
+        {
+        <dd style="color:green">
+            Approved 
         </dd>
+        }
+        else {
+        <dd style="color:red"> 
+            Not Approved 
+        </dd>
+        }
+        
 
+        <dt>
+            @Html.DisplayNameFor(model => model.projectChiefDesignAccept)
+        </dt>
+
+        
+       @if (Model.projectChiefDesignAccept)
+        {
+        <dd style="color:green">
+            Approved 
+        </dd>
+        }
+        else {
+        <dd style="color:red"> 
+            Not Approved 
+        </dd>
+        }
+        
 
         <dt>
             @Html.DisplayNameFor(model => model.projectFlagged)
         </dt>
 
-        <td>
-            @if (Model.projectFlagged)
-            {
-                @: <p style="color:green">Approved</p>
-            }
-            else
-            {
-                @: <p style="color:red">Not Approved</p>
-            }
-        </td>
+        
+       @if (Model.projectFlagged)
+        {
+        <dd style="color:green">
+            Approved 
+        </dd>
+        }
+        else {
+        <dd style="color:red"> 
+            Not Approved 
+        </dd>
+        }
+        
+
 
 
         <dt>

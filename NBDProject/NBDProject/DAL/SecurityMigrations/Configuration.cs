@@ -52,6 +52,11 @@ namespace NBDProject.DAL.SecurityMigrations
                 var roleresult = roleManager.Create(new IdentityRole("Group Manager"));
 
             }
+            if (!context.Roles.Any(r => r.Name == "Production Worker"))
+            {
+                var roleresult = roleManager.Create(new IdentityRole("Production Worker"));
+
+            }
             if (!context.Roles.Any(r => r.Name == "Sales"))
             {
                 var roleresult = roleManager.Create(new IdentityRole("Sales"));
@@ -84,6 +89,12 @@ namespace NBDProject.DAL.SecurityMigrations
             {
                 UserName = "groupManager1@outlook.com",
                 Email = "groupManager1@outlook.com"
+            };
+
+            var productionworkeruser = new ApplicationUser
+            {
+                UserName = "productionWorker1@outlook.com",
+                Email = "productionWorker1@outlook.com"
             };
             var designeruser = new ApplicationUser
             {
@@ -133,6 +144,11 @@ namespace NBDProject.DAL.SecurityMigrations
             {
                 manager.Create(groupmanageruser, "password");
                 manager.AddToRole(groupmanageruser.Id, "Group Manager");
+            }
+            if (!context.Users.Any(u => u.UserName == "productionWorker1@outlook.com"))
+            {
+                manager.Create(productionworkeruser, "password");
+                manager.AddToRole(productionworkeruser.Id, "Production Worker");
             }
             if (!context.Users.Any(u => u.UserName == "chiefDesigner1@outlook.com"))
             {

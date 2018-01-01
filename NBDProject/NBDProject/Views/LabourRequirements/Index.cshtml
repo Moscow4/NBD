@@ -5,10 +5,12 @@
 }
 
 <h2>Index</h2>
-
+@if (User.IsInRole("Admin") || User.IsInRole("Admin Assistant") || User.IsInRole("Production Manager") || User.IsInRole("Chief Designer"))
+{
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
+}
 @using (Html.BeginForm("Index", "LabourRequirements", FormMethod.Get))
 {
     <p>
@@ -57,7 +59,7 @@
             @Html.DisplayFor(modelItem => item.Task.taskDesc)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Worker.FName)
+            @Html.DisplayFor(modelItem => item.Worker.FullName)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.lregProdHour)
@@ -71,11 +73,14 @@
         <td>
             @Html.DisplayFor(modelItem => item.lregTime)
         </td>
+        @if (User.IsInRole("Admin") || User.IsInRole("Admin Assistant") || User.IsInRole("Production Manager") || User.IsInRole("Chief Designer"))
+        {
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+            @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+            @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.ID })
         </td>
+        }
     </tr>
 }
 

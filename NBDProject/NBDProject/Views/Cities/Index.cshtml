@@ -6,10 +6,12 @@
 }
 
 <h2>Index</h2>
-
+@if (User.IsInRole("Admin") || User.IsInRole("Admin Assistant") || User.IsInRole("Sales"))
+{
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
+}
 <table class="table">
     <tr>
         <th>
@@ -23,11 +25,14 @@
         <td>
             @Html.DisplayFor(modelItem => item.city)
         </td>
+        @if (User.IsInRole("Admin") || User.IsInRole("Admin Assistant") || User.IsInRole("Sales"))
+        {
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+            @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+            @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.ID })
         </td>
+        }
     </tr>
 }
 

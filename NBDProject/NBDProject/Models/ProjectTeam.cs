@@ -16,7 +16,6 @@ namespace NBDProject.Models
         public ProjectTeam()
         {
             this.Workers = new HashSet<Worker>();
-            this.Projects = new HashSet<Project>();
         }
 
         public int ID { get; set; }
@@ -32,7 +31,6 @@ namespace NBDProject.Models
 
 
         public virtual ICollection<Worker> Workers { get; set; }
-        public virtual ICollection<Project> Projects { get; set; }
         public virtual Project project { get; set; }
     }
 }

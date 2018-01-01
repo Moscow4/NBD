@@ -11,6 +11,7 @@ using NBDProject.Models;
 
 namespace NBDProject.Controllers
 {
+    [Authorize(Roles = "Admin, Admin Assistant, Production Manager, Chief Designer")]
     public class TaskTestsController : Controller
     {
         private NBDCFEntities db = new NBDCFEntities();
@@ -48,7 +49,7 @@ namespace NBDProject.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,taskDesc,taskStdTImeAmnt,taskStdTimeUnit,labourRequirementID")] TaskTest taskTest)
+        public ActionResult Create([Bind(Include = "ID,taskDesc,taskStdTImeAmnt,taskStdTimeUnit")] TaskTest taskTest)
         {
             try
             {
@@ -98,7 +99,7 @@ namespace NBDProject.Controllers
 
             var taskTestToUpdate = db.TaskTests.Find(id);
             if (TryUpdateModel(taskTestToUpdate, "",
-                new string[] { "taskDesc", "taskStdTImeAmnt", "taskStdTimeUnit", "labourRequirementID" }))
+                new string[] { "taskDesc", "taskStdTImeAmnt", "taskStdTimeUnit"}))
             {
                 try
                 {

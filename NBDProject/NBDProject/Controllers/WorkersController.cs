@@ -11,6 +11,7 @@ using NBDProject.Models;
 
 namespace NBDProject.Controllers
 {
+    [Authorize(Roles = "Admin, Admin Assistant")]
     public class WorkersController : Controller
     {
         private NBDCFEntities db = new NBDCFEntities();

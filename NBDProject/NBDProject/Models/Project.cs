@@ -17,6 +17,11 @@ namespace NBDProject.Models
             this.projectTeams = new HashSet<ProjectTeam>();
             this.LabourSummaries = new HashSet<LabourSummary>();
             this.LabourRequirementDesigns = new HashSet<LabourRequirementDesign>();
+            this.projectChiefDesignAccept = false;
+            this.projectBidMgmtAccept = false;
+            this.projectBidCustAccept = false;
+            this.projectCurrentPhase = "";
+            this.projectActCost = 9999.00m;
         }
 
         public int ID { get; set; }
@@ -69,10 +74,13 @@ namespace NBDProject.Models
         [Display(Name = "Project Bid Managment Accept")]
         public bool projectBidMgmtAccept { get; set; }
 
+        [Display(Name = "Project Production Plan Accept")]
+        public bool projectChiefDesignAccept { get; set; }
+
         [Display(Name = "Project Current Phase")]
         public string projectCurrentPhase { get; set; }
 
-        [Display(Name = "Project Condition")]
+        [Display(Name = "Project Design Bid Accept")]
         public bool projectFlagged {
             get {
                 if (projectBidCustAccept && projectBidMgmtAccept)
@@ -84,6 +92,8 @@ namespace NBDProject.Models
                 }
             }
         }
+
+        
 
         
 

@@ -8,7 +8,7 @@
 @if (User.IsInRole("Admin") || User.IsInRole("Admin Assistant") || User.IsInRole("Designer") || User.IsInRole("Group Manager"))
 {
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-success" })
 </p>
 }
 <p>
@@ -61,12 +61,12 @@
         <td>
             @if (User.IsInRole("Admin") || User.IsInRole("Admin Assistant") || User.IsInRole("Designer") || User.IsInRole("Group Manager") || User.IsInRole("Chief Designer"))
             {
-                @Html.ActionLink("Details", "Details", new { id = item.ID }) 
+                @Html.ActionLink("Details", "Details", new { id = item.ID }, new { @class = "btn btn-info" }) 
             }
             @if (User.IsInRole("Admin") || User.IsInRole("Admin Assistant") || User.IsInRole("Designer") || User.IsInRole("Group Manager"))
             {
-                @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+                @Html.ActionLink("Edit", "Edit", new { id = item.ID }, new { @class = "btn btn-primary"}) 
+                @Html.ActionLink("Delete", "Delete", new { id = item.ID }, new { @class = "btn btn-danger"})
             }
         </td>
         
@@ -74,3 +74,4 @@
 }
 
 </table>
+

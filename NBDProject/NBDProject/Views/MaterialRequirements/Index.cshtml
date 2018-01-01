@@ -8,7 +8,7 @@
 @if (User.IsInRole("Admin") || User.IsInRole("Admin Assistant") || User.IsInRole("Designer") || User.IsInRole("Chief Designer") || User.IsInRole("Group Manager"))
 {
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-success" })
 </p>
 }
     @using (Html.BeginForm("Index", "MaterialRequirements", FormMethod.Get))
@@ -158,11 +158,11 @@
         }
         @if (User.IsInRole("Admin") || User.IsInRole("Admin Assistant") || User.IsInRole("Designer") || User.IsInRole("Chief Designer") || User.IsInRole("Group Manager") || User.IsInRole("Production Manager"))
         {
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id = item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id = item.ID })
-        </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.ID }, new { @class = "btn btn-primary" }) |
+                @Html.ActionLink("Details", "Details", new { id = item.ID }, new { @class = "btn btn-info" }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.ID }, new { @class = "btn btn-danger" })
+            </td>
         }
     </tr>
 }

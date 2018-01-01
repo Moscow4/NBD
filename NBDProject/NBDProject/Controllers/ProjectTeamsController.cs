@@ -22,6 +22,10 @@ namespace NBDProject.Controllers
         {
             PopulateDropDownList();
             var projectTeam = db.ProjectTeams.Include(p => p.project);
+            if (!ProjectID.HasValue)
+            {
+                ProjectID = 1;
+            }
             if (ProjectID.HasValue)
             {
                 projectTeam = projectTeam.Where(p => p.projectID == ProjectID);

@@ -22,6 +22,10 @@ namespace NBDProject.Controllers
         {
             PopulateDropDownList();
             var materialRequirements = db.MaterialRequirements.Include(m => m.Inventory).Include(m => m.Project);
+            if (!ProjectID.HasValue)
+            {
+                ProjectID = 1;
+            }
             if (ProjectID.HasValue)
             {
                 materialRequirements = materialRequirements.Where(m => m.projectID == ProjectID);

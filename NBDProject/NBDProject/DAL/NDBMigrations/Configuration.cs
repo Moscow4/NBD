@@ -197,7 +197,7 @@ namespace NBDProject.DAL.NDBMigrations
 
             var Tasks = new List<TaskTest>
             {
-                new TaskTest { taskDesc = "Bid Process", taskStdTImeAmnt = 0, taskStdTimeUnit = ""}
+                new TaskTest { taskDesc = "Bid Process"/*, taskStdTImeAmnt = 0, taskStdTimeUnit = ""*/}
             };
             Tasks.ForEach(t => context.TaskTests.AddOrUpdate(n => n.taskDesc, t));
             SaveChanges(context);

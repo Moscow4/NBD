@@ -23,6 +23,10 @@ namespace NBDProject.Controllers
         {
             PopulateDropDownList();
             var labourRequirementDesigns = db.LabourRequirementDesigns.Include(l => l.Project);
+            if (!ProjectID.HasValue)
+            {
+                ProjectID = 1;
+            }
             if (ProjectID.HasValue)
             {
                 labourRequirementDesigns = labourRequirementDesigns.Where(l => l.projectID == ProjectID);

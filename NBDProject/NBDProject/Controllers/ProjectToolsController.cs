@@ -21,6 +21,10 @@ namespace NBDProject.Controllers
         {
             PopulateDropDownList();
             var projectTools = db.ProjectTools.Include(p => p.Project).Include(p => p.Tool);
+            if (!ProjectID.HasValue)
+            {
+                ProjectID = 1;
+            }
             if (ProjectID.HasValue)
             {
                 projectTools = projectTools.Where(p => p.projectID == ProjectID);

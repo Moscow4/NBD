@@ -23,6 +23,7 @@ namespace NBDProject.Controllers
         {
             var projects = db.Projects.Include(p => p.Client);
 
+
             return View(projects.ToList());
         }
 

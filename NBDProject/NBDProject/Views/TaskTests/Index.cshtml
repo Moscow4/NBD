@@ -19,12 +19,12 @@
         <th>
             @Html.DisplayNameFor(model => model.taskDesc)
         </th>
-        <th>
+        @*<th>
             @Html.DisplayNameFor(model => model.taskStdTImeAmnt)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.taskStdTimeUnit)
-        </th>
+        </th>*@
         <th></th>
     </tr>
 
@@ -36,12 +36,12 @@
         <td>
             @Html.DisplayFor(modelItem => item.taskDesc)
         </td>
-        <td>
+        @*<td>
             @Html.DisplayFor(modelItem => item.taskStdTImeAmnt)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.taskStdTimeUnit)
-        </td>
+        </td>*@
         @if (User.IsInRole("Admin") || User.IsInRole("Admin Assistant") || User.IsInRole("Production Manager") || User.IsInRole("Chief Manager"))
         {
         <td>

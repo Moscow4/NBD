@@ -35,7 +35,7 @@ namespace NBDProject.Models
         }
 
         [Display(Name = "Net/Unit")]
-        public decimal? mregNetProPlan {
+        public decimal mregNetProPlan {
             get {
                 return Inventory.AvgNet;
             }
@@ -43,14 +43,14 @@ namespace NBDProject.Models
          
 
         [Display(Name = "Net/Unit")]
-        public decimal? mregNetDesign {
+        public decimal mregNetDesign {
             get {
                 return Inventory.List;
             }
         }
 
         [Display(Name = "Ext. Cost(Design)")]
-        public decimal? mregExtCostDesign
+        public decimal mregExtCostDesign
         {
             get
             {
@@ -60,7 +60,7 @@ namespace NBDProject.Models
         }
 
         [Display(Name = "Ext. Cost(Production Plan)")]
-        public decimal? mregExtCostProPlan
+        public decimal mregExtCostProPlan
         {
             get
             {

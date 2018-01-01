@@ -20,7 +20,12 @@ namespace NBDProject.Controllers
         public ActionResult Index(int? LabourRequirementDesignID)
         {
             PopulateDropDownList();
+
             var labourRequirements = db.LabourRequirements.Include(l => l.LabourRequirementDesign).Include(l => l.Task).Include(l => l.Worker);
+            if (!LabourRequirementDesignID.HasValue)
+            {
+                LabourRequirementDesignID = 1;
+            }
             if (LabourRequirementDesignID.HasValue)
             {
                 labourRequirements = labourRequirements.Where(l => l.LabourRequirementDesignID == LabourRequirementDesignID);

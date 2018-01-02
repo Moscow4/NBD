@@ -113,7 +113,7 @@
                 </div>
             </div>
         }
-        @if (User.IsInRole("Chief Designer") || User.IsInRole("Admin"))
+        @*@if (User.IsInRole("Chief Designer") || User.IsInRole("Admin"))
         {
             <div class="form-group">
                 @Html.LabelFor(model => model.projectChiefDesignAccept, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -124,7 +124,7 @@
                     </div>
                 </div>
             </div>
-        }
+        }*@
         @if (User.IsInRole("Production Worker") || User.IsInRole("Admin"))
         {
             <div class="form-group">

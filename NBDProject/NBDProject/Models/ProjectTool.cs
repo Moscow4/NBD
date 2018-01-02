@@ -15,7 +15,7 @@ namespace NBDProject.Models
         public int ID { get; set; }
 
 
-        [Display(Name = "Project Tool Quantity")]
+        [Display(Name = "Tool Quantity")]
         [Required(ErrorMessage = "Proeject Tool Quantity cannot be left blank, is required.")]
         [Range(0, 255, ErrorMessage = "Error inputing Project Tool Quantity")]
         public int ptQty { get; set; }

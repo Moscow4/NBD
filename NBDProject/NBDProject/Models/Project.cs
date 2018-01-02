@@ -109,13 +109,13 @@ namespace NBDProject.Models
         //public int designerID { get; set; }
 
         public virtual Client Client { get; set; }
-        
         public virtual ICollection<ProjectTeam> projectTeams { get; set; }
         public virtual ICollection<LabourSummary> LabourSummaries { get; set; }
         public virtual ICollection<LabourRequirementDesign> LabourRequirementDesigns { get; set; }
         public virtual ICollection<MaterialRequirement> MaterialRequirements { get; set; }
 
-        
+
+
 
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {

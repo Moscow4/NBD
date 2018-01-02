@@ -136,7 +136,7 @@ namespace NBDProject.Controllers
 
         //
         // GET: /Account/Register
-        [AllowAnonymous]
+        [Authorize(Roles = "Admin, Admin Assistant")]
         public ActionResult Register()
         {
             return View();
@@ -144,8 +144,8 @@ namespace NBDProject.Controllers
 
         //
         // POST: /Account/Register
+        [Authorize(Roles = "Admin, Admin Assistant")]
         [HttpPost]
-        [AllowAnonymous]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Register(RegisterViewModel model)
         {

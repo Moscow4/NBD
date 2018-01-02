@@ -148,11 +148,11 @@
             <td>
                 @if (User.IsInRole("Admin") || User.IsInRole("Admin Assistant") || User.IsInRole("Designer") || User.IsInRole("Chief Designer") || User.IsInRole("Group Manager"))
                 {
-                    @Html.ActionLink("Edit", "Edit", new { id = item.ID }, new { @class = "btn btn-primary" })
+                    @Html.ActionLink("Edit", "Edit", new { id = item.ID }, new { @class = "btn btn-primary" }) @: |
                 }
                 @if (User.IsInRole("Admin") || User.IsInRole("Admin Assistant") || User.IsInRole("Designer") || User.IsInRole("Chief Designer") || User.IsInRole("Group Manager") || User.IsInRole("Production Manager"))
                 {
-                    @Html.ActionLink("Details", "Details", new { id = item.ID }, new { @class = "btn btn-info" })
+                    @Html.ActionLink("Details", "Details", new { id = item.ID }, new { @class = "btn btn-info" }) @: |
                 }
                 @if (User.IsInRole("Admin") || User.IsInRole("Admin Assistant") || User.IsInRole("Chief Designer") || User.IsInRole("Group Manager"))
                 {

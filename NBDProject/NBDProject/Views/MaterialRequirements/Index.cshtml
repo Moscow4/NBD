@@ -35,7 +35,7 @@
         <th>
             @Html.DisplayNameFor(model => model.mregSize)
         </th>
-        @if (User.IsInRole("Production Manager"))
+        @if (User.IsInRole("Production Manager") || User.IsInRole("Chief Designer"))
         {
         <th>
             @Html.DisplayNameFor(model => model.mregNetProPlan)
@@ -50,7 +50,7 @@
             @Html.DisplayNameFor(model => model.mregExtCostDesign)
         </th>
         }
-        @if (User.IsInRole("Production Manager"))
+        @if (User.IsInRole("Production Manager") || User.IsInRole("Chief Designer"))
         {
         <th>
             @Html.DisplayNameFor(model => model.mregExtCostProPlan)
@@ -82,9 +82,9 @@
         <td>
             @Html.DisplayFor(modelItem => item.mregSize)
         </td>
-        @if (User.IsInRole("Production Manager"))
+        @if (User.IsInRole("Production Manager") || User.IsInRole("Chief Designer"))
         {
-            if (item.Project.projectChiefDesignAccept)
+            if (item.Project.projectFlagged)
             {
         <td>
             @Html.DisplayFor(modelItem => item.mregNetProPlan)
@@ -100,7 +100,7 @@
 
             }
         }
-        @if (User.IsInRole("Desginer"))
+        @if (User.IsInRole("Designer"))
         {
         <td>
             @Html.DisplayFor(modelItem => item.mregNetDesign)
@@ -109,9 +109,9 @@
             @Html.DisplayFor(modelItem => item.mregExtCostDesign)
         </td>
         }
-        @if (User.IsInRole("Production Manager"))
+        @if (User.IsInRole("Production Manager") || User.IsInRole("Chief Designer"))
         {
-            if (item.Project.projectChiefDesignAccept)
+            if (item.Project.projectFlagged)
             {
         <td>
             @Html.DisplayFor(modelItem => item.mregExtCostProPlan)
@@ -156,14 +156,21 @@
             </td>
             }
         }
-        @if (User.IsInRole("Admin") || User.IsInRole("Admin Assistant") || User.IsInRole("Designer") || User.IsInRole("Chief Designer") || User.IsInRole("Group Manager") || User.IsInRole("Production Manager"))
-        {
+        
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.ID }, new { @class = "btn btn-primary" }) |
-                @Html.ActionLink("Details", "Details", new { id = item.ID }, new { @class = "btn btn-info" }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.ID }, new { @class = "btn btn-danger" })
+                @if (User.IsInRole("Admin") || User.IsInRole("Admin Assistant") || User.IsInRole("Designer") || User.IsInRole("Chief Designer") || User.IsInRole("Group Manager") || User.IsInRole("Production Manager"))
+                {
+                   
+                        @Html.ActionLink("Edit", "Edit", new { id = item.ID }, new { @class = "btn btn-primary" }) @:|
+                                                                                                         
+                        @Html.ActionLink("Details", "Details", new { id = item.ID }, new { @class = "btn btn-info" }) @:|
+                   
+                    
+                        @Html.ActionLink("Delete", "Delete", new { id = item.ID }, new { @class = "btn btn-danger" })
+                    
+                }
             </td>
-        }
+        
     </tr>
 }
 

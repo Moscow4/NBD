@@ -70,7 +70,7 @@
                 @Html.ValidationMessageFor(model => model.mregExtCostProPlan, "", new { @class = "text-danger" })
             </div>
         </div>*@
-        @if (User.IsInRole("Production Manager"))
+        @if (User.IsInRole("Production Manager") || User.IsInRole("Chief Designer"))
         {
         <div class="form-group">
             @Html.LabelFor(model => model.mreqDeliver, htmlAttributes: new { @class = "control-label col-md-2" })

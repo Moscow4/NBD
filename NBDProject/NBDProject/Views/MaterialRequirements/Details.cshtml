@@ -49,7 +49,7 @@
         <dd>
             @Html.DisplayFor(model => model.mregSize)
         </dd>
-        @if (User.IsInRole("Production Manager") && Model.Project.projectChiefDesignAccept)
+        @if (User.IsInRole("Production Manager") || User.IsInRole("Chief Designer") && Model.Project.projectFlagged)
         {
         <dt>
             @Html.DisplayNameFor(model => model.mregNetProPlan)
@@ -77,7 +77,7 @@
             @Html.DisplayFor(model => model.mregExtCostDesign)
         </dd>
         }
-        @if (User.IsInRole("Production Manager") && Model.Project.projectChiefDesignAccept)
+        @if (User.IsInRole("Production Manager") || User.IsInRole("Chief Designer") && Model.Project.projectFlagged)
         {
         <dt>
             @Html.DisplayNameFor(model => model.mregExtCostProPlan)

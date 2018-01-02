@@ -86,7 +86,7 @@ namespace NBDProject.Controllers
                     return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
                 case SignInStatus.Failure:
                 default:
-                    ModelState.AddModelError("", "Invalid login attempt.");
+                    ModelState.AddModelError("", "Your Email or Password is wrong. Please try again!");
                     return View(model);
             }
         }

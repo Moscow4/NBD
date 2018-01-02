@@ -19,23 +19,23 @@
         <th>
             @Html.DisplayNameFor(model => model.projectName)
         </th>
-        <th>
+        @*<th>
             @Html.DisplayNameFor(model => model.projectBidDate)
-        </th>
-        <th>
+        </th>*@
+        @*<th>
             @Html.DisplayNameFor(model => model.projectEstStart)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.projectEstEnd)
-        </th>
+        </th>*@
         @if (User.IsInRole("Production Manager") || User.IsInRole("Chief Designer"))
         {
-            <th>
+            @*<th>
                 @Html.DisplayNameFor(model => model.projectActStart)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.projectActEnd)
-            </th>
+            </th>*@
             <th>
                 @Html.DisplayNameFor(model => model.projectActCost)
             </th>
@@ -52,7 +52,7 @@
                 @Html.DisplayNameFor(model => model.projectBidMgmtAccept)
             </th>
         }
-        @if (User.IsInRole("Chief Designer"))
+        @if (User.IsInRole("Chief Designer") || User.IsInRole("Production Manager"))
         {
             <th>
                 @Html.DisplayNameFor(model => model.projectChiefDesignAccept)
@@ -73,23 +73,23 @@
             <td>
                 @Html.DisplayFor(modelItem => item.projectName)
             </td>
-            <td>
+            @*<td>
                 @Html.DisplayFor(modelItem => item.projectBidDate)
-            </td>
-            <td>
+            </td>*@
+            @*<td>
                 @Html.DisplayFor(modelItem => item.projectEstStart)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.projectEstEnd)
-            </td>
+            </td>*@
             @if (User.IsInRole("Production Manager") || User.IsInRole("Chief Designer"))
             {
-                <td>
+                @*<td>
                     @Html.DisplayFor(modelItem => item.projectActStart)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.projectActEnd)
-                </td>
+                </td>*@
                 <td>
                     @Html.DisplayFor(modelItem => item.projectActCost)
                 </td>
@@ -120,7 +120,7 @@
                     }
                 </td>
             }
-            @if (User.IsInRole("Chief Designer"))
+            @if (User.IsInRole("Chief Designer") || User.IsInRole("Production Manager"))
             {
                 <td>
                     @if (item.projectChiefDesignAccept)

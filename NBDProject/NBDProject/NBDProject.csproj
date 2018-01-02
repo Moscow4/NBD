@@ -197,7 +197,6 @@
     <Compile Include="Controllers\InventoriesController.cs" />
     <Compile Include="Controllers\LabourRequirementDesignsController.cs" />
     <Compile Include="Controllers\LabourRequirementsController.cs" />
-    <Compile Include="Controllers\LabourSummariesController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MaterialRequirementsController.cs" />
     <Compile Include="Controllers\ProjectsController.cs" />
@@ -230,7 +229,6 @@
     <Compile Include="Models\Inventory.cs" />
     <Compile Include="Models\LabourRequirement.cs" />
     <Compile Include="Models\LabourRequirementDesign.cs" />
-    <Compile Include="Models\LabourSummary.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Material.cs" />
     <Compile Include="Models\MaterialRequirement.cs" />

@@ -15,7 +15,7 @@ namespace NBDProject.Models
         public Project()
         {
             this.projectTeams = new HashSet<ProjectTeam>();
-            this.LabourSummaries = new HashSet<LabourSummary>();
+            //this.LabourSummaries = new HashSet<LabourSummary>();
             this.LabourRequirementDesigns = new HashSet<LabourRequirementDesign>();
             this.MaterialRequirements = new HashSet<MaterialRequirement>();
             this.projectChiefDesignAccept = false;
@@ -107,7 +107,7 @@ namespace NBDProject.Models
         public virtual Client Client { get; set; }
         
         public virtual ICollection<ProjectTeam> projectTeams { get; set; }
-        public virtual ICollection<LabourSummary> LabourSummaries { get; set; }
+        //public virtual ICollection<LabourSummary> LabourSummaries { get; set; }
         public virtual ICollection<LabourRequirementDesign> LabourRequirementDesigns { get; set; }
         public virtual ICollection<MaterialRequirement> MaterialRequirements { get; set; }
 

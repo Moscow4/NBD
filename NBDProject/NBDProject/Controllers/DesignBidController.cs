@@ -47,7 +47,7 @@ namespace NBDProject.Controllers
             return View(ViewModel);
         }
 
-        public ActionResult Index(int? ProjectID)
+        public ActionResult Inspect(int? ProjectID)
         {
 
 

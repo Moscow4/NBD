@@ -59,7 +59,9 @@
                 <td>@Html.DisplayFor(modelItem => item.projectEstStart)</td>
                 <td>@Html.DisplayFor(modelItem => item.projectEstEnd)</td>
                 <td>@Html.DisplayFor(modelItem => item.projectSite)</td>
-                <td>@Html.DisplayFor(modelItem => item.projectEstCost)</td>
+                <td>@{
+                    var sum = Model.MaterialRequirement.Sum(p => p.mregExtCostDesign) + Model.LabourRequirementDesign.Sum(p => p.lregDExtPrice);
+                }   @sum</td>
                 @if (item.projectBidCustAccept)
                 {
                     <td style="color:green">Approved</td>
@@ -77,14 +79,14 @@
                     <td style="color:red">Not Approved</td>
                 }
 
-                <td>@Html.ActionLink("Inspect", "Inspect", new { id = item.ID }, new { @class = "btn btn-primary" })</td>
+                <td>@Html.ActionLink("Inspect", "Inspect", new { ProjectID = item.ID }, new { @class = "btn btn-primary" })</td>
             </tr>
         }
 
     </table>
 
 
-    <table class="table table-hover">
+    @*<table class="table table-hover">
         <tr class="info">
             @foreach (var model in Model.MaterialRequirement)
             {
@@ -130,4 +132,4 @@
                 </td>
             </tr>
         }
-    </table>
+    </table>*@

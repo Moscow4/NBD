@@ -1,0 +1,97 @@
+﻿@model NBDProject.ViewModels.DesignBidVM
+@{
+    ViewBag.Title = "Inspect";
+}
+
+@foreach (var model in Model.MaterialRequirement)
+{
+<h2>Inspect @Html.DisplayFor(modelItem => model.Project.projectName) Project</h2>
+    break;
+}
+
+<table class="table table-hover">
+        <tr class="info">
+            @foreach (var model in Model.MaterialRequirement)
+            {
+                <th>
+                    @Html.DisplayNameFor(modelItem => model.mreqQty)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(modelItem => model.Inventory.invDesc)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(modelItem => model.mregSize)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(modelItem => model.mregNetDesign)
+                </th>
+                <th>
+                    Extended Price
+                </th>
+                break;
+            }
+        </tr>
+        @foreach (var item in Model.MaterialRequirement)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.mreqQty)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Inventory.invDesc)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.mregSize)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.mregNetDesign)
+                </td>
+                <td>
+                    @{
+                        var ExtendedPrice = item.mreqQty * item.mregNetDesign;
+
+                    }
+                    @ExtendedPrice
+                </td>
+            </tr>
+       }
+</table>
+
+
+<table class="table table-hover">
+        <tr class="info">
+            @foreach (var model in Model.LabourRequirementDesign)
+            {
+                <th>
+                    @Html.DisplayNameFor(modelItem => model.lregDHour)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(modelItem => model.lregDDesc)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(modelItem => model.lregDUnitPrice)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(modelItem => model.lregDExtPrice)
+                </th>
+                break;
+            }
+        </tr>
+        @foreach (var item in Model.LabourRequirementDesign)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.lregDHour)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.lregDDesc)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.lregDUnitPrice)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.lregDExtPrice)
+                </td>
+            </tr>
+        }
+</table>

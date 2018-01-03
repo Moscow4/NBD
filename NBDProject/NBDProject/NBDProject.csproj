@@ -189,13 +189,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DesignBid.aspx.cs">
-      <DependentUpon>DesignBid.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="DesignBid.aspx.designer.cs">
-      <DependentUpon>DesignBid.aspx</DependentUpon>
-    </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\IdentityConfig.cs" />
@@ -264,7 +257,6 @@
     <Compile Include="ViewModels\WorkerVM.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="DesignBid.aspx" />
     <Content Include="Content\bootstrap-superhero.css" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
@@ -404,6 +396,7 @@
     <Content Include="Views\LabourRequirementDesigns\Edit.cshtml" />
     <Content Include="Views\LabourRequirementDesigns\Index.cshtml" />
     <Content Include="Views\DesignBid\Index.cshtml" />
+    <Content Include="Views\DesignBid\Inspect.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

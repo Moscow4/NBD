@@ -36,6 +36,12 @@ namespace NBDProject.Models
         [StringLength(30, ErrorMessage = "Worker Last Name cannot be more than 30 characters.")]
         public string LName { get; set; }
 
+        [Display(Name = "Phone Number")]
+        [RegularExpression("^\\d{10}$", ErrorMessage = "Please enter a valid 10-digit phone number (no spaces).")]
+        [DataType(DataType.PhoneNumber)]
+        [DisplayFormat(DataFormatString = "{0:(###) ###-####}", ApplyFormatInEditMode = false)]
+        public Int64 Phone { get; set; }
+
         [Display(Name = "Worker Type")]
         [Required(ErrorMessage = "You must specify the Worker Type for the Worker.")]
         public int worktypeID { get; set; }

@@ -128,11 +128,11 @@ namespace NBDProject.DAL.NDBMigrations
                 new ProjectTeam { teamPhaseIn = "I dont know", projectID = 1,
                                     Workers = new List<Worker>
                                     {
-                                        new Worker { FName = "Bod", LName = "Reinhardt", worktypeID = 2},
-                                        new Worker { FName = "Tamara", LName = "Tamara Bakken", worktypeID = 1},
-                                        new Worker { FName = "Sue", LName = "Kaufman", worktypeID = 3},
-                                        new Worker { FName = "Monica", LName = "Goce", worktypeID = 3},
-                                        new Worker { FName = "Bert", LName = "Swenson", worktypeID = 3}
+                                        new Worker { FName = "Bod", LName = "Reinhardt", worktypeID = 2, Phone = 4087753652},
+                                        new Worker { FName = "Tamara", LName = "Bakken", worktypeID = 1, Phone = 4087753645},
+                                        new Worker { FName = "Sue", LName = "Kaufman", worktypeID = 3, Phone = 4087751234},
+                                        new Worker { FName = "Monica", LName = "Goce", worktypeID = 3, Phone = 4087751236},
+                                        new Worker { FName = "Bert", LName = "Swenson", worktypeID = 3, Phone = 4087756667}
 
 
                                     } }

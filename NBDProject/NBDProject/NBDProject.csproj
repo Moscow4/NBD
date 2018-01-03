@@ -50,9 +50,14 @@
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.5\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="NBDLibrary">
+      <HintPath>..\NBDLibrary\NBDLibrary\bin\Debug\NBDLibrary.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -184,6 +189,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DesignBid.aspx.cs">
+      <DependentUpon>DesignBid.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DesignBid.aspx.designer.cs">
+      <DependentUpon>DesignBid.aspx</DependentUpon>
+    </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\IdentityConfig.cs" />
@@ -192,6 +204,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CitiesController.cs" />
     <Compile Include="Controllers\ClientsController.cs" />
+    <Compile Include="Controllers\DesignBidController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InventoriesController.cs" />
     <Compile Include="Controllers\LabourRequirementDesignsController.cs" />
@@ -208,13 +221,9 @@
     <Compile Include="Controllers\WorkTypesController.cs" />
     <Compile Include="DAL\ApplicationDbContext.cs" />
     <Compile Include="DAL\NBDCFEntities.cs" />
-    <Compile Include="DAL\NDBMigrations\201801010451194_Initial2.cs" />
-    <Compile Include="DAL\NDBMigrations\201801010451194_Initial2.Designer.cs">
-      <DependentUpon>201801010451194_Initial2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="DAL\NDBMigrations\201801011843365_int.cs" />
-    <Compile Include="DAL\NDBMigrations\201801011843365_int.Designer.cs">
-      <DependentUpon>201801011843365_int.cs</DependentUpon>
+    <Compile Include="DAL\NDBMigrations\201801022006076_InitialCreate.cs" />
+    <Compile Include="DAL\NDBMigrations\201801022006076_InitialCreate.Designer.cs">
+      <DependentUpon>201801022006076_InitialCreate.cs</DependentUpon>
     </Compile>
     <Compile Include="DAL\NDBMigrations\Configuration.cs" />
     <Compile Include="DAL\SecurityMigrations\201712300200056_InitialSecurity.cs" />
@@ -249,11 +258,13 @@
     <Compile Include="Models\WorkType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModels\DesignBidVM.cs" />
     <Compile Include="ViewModels\RoleVM.cs" />
     <Compile Include="ViewModels\UserVM.cs" />
     <Compile Include="ViewModels\WorkerVM.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="DesignBid.aspx" />
     <Content Include="Content\bootstrap-superhero.css" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
@@ -290,6 +301,7 @@
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
+      <SubType>Designer</SubType>
     </Content>
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -391,20 +403,19 @@
     <Content Include="Views\LabourRequirementDesigns\Details.cshtml" />
     <Content Include="Views\LabourRequirementDesigns\Edit.cshtml" />
     <Content Include="Views\LabourRequirementDesigns\Index.cshtml" />
+    <Content Include="Views\DesignBid\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="bin\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="DAL\NDBMigrations\201801010451194_Initial2.resx">
-      <DependentUpon>201801010451194_Initial2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="DAL\NDBMigrations\201801011843365_int.resx">
-      <DependentUpon>201801011843365_int.cs</DependentUpon>
+    <EmbeddedResource Include="DAL\NDBMigrations\201801022006076_InitialCreate.resx">
+      <DependentUpon>201801022006076_InitialCreate.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DAL\SecurityMigrations\201712300200056_InitialSecurity.resx">
       <DependentUpon>201712300200056_InitialSecurity.cs</DependentUpon>

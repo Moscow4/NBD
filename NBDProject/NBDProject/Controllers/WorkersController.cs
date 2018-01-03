@@ -50,7 +50,7 @@ namespace NBDProject.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,FName,LName,worktypeID")] Worker worker)
+        public ActionResult Create([Bind(Include = "ID,FName,LName,worktypeID, Phone")] Worker worker)
         {
             try
             {
@@ -99,7 +99,7 @@ namespace NBDProject.Controllers
             }
             var workerToUpdate = db.Workers.Find(id);
             if (TryUpdateModel(workerToUpdate, "",
-                new string[] { "FName", "LName", "worktypeID" }))
+                new string[] { "FName", "LName", "worktypeID", "Phone" }))
             {
                 try
                 {

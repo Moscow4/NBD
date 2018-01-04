@@ -3,6 +3,11 @@
 @{
     ViewBag.Title = "Details";
 }
+@{
+    var DesignBid = Model.MaterialRequirements.Sum(p => p.mregExtCostDesign) + Model.LabourRequirementDesigns.Sum(p => p.lregDExtPrice);
+    var productionPlanCost = Model.MaterialRequirements.Sum(p => p.mregExtCostProPlan) + Model.LabourRequirementDesigns.Sum(p => p.LabourRequirements.Sum(l => l.LregEstCost));
+    var percent = Math.Round((productionPlanCost / DesignBid) * 100);
+}
 
 <h2>Details</h2>
 
@@ -76,19 +81,25 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.projectActCost)
+            Production Plan Cost
         </dt>
+        
+            if (percent > 70)
+            {
+                <dd style="color:red">@productionPlanCost$ - @percent%</dd>
+            }
+            else
+            {
+                <dd style="color:green">@productionPlanCost$ - @percent%</dd>
+            }
 
-        <dd>
-            @Html.DisplayFor(model => model.projectActCost)
-        </dd>
         }
         <dt>
-            @Html.DisplayNameFor(model => model.projectEstCost)
+            Design Bid
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.projectEstCost)
+            @DesignBid$
         </dd>
 
         <dt>

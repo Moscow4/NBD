@@ -1,0 +1,86 @@
+﻿@model NBDProject.ViewModels.ProductionPlanVM
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Production Plan Summary</h2>
+<p>
+    @using (Html.BeginForm("Index", "ProductionPlans", FormMethod.Get))
+    {
+    <p>
+        Select Client: @Html.DropDownList("ClientID", new SelectList(Model.Client, "ID", "cliName"), htmlAttributes: new { @onchange = "this.form.submit();" })
+    </p>
+    }
+</p>
+
+    <table class="table table-hover">
+        <tr class="info">
+        @foreach (var model in Model.Project)
+        {
+                <th>
+                    @Html.DisplayNameFor(modelItem => model.projectName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(modelItem => model.projectActStart)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(modelItem => model.projectActEnd)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(modelItem => model.projectSite)
+                </th>
+                <th>
+                    Design Bid
+                </th>
+                <th>
+                    Production Cost
+                </th>
+                <th>
+                    @Html.DisplayNameFor(modelItem => model.projectChiefDesignAccept)
+                </th>
+                <th></th>
+            break;
+        }
+        </tr>
+
+        @foreach (var item in Model.Project)
+        {
+            
+            <tr>
+                @{
+                    var productionPlanCost = item.MaterialRequirements.Sum(p => p.mregExtCostProPlan) + item.LabourRequirementDesigns.Sum(p => p.LabourRequirements.Sum(l => l.LregEstCost));
+                    var DesignBid = item.MaterialRequirements.Sum(p => p.mregExtCostDesign) + item.LabourRequirementDesigns.Sum(p => p.lregDExtPrice);
+                    var percent = Math.Round((productionPlanCost / DesignBid) * 100);
+                }
+                <td>@Html.DisplayFor(modelItem => item.projectName)</td>
+                <td>@Html.DisplayFor(modelItem => item.projectActStart)</td>
+                <td>@Html.DisplayFor(modelItem => item.projectActEnd)</td>
+                <td>@Html.DisplayFor(modelItem => item.projectSite)</td>
+                <td>@*@{
+                    var sum = Model.MaterialRequirement.Sum(p => p.mregExtCostDesign) + Model.LabourRequirementDesign.Sum(p=>p.lregDExtPrice);
+                }   @sum*@ @DesignBid</td>
+                @if (percent > 70 || percent < 50)
+                {
+                <td style="color:red">@productionPlanCost$ - @percent%</td>
+                }
+                else
+                {
+                <td style="color:green">@productionPlanCost$ - @percent%</td>
+                }
+                @if (item.projectChiefDesignAccept)
+                {
+                    <td style="color:green">Approved</td>
+                }
+                else
+                {
+                    <td style="color:red">Not Approved</td>
+                }
+
+                <td>@Html.ActionLink("Inspect", "Inspect", new { ProjectID = item.ID }, new { @class = "btn btn-primary" })</td>
+            </tr>
+        }
+
+    </table>
+
+
+

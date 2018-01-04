@@ -56,7 +56,7 @@ namespace NBDProject.Models
 
         [Display(Name = "Time")]
         [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd HH}", ApplyFormatInEditMode = false)]
+        [DisplayFormat(DataFormatString = "{0:MM-dd HH}", ApplyFormatInEditMode = false)]
         public DateTime lregTime { get; set; }
 
         [Required(ErrorMessage = "You have to specify Task.")]

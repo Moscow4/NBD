@@ -22,7 +22,7 @@ namespace NBDProject.Models
             this.projectBidMgmtAccept = false;
             this.projectBidCustAccept = false;
             this.projectCurrentPhase = "";
-            this.projectActCost = 9999.00m;
+            //this.projectActCost = 9999.00m;
         }
 
         public int ID { get; set; }
@@ -63,11 +63,11 @@ namespace NBDProject.Models
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime? projectActEnd { get; set; }
 
-        [Display(Name = "Project Estimated Cost")]
-        public decimal? projectEstCost { get; set; }
+        //[Display(Name = "Project Estimated Cost")]
+        //public decimal? projectEstCost { get; set; }
 
-        [Display(Name = "Project Actual Cost")]
-        public decimal? projectActCost { get; set; }
+        //[Display(Name = "Project Actual Cost")]
+        //public decimal? projectActCost { get; set; }
 
         [Display(Name = "Project Bid Customer Accept")]
         public bool projectBidCustAccept { get; set; }

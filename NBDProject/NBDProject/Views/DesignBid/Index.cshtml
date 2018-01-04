@@ -16,8 +16,48 @@
     }
     </p>
 
+<h4>Client's Information</h4>
+<table class="table table-hover">
+        <tr class="bg-danger">
+            @foreach (var model in Model.Client)
+            {
+                <th>
+                    @Html.DisplayNameFor(modelItem => model.cliName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(modelItem => model.cliAddress)
+                </th>
+                <th>
+                    Contact
+                </th>
+                <th>
+                    @Html.DisplayNameFor(modelItem => model.cliPhone)
+                </th>
+                break;
+            }
+        </tr>
+
+        @foreach (var item in Model.Client)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.cliName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.cliAddress)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.cliConFname)&nbsp;@Html.DisplayFor(modelItem => item.cliConLName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.cliPhone)
+                </td>
+            </tr>
+        }
+</table>
 
 
+<h4>Client's Projects</h4>
     <table class="table table-hover">
         <tr class="info">
         @foreach (var model in Model.Project)
@@ -38,7 +78,7 @@
                     @Html.DisplayNameFor(modelItem => model.projectSite)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(modelItem => model.projectEstCost)
+                    Design Bid
                 </th>
                 <th>
                     @Html.DisplayNameFor(modelItem => model.projectBidCustAccept)
@@ -61,7 +101,7 @@
                 <td>@Html.DisplayFor(modelItem => item.projectSite)</td>
                 <td>@{
                     var sum = Model.MaterialRequirement.Sum(p => p.mregExtCostDesign) + Model.LabourRequirementDesign.Sum(p => p.lregDExtPrice);
-                }   @sum</td>
+                }   @sum$</td>
                 @if (item.projectBidCustAccept)
                 {
                     <td style="color:green">Approved</td>

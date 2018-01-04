@@ -115,7 +115,7 @@ namespace NBDProject.DAL.NDBMigrations
             {
                 new Project { projectName = "London Square Mall", projectSite = "Main Entrance", projectBidDate = DateTime.Parse("2018-05-16"), projectEstStart = DateTime.Parse("2018-06-15"),
                 projectEstEnd = DateTime.Parse("2018-06-30"), projectActStart = DateTime.Parse("2018-07-01"), projectActEnd = DateTime.Parse("2018-07-20"),
-                projectEstCost = 7651.50m, projectActCost = 0.00m, projectBidCustAccept = true, projectBidMgmtAccept = true
+               /* projectEstCost = 7651.50m, projectActCost = 0.00m,*/ projectBidCustAccept = true, projectBidMgmtAccept = true
                 , clientID = 1}
             };
             projects.ForEach(d => context.Projects.AddOrUpdate(n => n.projectName, d));

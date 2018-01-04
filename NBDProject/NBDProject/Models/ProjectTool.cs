@@ -22,12 +22,12 @@ namespace NBDProject.Models
 
         [Display(Name = "Delivery From Date")]
         [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime? ptDeliverFrom { get; set; }
 
         [Display(Name = "Delivery to Date")]
         [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime? ptDeliveryTo { get; set; }
 
         [Required(ErrorMessage = "You must specify the Project for the Project Tool.")]

@@ -1,0 +1,261 @@
+﻿@model NBDProject.ViewModels.ProductionPlanVM
+@{
+    ViewBag.Title = "Inspect";
+    int totalLabourHour = Model.LabourRequirement.Sum(l => l.lregProdHour);
+    decimal totalLabourCost = Model.LabourRequirement.Sum(l => l.LregEstCost);
+    decimal totalMaterialCost = Model.MaterialRequirement.Sum(m => m.mregExtCostProPlan);
+    int totalEstHour = totalLabourHour;
+    decimal totalCost = totalLabourCost + totalMaterialCost;
+
+}
+@{
+    var DesignBid = Model.MaterialRequirement.Sum(p => p.mregExtCostDesign) + Model.LabourRequirementDesign.Sum(p => p.lregDExtPrice);
+    var percent = Math.Round((totalCost / DesignBid) * 100);
+}
+@foreach (var model in Model.MaterialRequirement)
+{
+    <h2>Inspect @Html.DisplayFor(modelItem => model.Project.projectName) Project</h2>
+    break;
+}
+
+@*<h3>Project Team: </h3>
+<table class="table table-hover">
+    <tr class="info">
+        @foreach (var model in Model.ProjectTeam.Where(p => p.Workers.))
+        {
+            <th>
+                Position
+            </th>
+            <th>
+                Employee Full Name
+            </th>
+            break;
+        }
+    </tr>
+    @foreach (var item in Model.ProjectTeam)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Workers.Select(w => w.Phone))
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Workers.Select(w => w.FullName))
+            </td>
+        </tr>
+    }
+</table>*@
+
+<h4>Material Requirements</h4>
+<table class="table table-hover">
+    <tr class="info">
+        @foreach (var model in Model.MaterialRequirement)
+        {
+
+            <th>
+                @Html.DisplayNameFor(modelItem => model.mreqQty)
+            </th>
+            <th>
+                @Html.DisplayNameFor(modelItem => model.Inventory.invDesc)
+            </th>
+            <th>
+                @Html.DisplayNameFor(modelItem => model.mregSize)
+            </th>
+            <th>
+                @Html.DisplayNameFor(modelItem => model.mregNetProPlan)
+            </th>
+            <th>
+                @Html.DisplayNameFor(modelItem => model.mregExtCostProPlan)
+            </th>
+            <th>
+                @Html.DisplayNameFor(modelItem => model.mreqDeliver)
+            </th>
+            <th>
+                @Html.DisplayNameFor(modelItem => model.mreqInstall)
+            </th>
+            break;
+        }
+    </tr>
+    @foreach (var item in Model.MaterialRequirement)
+    {
+
+
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.mreqQty)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Inventory.invDesc)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.mregSize)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.mregNetProPlan)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.mregExtCostProPlan)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.mreqDeliver)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.mreqInstall)
+            </td>
+
+        </tr>
+        
+    }
+    <tr class="bg-danger">
+        <th>
+            Tools
+        </th>
+        <th></th><th></th><th></th><th></th><th></th><th></th>
+    </tr>
+    @foreach (var item in Model.ProjectTool)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ptQty)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Tool.toolDesc)
+            </td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>
+                @{ 
+                    string deliverDay = "";
+                    if (item.ptDeliverFrom == item.ptDeliveryTo)
+                    {
+                        deliverDay = item.ptDeliverFrom.ToString();
+                    } else
+                    {
+
+                        deliverDay = item.ptDeliverFrom.ToString() + " to " + item.ptDeliveryTo.ToString();
+                    }
+
+                }
+                @deliverDay
+            </td>
+            <td></td>
+        </tr>
+    }
+</table>
+
+<h4>Labour Requirements</h4>
+<table class="table table-hover">
+    <tr class="info">
+        @foreach (var model in Model.LabourRequirement)
+        {
+
+            <th>
+                Description
+            </th>
+            <th>
+                @Html.DisplayNameFor(modelItem => model.lregProdHour)
+            </th>
+            <th>
+                @Html.DisplayNameFor(modelItem => model.lregCost)
+            </th>
+            <th>
+                @Html.DisplayNameFor(modelItem => model.LregEstCost)
+            </th>
+            <th>
+                @Html.DisplayNameFor(modelItem => model.lregTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(modelItem => model.Task.taskDesc)
+            </th>
+            break;
+        }
+    </tr>
+    @foreach (var model in Model.LabourRequirementDesign)
+    {
+        <tr class="bg-danger">
+            <th>
+                @Html.DisplayFor(modelItem => model.lregDDesc)
+            </th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+        </tr>
+
+        foreach (var item in Model.LabourRequirement.Where(l => l.LabourRequirementDesignID == model.ID))
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Worker.FullName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.lregProdHour)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.lregCost)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LregEstCost)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.lregTime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Task.taskDesc)
+                </td>
+            </tr>
+        }
+    }
+</table>
+
+
+<h4>Total</h4>
+
+    <table class="table table-hover">
+        <tr class="info">
+            <th>
+                Total Labour Hour
+            </th>
+            <th>
+                Total Labour Cost
+            </th>
+            <th>
+                Total Material Cost
+            </th>
+            <th>
+                Total Hour
+            </th>
+            <th>
+                Total Cost
+            </th>
+        </tr>
+        <tr>
+            <td>
+                @totalLabourHour
+            </td>
+            <td>
+                @totalLabourCost
+            </td>
+            <td>
+                @totalMaterialCost
+            </td>
+            <td>
+                @totalEstHour
+            </td>
+            @if (percent > 70 || percent < 50)
+            {
+                <td style="color:red">
+                    @totalCost (@percent percent of the Bid)
+                </td>
+            }
+            else
+            {
+                <td style="color:green">
+                    @totalCost (@percent percent of the Bid)
+                </td>
+            }
+
+        </tr>
+    </table>
+

@@ -4,6 +4,7 @@
     ViewBag.Title = "Projects";
 }
 
+
 <h2>Index</h2>
 @if (User.IsInRole("Admin") || User.IsInRole("Admin Assistant") || User.IsInRole("Designer"))
 {
@@ -37,12 +38,13 @@
                 @Html.DisplayNameFor(model => model.projectActEnd)
             </th>*@
             <th>
-                @Html.DisplayNameFor(model => model.projectActCost)
+                Production Cost
             </th>
         }
         <th>
-            @Html.DisplayNameFor(model => model.projectEstCost)
+            Design Bid
         </th>
+
         @if (User.IsInRole("Group Manager"))
         {
             <th>
@@ -82,7 +84,12 @@
             <td>
                 @Html.DisplayFor(modelItem => item.projectEstEnd)
             </td>*@
-            @if (User.IsInRole("Production Manager") || User.IsInRole("Chief Designer"))
+            @{
+                var productionPlanCost = item.MaterialRequirements.Sum(p => p.mregExtCostProPlan) + item.LabourRequirementDesigns.Sum(p => p.LabourRequirements.Sum(l => l.LregEstCost));
+                var DesignBid = item.MaterialRequirements.Sum(p => p.mregExtCostDesign) + item.LabourRequirementDesigns.Sum(p => p.lregDExtPrice);
+                var percent = Math.Round((productionPlanCost / DesignBid) * 100);
+            }
+            @if (User.IsInRole("Production Manager") || User.IsInRole("Chief Designer") && item.projectChiefDesignAccept)
             {
                 @*<td>
                     @Html.DisplayFor(modelItem => item.projectActStart)
@@ -90,13 +97,21 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.projectActEnd)
                 </td>*@
-                <td>
-                    @Html.DisplayFor(modelItem => item.projectActCost)
-                </td>
+                if (percent > 70 || percent < 50)
+                {
+                    <td style="color:red">@productionPlanCost$ - @percent%</td>
+                }
+                else
+                {
+                <td style="color:green">@productionPlanCost$ - @percent%</td>
+                }
             }
             <td>
-                @Html.DisplayFor(modelItem => item.projectEstCost)
+                @DesignBid$
             </td>
+            @*<td>
+                @Html.DisplayFor(modelItem => item.projectEstCost)
+            </td>*@
             @if (User.IsInRole("Group Manager"))
             {
                 <td>

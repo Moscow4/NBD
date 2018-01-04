@@ -57,7 +57,7 @@ namespace NBDProject.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Admin, Admin Assistant, Designer")]
-        public ActionResult Create([Bind(Include = "ID,projectName,projectSite,projectBidDate,projectEstStart,projectEstEnd,projectActStart,projectActEnd,projectEstCost,projectActCost,projectBidCustAccept,projectBidMgmtAccept, projectChiefDesignAccept ,projectCurrentPhase,projectFlagged,clientID")] Project project)
+        public ActionResult Create([Bind(Include = "ID,projectName,projectSite,projectBidDate,projectEstStart,projectEstEnd,projectActStart,projectActEnd,projectBidCustAccept,projectBidMgmtAccept, projectChiefDesignAccept ,projectCurrentPhase,projectFlagged,clientID")] Project project)
         {
             try
             {
@@ -109,7 +109,7 @@ namespace NBDProject.Controllers
 
             var projectToUpdate = db.Projects.Find(id);
             if (TryUpdateModel(projectToUpdate, "",
-                new string[] { "projectName", "projectSite", "projectBidDate", "projectEstStart", "projectEstEnd", "projectActStart", "projectActEnd", "projectEstCost", "projectActCost", "projectBidCustAccept", "projectBidMgmtAccept", "projectChiefDesignAccept","projectCureentPhase", "projectFlagged", "ClientID" }))
+                new string[] { "projectName", "projectSite", "projectBidDate", "projectEstStart", "projectEstEnd", "projectActStart", "projectActEnd", /*"projectEstCost", "projectActCost",*/ "projectBidCustAccept", "projectBidMgmtAccept", "projectChiefDesignAccept","projectCureentPhase", "projectFlagged", "ClientID" }))
             {
                 try
                 {

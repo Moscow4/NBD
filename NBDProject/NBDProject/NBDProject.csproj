@@ -205,6 +205,7 @@
     <Compile Include="Controllers\LabourSummariesController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MaterialRequirementsController.cs" />
+    <Compile Include="Controllers\ProductionPlansController.cs" />
     <Compile Include="Controllers\ProjectsController.cs" />
     <Compile Include="Controllers\ProjectTeamsController.cs" />
     <Compile Include="Controllers\ProjectToolsController.cs" />
@@ -214,9 +215,9 @@
     <Compile Include="Controllers\WorkTypesController.cs" />
     <Compile Include="DAL\ApplicationDbContext.cs" />
     <Compile Include="DAL\NBDCFEntities.cs" />
-    <Compile Include="DAL\NDBMigrations\201801022006076_InitialCreate.cs" />
-    <Compile Include="DAL\NDBMigrations\201801022006076_InitialCreate.Designer.cs">
-      <DependentUpon>201801022006076_InitialCreate.cs</DependentUpon>
+    <Compile Include="DAL\NDBMigrations\201801040420506_InitialCreate.cs" />
+    <Compile Include="DAL\NDBMigrations\201801040420506_InitialCreate.Designer.cs">
+      <DependentUpon>201801040420506_InitialCreate.cs</DependentUpon>
     </Compile>
     <Compile Include="DAL\NDBMigrations\Configuration.cs" />
     <Compile Include="DAL\SecurityMigrations\201712300200056_InitialSecurity.cs" />
@@ -252,6 +253,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\DesignBidVM.cs" />
+    <Compile Include="ViewModels\ProductionPlanVM.cs" />
     <Compile Include="ViewModels\RoleVM.cs" />
     <Compile Include="ViewModels\UserVM.cs" />
     <Compile Include="ViewModels\WorkerVM.cs" />
@@ -397,6 +399,8 @@
     <Content Include="Views\LabourRequirementDesigns\Index.cshtml" />
     <Content Include="Views\DesignBid\Index.cshtml" />
     <Content Include="Views\DesignBid\Inspect.cshtml" />
+    <Content Include="Views\ProductionPlans\Index.cshtml" />
+    <Content Include="Views\ProductionPlans\Inspect.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -407,8 +411,8 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="DAL\NDBMigrations\201801022006076_InitialCreate.resx">
-      <DependentUpon>201801022006076_InitialCreate.cs</DependentUpon>
+    <EmbeddedResource Include="DAL\NDBMigrations\201801040420506_InitialCreate.resx">
+      <DependentUpon>201801040420506_InitialCreate.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DAL\SecurityMigrations\201712300200056_InitialSecurity.resx">
       <DependentUpon>201712300200056_InitialSecurity.cs</DependentUpon>

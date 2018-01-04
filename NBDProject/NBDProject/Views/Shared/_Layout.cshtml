@@ -41,6 +41,7 @@
             {
                 <li>@Html.ActionLink("Inventory", "Index", "Inventories")</li>
     }
+                    
         @*<li>@Html.ActionLink("Projects", "Index", "Projects")</li>*@
                     @if (User.IsInRole("Admin") || User.IsInRole("Admin Assistant") || User.IsInRole("Designer") || User.IsInRole("Chief Designer") || User.IsInRole("Production Manager") || User.IsInRole("Group Manager"))
             {
@@ -76,6 +77,14 @@
 
 
                         <li class="divider"></li>
+                        @if (User.IsInRole("Admin") || User.IsInRole("Admin Assistant") || User.IsInRole("Production Manager") || User.IsInRole("Group Manager") || User.IsInRole("Chief Designer"))
+                        {
+                            <li>@Html.ActionLink("Production Plan Summary", "Index", "ProductionPlans")</li>
+                        }
+                        @if (User.IsInRole("Admin") || User.IsInRole("Admin Assistant") || User.IsInRole("Designer") || User.IsInRole("Group Manager") || User.IsInRole("Chief Designer"))
+                        {
+                            <li>@Html.ActionLink("Design Bid Summary", "Index", "DesignBid")</li>
+                        }
                         @if (User.IsInRole("Admin") || User.IsInRole("Admin Assistant"))
                 {
                     <li>@Html.ActionLink("Workers", "Index", "Workers")</li>

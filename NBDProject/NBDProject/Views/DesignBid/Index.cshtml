@@ -1,7 +1,10 @@
 ﻿@model NBDProject.ViewModels.DesignBidVM
 @{
     ViewBag.Title = "Index";
-
+    NBDProject.DAL.NBDCFEntities db = new NBDProject.DAL.NBDCFEntities();
+    var cQuery = from c in db.Clients
+                 orderby c.cliName
+                 select c;
 }
 
 <h2>Design Bid Summary</h2>
@@ -10,7 +13,7 @@
     @using (Html.BeginForm("Index", "DesignBid", FormMethod.Get))
     {
     <p>
-        Select Client: @Html.DropDownList("ClientID", new SelectList(Model.Client, "ID", "cliName"), htmlAttributes: new { @onchange = "this.form.submit();" })
+        Select Client: @Html.DropDownList("ClientID", new SelectList(cQuery, "ID", "cliName"), htmlAttributes: new { @onchange = "this.form.submit();" })
         @*<input type="Submit" value="Filter" class="btn btn-default" />*@
     </p>
     }

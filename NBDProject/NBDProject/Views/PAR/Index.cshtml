@@ -1,0 +1,129 @@
+﻿@model NBDProject.ViewModels.PARVM
+@{
+    ViewBag.Title = "Index";
+}
+@{
+    bool checkStage = true;
+    var count = 0;
+    foreach (var project in Model.ProjectDesignBidStage)
+    {
+        count += (project.projectFlagged) ? 0 : 1;
+    }
+    if (count > 0)
+    {
+        checkStage = true;
+    }
+
+}
+
+<h2>Project Administration Report</h2>
+
+@if (checkStage)
+{
+    <h4>Bid Stage Projects</h4>
+    <table class="table table-hover">
+        <tr class="info">
+            <th>
+                Project
+            </th>
+            <th>
+                Est.Bid
+            </th>
+            <th>
+                Actual/Est Design Hrs
+            </th>
+            <th>
+                Actual/Est Design Cost
+            </th>
+            <th>
+                Hrs/$ Remaining
+            </th>
+        </tr>
+        <tr>
+            <td>
+                Astor
+            </td>
+            <td>
+                $13,000
+            </td>
+            <td>
+                6/20
+            </td>
+            <td>
+                $240/$800
+            </td>
+            <td>
+                14/$660
+            </td>
+        </tr>
+    </table>
+}
+
+<h4>Production Stage Projects</h4>
+<table class="table table-hover">
+    <tr class="info">
+        <th>
+            Project
+        </th>
+        <th>
+            Bid $
+        </th>
+        <th>
+            Prod Plan Est.
+        </th>
+        <th>
+            Total Cost to Date
+        </th>
+        <th>
+            Actual Mtl $
+        </th>
+        <th>
+            Est. Mtl $
+        </th>
+        <th>
+            Actual Labor $ Prod
+        </th>
+        <th>
+            Est Labor $ Prod
+        </th>
+        <th>
+            Actual Labor $ Design
+        </th>
+        <th>
+            Est. Labor $ Design
+        </th>
+    </tr>
+    <tr>
+        <td>
+            LS Mall
+        </td>
+        <td>
+            $7,651.5
+        </td>
+        <td>
+            $5,110
+        </td>
+        <td>
+            $5,265
+        </td>
+        <td>
+            $3,255
+        </td>
+        <td>
+            $3,240
+        </td>
+        <td>
+            $1,008
+        </td>
+        <td>
+            $990
+        </td>
+        <td>
+            $880
+        </td>
+        <td>
+            $880
+        </td>
+
+    </tr>
+</table>

@@ -73,7 +73,7 @@ namespace NBDProject.Models
         [Display(Name = "Project Name")]
         public string projectName {
             get {
-                return LabourRequirementDesign.Project.projectName.ToString();
+                return LabourRequirementDesign?.Project.projectName.ToString();
             }
         }
 

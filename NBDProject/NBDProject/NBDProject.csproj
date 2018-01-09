@@ -220,9 +220,9 @@
     <Compile Include="Controllers\WorkTypesController.cs" />
     <Compile Include="DAL\ApplicationDbContext.cs" />
     <Compile Include="DAL\NBDCFEntities.cs" />
-    <Compile Include="DAL\NDBMigrations\201801091543343_InitialCreate.cs" />
-    <Compile Include="DAL\NDBMigrations\201801091543343_InitialCreate.Designer.cs">
-      <DependentUpon>201801091543343_InitialCreate.cs</DependentUpon>
+    <Compile Include="DAL\NDBMigrations\201801091741311_InitialCreate.cs" />
+    <Compile Include="DAL\NDBMigrations\201801091741311_InitialCreate.Designer.cs">
+      <DependentUpon>201801091741311_InitialCreate.cs</DependentUpon>
     </Compile>
     <Compile Include="DAL\NDBMigrations\Configuration.cs" />
     <Compile Include="DAL\SecurityMigrations\201712300200056_InitialSecurity.cs" />
@@ -438,8 +438,8 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="DAL\NDBMigrations\201801091543343_InitialCreate.resx">
-      <DependentUpon>201801091543343_InitialCreate.cs</DependentUpon>
+    <EmbeddedResource Include="DAL\NDBMigrations\201801091741311_InitialCreate.resx">
+      <DependentUpon>201801091741311_InitialCreate.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DAL\SecurityMigrations\201712300200056_InitialSecurity.resx">
       <DependentUpon>201712300200056_InitialSecurity.cs</DependentUpon>

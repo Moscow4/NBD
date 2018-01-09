@@ -63,7 +63,7 @@ namespace NBDProject.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Admin, Admin Assistant, Designer, Chief Designer, Group Manager")]
-        public ActionResult Create([Bind(Include = "ID,mreqQty,mregCode,mregSize,mregNetProPlan,mregNetDesign,mregExtCostDesign,mregExtCostProPlan, mreqDeliver,mreqInstall,projectID,inventoryID")] MaterialRequirement materialRequirement)
+        public ActionResult Create([Bind(Include = "ID,mreqQty, mreqDeliver,mreqInstall,projectID,inventoryID")] MaterialRequirement materialRequirement)
         {
             if (ModelState.IsValid)
             {
@@ -107,7 +107,7 @@ namespace NBDProject.Controllers
             }
             var materialRequirementToUpdate = db.MaterialRequirements.Find(id);
             if (TryUpdateModel(materialRequirementToUpdate, "",
-                new string[] { "mreqQty", "mregCode", "mregSize", "mregNetProPlan", "mregNetDesign", "mregExtCostDesign", "mregExtCostProPlan", "mreqDeliver", "mreqInstall", "projectID", "inventoryID" }))
+                new string[] { "mreqQty", "mreqDeliver", "mreqInstall", "projectID", "inventoryID" }))
             {
                 try
                 {

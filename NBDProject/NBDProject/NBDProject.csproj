@@ -198,6 +198,7 @@
     <Compile Include="Controllers\CitiesController.cs" />
     <Compile Include="Controllers\ClientsController.cs" />
     <Compile Include="Controllers\DesignBidController.cs" />
+    <Compile Include="Controllers\DesignerDailiesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InventoriesController.cs" />
     <Compile Include="Controllers\LabourRequirementDesignsController.cs" />
@@ -206,6 +207,9 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MaterialRequirementsController.cs" />
     <Compile Include="Controllers\PARController.cs" />
+    <Compile Include="Controllers\ProductionDailyController.cs" />
+    <Compile Include="Controllers\ProductionDailyLaborsController.cs" />
+    <Compile Include="Controllers\ProductionDailyMaterialsController.cs" />
     <Compile Include="Controllers\ProductionPlansController.cs" />
     <Compile Include="Controllers\ProjectsController.cs" />
     <Compile Include="Controllers\ProjectTeamsController.cs" />
@@ -216,9 +220,9 @@
     <Compile Include="Controllers\WorkTypesController.cs" />
     <Compile Include="DAL\ApplicationDbContext.cs" />
     <Compile Include="DAL\NBDCFEntities.cs" />
-    <Compile Include="DAL\NDBMigrations\201801040420506_InitialCreate.cs" />
-    <Compile Include="DAL\NDBMigrations\201801040420506_InitialCreate.Designer.cs">
-      <DependentUpon>201801040420506_InitialCreate.cs</DependentUpon>
+    <Compile Include="DAL\NDBMigrations\201801090231463_InitialCreate.cs" />
+    <Compile Include="DAL\NDBMigrations\201801090231463_InitialCreate.Designer.cs">
+      <DependentUpon>201801090231463_InitialCreate.cs</DependentUpon>
     </Compile>
     <Compile Include="DAL\NDBMigrations\Configuration.cs" />
     <Compile Include="DAL\SecurityMigrations\201712300200056_InitialSecurity.cs" />
@@ -233,6 +237,7 @@
     <Compile Include="Models\BusinessRule.cs" />
     <Compile Include="Models\City.cs" />
     <Compile Include="Models\Client.cs" />
+    <Compile Include="Models\DesignerDaily.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Inventory.cs" />
     <Compile Include="Models\LabourRequirement.cs" />
@@ -244,6 +249,8 @@
     <Compile Include="Models\MaterialsInventory.cs" />
     <Compile Include="Models\PlantInventory.cs" />
     <Compile Include="Models\PotteryInventory.cs" />
+    <Compile Include="Models\ProductionDailyLabor.cs" />
+    <Compile Include="Models\ProductionDailyMaterial.cs" />
     <Compile Include="Models\Project.cs" />
     <Compile Include="Models\ProjectTeam.cs" />
     <Compile Include="Models\ProjectTool.cs" />
@@ -255,6 +262,7 @@
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\DesignBidVM.cs" />
     <Compile Include="ViewModels\PARVM.cs" />
+    <Compile Include="ViewModels\ProductionDailyVM.cs" />
     <Compile Include="ViewModels\ProductionPlanVM.cs" />
     <Compile Include="ViewModels\RoleVM.cs" />
     <Compile Include="ViewModels\UserVM.cs" />
@@ -404,6 +412,22 @@
     <Content Include="Views\ProductionPlans\Index.cshtml" />
     <Content Include="Views\ProductionPlans\Inspect.cshtml" />
     <Content Include="Views\PAR\Index.cshtml" />
+    <Content Include="Views\DesignerDailies\Create.cshtml" />
+    <Content Include="Views\DesignerDailies\Delete.cshtml" />
+    <Content Include="Views\DesignerDailies\Details.cshtml" />
+    <Content Include="Views\DesignerDailies\Edit.cshtml" />
+    <Content Include="Views\DesignerDailies\Index.cshtml" />
+    <Content Include="Views\ProductionDailyLabors\Create.cshtml" />
+    <Content Include="Views\ProductionDailyLabors\Delete.cshtml" />
+    <Content Include="Views\ProductionDailyLabors\Details.cshtml" />
+    <Content Include="Views\ProductionDailyLabors\Edit.cshtml" />
+    <Content Include="Views\ProductionDailyLabors\Index.cshtml" />
+    <Content Include="Views\ProductionDailyMaterials\Create.cshtml" />
+    <Content Include="Views\ProductionDailyMaterials\Delete.cshtml" />
+    <Content Include="Views\ProductionDailyMaterials\Details.cshtml" />
+    <Content Include="Views\ProductionDailyMaterials\Edit.cshtml" />
+    <Content Include="Views\ProductionDailyMaterials\Index.cshtml" />
+    <Content Include="Views\ProductionDaily\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -414,8 +438,8 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="DAL\NDBMigrations\201801040420506_InitialCreate.resx">
-      <DependentUpon>201801040420506_InitialCreate.cs</DependentUpon>
+    <EmbeddedResource Include="DAL\NDBMigrations\201801090231463_InitialCreate.resx">
+      <DependentUpon>201801090231463_InitialCreate.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DAL\SecurityMigrations\201712300200056_InitialSecurity.resx">
       <DependentUpon>201712300200056_InitialSecurity.cs</DependentUpon>

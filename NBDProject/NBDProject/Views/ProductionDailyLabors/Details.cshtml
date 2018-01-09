@@ -1,0 +1,74 @@
+﻿@model NBDProject.Models.ProductionDailyLabor
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>ProductionDailyLabor</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Project.projectName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Project.projectName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Task.taskDesc)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Task.taskDesc)
+        </dd>
+
+        <dt>
+            Submit Date
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SubmitDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Hours)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Hours)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.HourCost)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HourCost)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Cost)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cost)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LabourRequirement.worker)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LabourRequirement.worker)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

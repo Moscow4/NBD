@@ -216,8 +216,26 @@ namespace NBDProject.DAL.NDBMigrations
             labourRequiremnts.ForEach(l => context.LabourRequirements.AddOrUpdate(n => n.lregProdHour, l));
             SaveChanges(context);
 
-           
+            var designerDaily = new List<DesignerDaily>
+            {
+                new DesignerDaily { projectID = 1, stage = "P", hour = 3, taskID = 1 }
+            };
+            designerDaily.ForEach(d => context.DesignerDailies.AddOrUpdate(n => n.ID, d));
+            SaveChanges(context);
 
+            var productionDailyLabour = new List<ProductionDailyLabor>
+            {
+                new ProductionDailyLabor { labourID = 1, projectID = 1, taskID = 1, HourCost = 18.00m, Hours = 8}
+            };
+            productionDailyLabour.ForEach(p => context.ProductionDailyLabours.AddOrUpdate(n => n.ID, p));
+            SaveChanges(context);
+
+            var productionDailyMaterial = new List<ProductionDailyMaterial>
+            {
+                new ProductionDailyMaterial { projectID = 1, materialID = 1, Qnty = 5, UnitCost = 143.00m}
+            };
+            productionDailyMaterial.ForEach(p => context.ProductionDailyMaterials.AddOrUpdate(n => n.ID, p));
+            SaveChanges(context);
             // seed data for TaskTest
             //new TaskTest { taskDesc = "", taskStdTImeAmnt = 0, taskStdTimeUnit = "", labourRequirementID = 1 }
             

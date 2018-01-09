@@ -41,13 +41,14 @@
             {
                 <li>@Html.ActionLink("Inventory", "Index", "Inventories")</li>
     }
-                    
+                  
         @*<li>@Html.ActionLink("Projects", "Index", "Projects")</li>*@
                     @if (User.IsInRole("Admin") || User.IsInRole("Admin Assistant") || User.IsInRole("Designer") || User.IsInRole("Chief Designer") || User.IsInRole("Production Manager") || User.IsInRole("Group Manager"))
             {
                 <li class="dropdown">
                     <a href="#" data-toggle="dropdown" class="dropdown-toggle">Project<b class="caret"></b></a>
                     <ul class="dropdown-menu">
+                        
                         @if (User.IsInRole("Admin") || User.IsInRole("Admin Assistant") || User.IsInRole("Designer") || User.IsInRole("Chief Designer") || User.IsInRole("Production Manager") || User.IsInRole("Group Manager"))
                 {
                     <li>@Html.ActionLink("Project", "Index", "Projects")</li>
@@ -92,7 +93,19 @@
                         @if (User.IsInRole("Admin"))
                 {
                     <li>@Html.ActionLink("Positions", "Index", "WorkTypes")</li>
+
         }
+                        @if (User.IsInRole("Designer"))
+                        {
+                            <li class="divider"></li>
+                            <li>@Html.ActionLink("Designer Daily Report", "Index", "DesignerDailies")</li>
+                        }
+
+                        @if (User.IsInRole("Production Manager"))
+                        {
+                            <li class="divider"></li>
+                            <li>@Html.ActionLink("Production Daily Report", "Index", "ProductionDaily")</li>
+                        }
 
                     </ul>
                 </li>

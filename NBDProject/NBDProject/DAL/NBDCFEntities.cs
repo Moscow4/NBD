@@ -10,20 +10,23 @@ namespace NBDProject.DAL
 {
     public class NBDCFEntities : DbContext
     {
-        public DbSet<City>                  Cities { get; set; }
-        public DbSet<Client>                Clients { get; set; }
-        public DbSet<Inventory>             Inventory { get; set; }
-        public DbSet<LabourRequirement>     LabourRequirements { get; set; }
-        public DbSet<LabourSummary>         LabourSummaries { get; set; }
-        public DbSet<MaterialRequirement>   MaterialRequirements { get; set; }
-        public DbSet<Worker>                Workers { get; set; }
-        public DbSet<Project>               Projects { get; set; }
-        public DbSet<ProjectTeam>           ProjectTeams { get; set; }
-        public DbSet<ProjectTool>           ProjectTools { get; set; }
-        public DbSet<Tool>                  Tools { get; set; }
-        public DbSet<TaskTest>              TaskTests { get; set; }
-        public DbSet<WorkType>              WorkTypes { get; set; }
+        public DbSet<City> Cities { get; set; }
+        public DbSet<Client> Clients { get; set; }
+        public DbSet<Inventory> Inventory { get; set; }
+        public DbSet<LabourRequirement> LabourRequirements { get; set; }
+        public DbSet<LabourSummary> LabourSummaries { get; set; }
+        public DbSet<MaterialRequirement> MaterialRequirements { get; set; }
+        public DbSet<Worker> Workers { get; set; }
+        public DbSet<Project> Projects { get; set; }
+        public DbSet<ProjectTeam> ProjectTeams { get; set; }
+        public DbSet<ProjectTool> ProjectTools { get; set; }
+        public DbSet<Tool> Tools { get; set; }
+        public DbSet<TaskTest> TaskTests { get; set; }
+        public DbSet<WorkType> WorkTypes { get; set; }
         public DbSet<LabourRequirementDesign> LabourRequirementDesigns { get; set; }
+        public DbSet<DesignerDaily> DesignerDailies { get; set; }
+        public DbSet<ProductionDailyMaterial> ProductionDailyMaterials { get; set; }
+        public DbSet<ProductionDailyLabor> ProductionDailyLabours { get; set; }
         //public DbSet<BusinessRule>          BusinessRules { get; set; }
 
 
@@ -38,6 +41,7 @@ namespace NBDProject.DAL
             // Not sure if we are doing user audits
             return base.SaveChanges();
         }
+
 
     }
 }

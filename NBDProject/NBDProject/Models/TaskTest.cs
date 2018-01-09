@@ -14,6 +14,8 @@ namespace NBDProject.Models
     {
         public TaskTest() {
             this.LabourRequirements = new HashSet<LabourRequirement>();
+            this.DesignerDailies = new HashSet<DesignerDaily>();
+            this.ProductionDailyLabours = new HashSet<ProductionDailyLabor>();
         }
         public int ID { get; set; }
 
@@ -35,6 +37,8 @@ namespace NBDProject.Models
 
 
         public virtual ICollection<LabourRequirement> LabourRequirements { get; set; }
+        public virtual ICollection<DesignerDaily> DesignerDailies { get; set; }
+        public virtual ICollection<ProductionDailyLabor> ProductionDailyLabours { get; set; }
 
     }
 }

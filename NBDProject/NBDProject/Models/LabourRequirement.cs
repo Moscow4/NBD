@@ -12,7 +12,10 @@ namespace NBDProject.Models
 {
     public class LabourRequirement
     {
-
+        public LabourRequirement()
+        {
+            this.ProductionDailyLabours = new HashSet<ProductionDailyLabor>();
+        }
 
      
         public int ID { get; set; }
@@ -41,6 +44,13 @@ namespace NBDProject.Models
             get { return lregCost * lregProdHour; }
         }
 
+        public string worker
+        {
+            get
+            {
+                return Worker.FullName;
+            }
+        }
         //[Display(Name = "Unit Price")]
         //[Required(ErrorMessage = "Unit Price is required.")]
         //public decimal lregUnitPrice { get; set; }
@@ -82,6 +92,7 @@ namespace NBDProject.Models
         public virtual TaskTest Task { get; set; }
         public virtual Worker Worker { get; set; }
         public virtual LabourRequirementDesign LabourRequirementDesign { get; set; }
+        public virtual ICollection<ProductionDailyLabor> ProductionDailyLabours { get; set; }
 
     }
 }

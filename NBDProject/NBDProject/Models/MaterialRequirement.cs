@@ -13,6 +13,7 @@ namespace NBDProject.Models
     public class MaterialRequirement
     {
         public MaterialRequirement() {
+            this.ProductionDailyMaterials = new HashSet<ProductionDailyMaterial>();
             this.mreqDeliver = null;
             this.mreqInstall = null;
         }
@@ -25,6 +26,14 @@ namespace NBDProject.Models
         //[Display(Name = "Code")]
         //[Required(ErrorMessage = "Code is required.")]
         //public string mregCode { get; set; }
+
+        public string desc
+        {
+            get
+            {
+                return Inventory.invDesc;
+            }
+        }
 
 
         [Display(Name = "Size")]
@@ -91,6 +100,8 @@ namespace NBDProject.Models
         public virtual Inventory Inventory { get; set; }
 
         public virtual Project Project { get; set; }
+
+        public virtual ICollection<ProductionDailyMaterial> ProductionDailyMaterials { get; set; }
 
 
 

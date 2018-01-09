@@ -1,0 +1,42 @@
+﻿@model NBDProject.Models.DesignerDaily
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>DesignerDaily</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.project.projectName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.project.projectName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Task.taskDesc)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Task.taskDesc)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.hour)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.hour)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

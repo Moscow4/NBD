@@ -1,0 +1,125 @@
+﻿@model NBDProject.ViewModels.ProductionDailyVM
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Production Daily Work Report</h2>
+<li class="divider"></li>
+
+@using (Html.BeginForm("Index", "DesignerDailiess", FormMethod.Get))
+{
+    <p>
+
+        <div class="form-group">
+            <label class="control-label col-md-5">Select Project: </label>
+            <div class="col-md-7">
+                @Html.DropDownList("projectID", null, htmlAttributes: new { @class = "this.form.submit()" })
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-5">Search Date: </label>
+            <div class="col-md-6">
+                @Html.TextBox("searchDate", null, new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="col-md-7">
+            <input type="submit" name="actionButton" value="Filter" class="btn btn-default" /> @Html.ActionLink("Clear", "Index")
+        </div>
+    </p>
+<div>
+<h4>Materials Used: </h4>
+<table class="table table-hover">
+    <tr class="info">
+        <th>
+            Code
+        </th>
+        <th>
+            Qnty
+        </th>
+        <th>
+            Unit Cost
+        </th>
+        <th>
+            Ext. Cost
+        </th>
+        <th>
+        </th>
+    </tr>
+    @foreach (var item in Model.ProductionDailyMaterial)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.MaterialRequirement.desc)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Qnty)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UnitCost)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cost)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", "ProductionDailyMaterials", new { id = item.ID }, new { @class = "btn btn-primary" }) |
+                @Html.ActionLink("Details", "Details", "ProductionDailyMaterials", new { id = item.ID }, new { @class = "btn btn-info" }) |
+                @Html.ActionLink("Delete", "Delete", "ProductionDailyMaterials", new { id = item.ID }, new { @class = "btn btn-danger" })
+
+            </td>
+        </tr>
+    }
+</table>
+
+
+
+<h4>Labor: </h4>
+
+<table class="table table-hover">
+    <tr class="info">
+        <th>
+            Worker
+        </th>
+        <th>
+            Hours
+        </th>
+        <th>
+            Cost/Hr
+        </th>
+        <th>
+            Ext. Cost
+        </th>
+        <th>
+            Task
+        </th>
+        <th>
+        </th>
+    </tr>
+    @foreach (var item in Model.ProductionDailyLabor)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.LabourRequirement.worker)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Hours)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HourCost)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cost)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Task.taskDesc)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", "ProductionDailyLabors", new { id = item.ID }, new { @class = "btn btn-primary" }) |
+                @Html.ActionLink("Details", "Details", "ProductionDailyLabors", new { id = item.ID }, new { @class = "btn btn-info" }) |
+                @Html.ActionLink("Delete", "Delete", "ProductionDailyLabors", new { id = item.ID }, new { @class = "btn btn-danger" })
+            </td>
+        </tr>
+    }
+ 
+</table>
+</div>
+}

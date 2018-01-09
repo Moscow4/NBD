@@ -1,0 +1,73 @@
+﻿@model IEnumerable<NBDProject.Models.DesignerDaily>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Designer Daily Work Report</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+@using (Html.BeginForm("Index", "DesignerDailiess", FormMethod.Get))
+{
+    <p>
+        <div class="form-group">
+            <label class="control-label col-md-5">Select Project: </label>
+            <div class="col-md-7">
+                @Html.DropDownList("projectID", null, htmlAttributes: new { @class = "this.form.submit()" })
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-5">Select Project: </label>
+            <div class="col-md-7">
+               @Html.TextBox("searchDate", null, new { @class= "form-control"})
+            </div>
+        </div>
+        <div class="col-md-7">
+            <input type="submit" name="actionButton" value="Filter" class="btn btn-default" /> @Html.ActionLink("Clear", "Index")
+        </div>
+    </p>
+}
+
+<table class="table">
+    <tr class="info">
+        <th>
+            @Html.DisplayNameFor(model => model.project.projectName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.stage)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Task.taskDesc)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.hour)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.project.projectName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.stage)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Task.taskDesc)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.hour)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.ID }, new { @class = "btn btn-primary" })|
+            @Html.ActionLink("Details", "Details", new { id = item.ID }, new { @class = "btn btn-info" })|
+            @Html.ActionLink("Delete", "Delete", new { id = item.ID }, new { @class = "btn btn-danger" })
+        </td>
+    </tr>
+}
+
+</table>

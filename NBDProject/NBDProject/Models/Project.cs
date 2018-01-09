@@ -18,6 +18,9 @@ namespace NBDProject.Models
             this.LabourSummaries = new HashSet<LabourSummary>();
             this.LabourRequirementDesigns = new HashSet<LabourRequirementDesign>();
             this.MaterialRequirements = new HashSet<MaterialRequirement>();
+            this.DesignerDailies = new HashSet<DesignerDaily>();
+            this.ProductionDailyMaterials = new HashSet<ProductionDailyMaterial>();
+            this.ProductionDailyLabours = new HashSet<ProductionDailyLabor>();
             this.projectChiefDesignAccept = false;
             this.projectBidMgmtAccept = false;
             this.projectBidCustAccept = false;
@@ -113,7 +116,9 @@ namespace NBDProject.Models
         public virtual ICollection<LabourSummary> LabourSummaries { get; set; }
         public virtual ICollection<LabourRequirementDesign> LabourRequirementDesigns { get; set; }
         public virtual ICollection<MaterialRequirement> MaterialRequirements { get; set; }
-
+        public virtual ICollection<DesignerDaily> DesignerDailies { get; set; }
+        public virtual ICollection<ProductionDailyMaterial> ProductionDailyMaterials { get; set; }
+        public virtual ICollection<ProductionDailyLabor> ProductionDailyLabours { get; set; }
 
 
 

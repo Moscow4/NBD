@@ -12,6 +12,7 @@ namespace NBDProject.Models
 {
     public class Project
     {
+        private bool ProjectFlagged = false;
         public Project()
         {
             this.projectTeams = new HashSet<ProjectTeam>();
@@ -25,6 +26,7 @@ namespace NBDProject.Models
             this.projectBidMgmtAccept = false;
             this.projectBidCustAccept = false;
             this.projectCurrentPhase = "";
+            
             //this.projectActCost = 9999.00m;
         }
 
@@ -93,6 +95,15 @@ namespace NBDProject.Models
                 }
                 else {
                     return false;
+                }
+            } set {
+                if (projectBidCustAccept && projectBidMgmtAccept)
+                {
+                    ProjectFlagged = true;
+                }
+                else
+                {
+                    ProjectFlagged =  false;
                 }
             }
         }

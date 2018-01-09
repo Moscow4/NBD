@@ -225,7 +225,7 @@ namespace NBDProject.DAL.NDBMigrations
 
             var productionDailyLabour = new List<ProductionDailyLabor>
             {
-                new ProductionDailyLabor { labourID = 1, projectID = 1, taskID = 1, HourCost = 18.00m, Hours = 8}
+                new ProductionDailyLabor { workerID = 1, projectID = 1, taskID = 1, HourCost = 18.00m, Hours = 8}
             };
             productionDailyLabour.ForEach(p => context.ProductionDailyLabours.AddOrUpdate(n => n.ID, p));
             SaveChanges(context);

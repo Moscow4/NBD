@@ -87,7 +87,10 @@
             @{
                 var productionPlanCost = item.MaterialRequirements.Sum(p => p.mregExtCostProPlan) + item.LabourRequirementDesigns.Sum(p => p.LabourRequirements.Sum(l => l.LregEstCost));
                 var DesignBid = item.MaterialRequirements.Sum(p => p.mregExtCostDesign) + item.LabourRequirementDesigns.Sum(p => p.lregDExtPrice);
-                var percent = Math.Round((productionPlanCost / DesignBid) * 100);
+                if (DesignBid == 0)
+                {
+                    DesignBid = 1;
+                } var percent = Math.Round((productionPlanCost / DesignBid) * 100);
             }
             @if (User.IsInRole("Production Manager") || User.IsInRole("Chief Designer") && item.projectChiefDesignAccept)
             {

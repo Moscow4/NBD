@@ -36,6 +36,15 @@ namespace NBDProject.Models
             }
         }
 
+        public string Worker
+        {
+            get
+            {
+
+                return worker.FName + " " + worker.LName;
+            }
+        }
+
         [Display(Name = "Task")]
         [Required(ErrorMessage ="You have to specify Task.")]
         public int taskID { get; set; }
@@ -48,8 +57,11 @@ namespace NBDProject.Models
         [Required(ErrorMessage ="You have to specify Project.")]
         public int projectID { get; set; }
 
+        public int workerID { get; set; }
+
         public virtual Project Project { get; set; }
         public virtual LabourRequirement LabourRequirement { get; set; }
         public virtual TaskTest Task { get; set; }
+        public virtual Worker worker { get; set; }
     }
 }

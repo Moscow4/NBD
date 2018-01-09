@@ -44,13 +44,7 @@ namespace NBDProject.Models
             get { return lregCost * lregProdHour; }
         }
 
-        public string worker
-        {
-            get
-            {
-                return Worker.FullName;
-            }
-        }
+        
         //[Display(Name = "Unit Price")]
         //[Required(ErrorMessage = "Unit Price is required.")]
         //public decimal lregUnitPrice { get; set; }

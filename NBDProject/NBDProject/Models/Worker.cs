@@ -14,6 +14,8 @@ namespace NBDProject.Models
     {
         public Worker() {
             this.ProjectTeams = new HashSet<ProjectTeam>();
+            this.LabourRequirements = new HashSet<LabourRequirement>();
+            this.ProductionDailyLabours = new HashSet<ProductionDailyLabor>();
         }
 
         [Display(Name ="Employee Full Name")]
@@ -24,6 +26,8 @@ namespace NBDProject.Models
                 return FName + " " + LName;
             }
         }
+
+        
         public int ID { get; set; }
 
         [Display(Name = "Worker First Name")]
@@ -47,6 +51,8 @@ namespace NBDProject.Models
         public int worktypeID { get; set; }
 
         public virtual WorkType WorkType { get; set; }
+        public virtual ICollection<LabourRequirement> LabourRequirements { get; set; }
         public virtual ICollection<ProjectTeam> ProjectTeams { get; set; }
+        public virtual ICollection<ProductionDailyLabor> ProductionDailyLabours { get; set; }
     }
 }

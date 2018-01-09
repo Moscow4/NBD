@@ -11,6 +11,7 @@
 @{
     var DesignBid = Model.MaterialRequirement.Sum(p => p.mregExtCostDesign) + Model.LabourRequirementDesign.Sum(p => p.lregDExtPrice);
     var percent = Math.Round((totalCost / DesignBid) * 100);
+
 }
 @foreach (var model in Model.MaterialRequirement)
 {
@@ -78,7 +79,7 @@
     @foreach (var item in Model.MaterialRequirement)
     {
 
-
+       
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.mreqQty)
@@ -148,13 +149,13 @@
     <tr class="info">
         @foreach (var model in Model.LabourRequirement)
         {
-
             <th>
                 Description
             </th>
             <th>
                 @Html.DisplayNameFor(modelItem => model.lregProdHour)
             </th>
+
             <th>
                 @Html.DisplayNameFor(modelItem => model.lregCost)
             </th>
@@ -185,19 +186,62 @@
 
         foreach (var item in Model.LabourRequirement.Where(l => l.LabourRequirementDesignID == model.ID))
         {
+            decimal tenPercent = 0.00m;
+            decimal maxHour = 0.00m;
+            if (item.Task.taskDesc == "Bid Process")
+            {
+                tenPercent = Math.Round(DesignBid / 10);
+                maxHour = Math.Round(tenPercent / item.lregCost);
+            }
             <tr>
                 <td>
                     @Html.DisplayFor(modelItem => item.Worker.FullName)
                 </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.lregProdHour)
+                @if (item.Task.taskDesc == "Bid Process")
+                {
+                    if (item.lregProdHour > maxHour)
+                    {
+                <td style="color:red">
+                    @Html.DisplayFor(modelItem => item.lregProdHour) (The Design Bid Hour is go over 10%)
                 </td>
+                    }
+                    else
+                    {
+                    <td style="color:green">
+                        @Html.DisplayFor(modelItem => item.lregProdHour)
+                    </td>
+                    }
+                }
+                else
+                {
+                    <td>
+                        @Html.DisplayFor(modelItem => item.lregProdHour)
+                    </td>
+                }
                 <td>
                     @Html.DisplayFor(modelItem => item.lregCost)
                 </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.LregEstCost)
-                </td>
+                @if (item.Task.taskDesc == "Bid Process")
+                {
+                    if (item.LregEstCost > tenPercent)
+                    {
+                        <td style="color:red">
+                            @Html.DisplayFor(modelItem => item.LregEstCost) (The Design Bid Cost is go over 10%)
+                        </td>
+                    }
+                    else
+                    {
+                        <td style="color:green">
+                            @Html.DisplayFor(modelItem => item.LregEstCost)
+                        </td>
+                    }
+                }
+                else
+                {
+                    <td>
+                        @Html.DisplayFor(modelItem => item.LregEstCost)
+                    </td>
+                }
                 <td>
                     @Html.DisplayFor(modelItem => item.lregTime)
                 </td>

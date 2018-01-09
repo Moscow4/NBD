@@ -19,7 +19,7 @@ namespace NBDProject.Controllers
         // GET: ProductionDailyLabors
         public ActionResult Index()
         {
-            var productionDailyLabours = db.ProductionDailyLabours.Include(p => p.Project).Include(p => p.Task).Include(p=>p.LabourRequirement);
+            var productionDailyLabours = db.ProductionDailyLabours.Include(p => p.Project).Include(p => p.Task).Include(p=>p.Worker);
             return View(productionDailyLabours.ToList());
         }
 
@@ -50,7 +50,7 @@ namespace NBDProject.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,SubmitDate,Hours,HourCost,taskID,labourID,projectID")] ProductionDailyLabor productionDailyLabor)
+        public ActionResult Create([Bind(Include = "ID,SubmitDate,Hours,HourCost,taskID,workerID,projectID")] ProductionDailyLabor productionDailyLabor)
         {
             if (ModelState.IsValid)
             {
@@ -84,7 +84,7 @@ namespace NBDProject.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,SubmitDate,Hours,HourCost,taskID,labourID,projectID")] ProductionDailyLabor productionDailyLabor)
+        public ActionResult Edit([Bind(Include = "ID,SubmitDate,Hours,HourCost,taskID,projectID, workerID")] ProductionDailyLabor productionDailyLabor)
         {
             if (ModelState.IsValid)
             {
@@ -134,10 +134,10 @@ namespace NBDProject.Controllers
                          select t;
             ViewBag.taskID = new SelectList(tQuery, "ID", "taskDesc", dailyLabour?.taskID);
 
-            var lQuery = from l in db.LabourRequirements
-                         orderby l.Worker.FullName
-                         select l;
-            ViewBag.labourID = new SelectList(lQuery, "ID", "worker", dailyLabour?.labourID);
+            //var wQuery = from w in db.Workers
+            //             orderby w.FullName
+            //             select w;
+            //ViewBag.workerID = new SelectList(wQuery, "ID", "FullName", dailyLabour?.workerID);
         }
 
         protected override void Dispose(bool disposing)

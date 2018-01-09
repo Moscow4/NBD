@@ -35,10 +35,10 @@ namespace NBDProject.Controllers
 
             
             var productionDailyLabour = (from pl in db.ProductionDailyLabours
-                                         where pl.projectID == projectID && pl.SubmitDate == Date
+                                         where pl.projectID == projectID
                                          select pl).ToList();
             var productionDailyMaterial = (from pm in db.ProductionDailyMaterials
-                                           where pm.projectID == projectID && pm.SubmitDate == Date
+                                           where pm.projectID == projectID 
                                            select pm).ToList();
 
             var ViewModel = new ProductionDailyVM
